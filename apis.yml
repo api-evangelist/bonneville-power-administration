@@ -1,32 +1,19 @@
 aid: bonneville-power-administration
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/bonneville-power-administration/refs/heads/main/apis.yml
 name: Bonneville Power Administration
+tags:
+  - API
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+created: '2024-11-25'
+modified: '2024-12-22'
+position: Consumer
 description: >-
   This is the platform for downloading Bonneville Power Administration publicly
   available GIS data. You can analyze and combine datasets using maps.
-type: Index
-position: Consumer
-access: 3rd-Party
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
-created: '2024-11-25'
-modified: '2024-11-25'
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/bonneville-power-administration/refs/heads/main/apis.yml
-specificationVersion: '0.19'
-apis:
-  - aid: bonneville-power-administration:bonneville-power-administration
-    name: Bonneville Power Administration
-    description: >-
-      This is the platform for downloading Bonneville Power Administration
-      publicly available GIS data. You can analyze and combine datasets using
-      maps.
-    humanURL: https://www.bpa.gov/
-    tags:
-      - API
-    properties:
-      - type: Documentation
-        url: https://www.bpa.gov/
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
+specificationVersion: '0.19'
