@@ -1,0 +1,298 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bonneville Power Administration GIS Hub API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Service Area",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query the BPA Service Area boundary layer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_ServiceArea/FeatureServer/0/query",
+            "params": [
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+              },
+              {
+                "name": "outFields",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Query the BPA Service Area boundary layer"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query the BPA public-utility customers layer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_CustomerPublics/FeatureServer/0/query",
+            "params": [
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+              },
+              {
+                "name": "outFields",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Query the BPA public-utility customers layer"
+        },
+        {
+          "info": {
+            "name": "Query the BPA investor-owned utility customers layer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_CustomerIOU/FeatureServer/0/query",
+            "params": [
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+              },
+              {
+                "name": "outFields",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Query the BPA investor-owned utility customers layer"
+        },
+        {
+          "info": {
+            "name": "Query the BPA tribal customers layer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_CustomerTribal/FeatureServer/0/query",
+            "params": [
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+              },
+              {
+                "name": "outFields",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Query the BPA tribal customers layer"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transmission",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query the BPA transmission lines view layer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_TransmissionLines_View/FeatureServer/0/query",
+            "params": [
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+              },
+              {
+                "name": "outFields",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Query the BPA transmission lines view layer"
+        },
+        {
+          "info": {
+            "name": "Query the BPA transmission structures view layer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_TransmissionStructure_View/FeatureServer/0/query",
+            "params": [
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+              },
+              {
+                "name": "outFields",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Query the BPA transmission structures view layer"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Right of Way",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query the BPA right-of-way view layer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_RightofWay_View/FeatureServer/0/query",
+            "params": [
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+              },
+              {
+                "name": "outFields",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Query the BPA right-of-way view layer"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Hydrology",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query the Columbia River Basin layer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/ColumbiaRiverBasin/FeatureServer/0/query",
+            "params": [
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+              },
+              {
+                "name": "outFields",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Query the Columbia River Basin layer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,836 @@
+{
+  "item": [
+    {
+      "id": "d1a3a4a1-86e1-4409-9dfa-3241e8eb97a0",
+      "name": "Service Area",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af0c6c41-245b-4253-8c4b-d05f1e4e8852",
+          "name": "Query the BPA Service Area boundary layer",
+          "request": {
+            "name": "Query the BPA Service Area boundary layer",
+            "description": {},
+            "url": {
+              "path": [
+                "services",
+                "BPA_ServiceArea",
+                "FeatureServer",
+                "0",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "1=1",
+                  "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+                },
+                {
+                  "disabled": false,
+                  "key": "outFields",
+                  "value": "*",
+                  "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b35a630e-9da0-42ba-adc0-48c11899d844",
+              "name": "ArcGIS query result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "BPA_ServiceArea",
+                    "FeatureServer",
+                    "0",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "1=1"
+                    },
+                    {
+                      "key": "outFields",
+                      "value": "*"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b758efc2-530b-48fa-99d8-1063d1220c2f",
+      "name": "Customers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ffcc252f-8057-4cc0-8726-c45c98ae179d",
+          "name": "Query the BPA public-utility customers layer",
+          "request": {
+            "name": "Query the BPA public-utility customers layer",
+            "description": {},
+            "url": {
+              "path": [
+                "services",
+                "BPA_CustomerPublics",
+                "FeatureServer",
+                "0",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "1=1",
+                  "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+                },
+                {
+                  "disabled": false,
+                  "key": "outFields",
+                  "value": "*",
+                  "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60ac8b1c-c694-494d-9dfc-5101c2e6c17a",
+              "name": "ArcGIS query result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "BPA_CustomerPublics",
+                    "FeatureServer",
+                    "0",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "1=1"
+                    },
+                    {
+                      "key": "outFields",
+                      "value": "*"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ddd7a02-2bde-42bf-b469-aa189f4c033e",
+          "name": "Query the BPA investor-owned utility customers layer",
+          "request": {
+            "name": "Query the BPA investor-owned utility customers layer",
+            "description": {},
+            "url": {
+              "path": [
+                "services",
+                "BPA_CustomerIOU",
+                "FeatureServer",
+                "0",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "1=1",
+                  "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+                },
+                {
+                  "disabled": false,
+                  "key": "outFields",
+                  "value": "*",
+                  "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a193a4e-5960-4447-b5b1-faa933e97028",
+              "name": "ArcGIS query result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "BPA_CustomerIOU",
+                    "FeatureServer",
+                    "0",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "1=1"
+                    },
+                    {
+                      "key": "outFields",
+                      "value": "*"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5062f1ed-615d-4320-bc92-d10b3894e1ac",
+          "name": "Query the BPA tribal customers layer",
+          "request": {
+            "name": "Query the BPA tribal customers layer",
+            "description": {},
+            "url": {
+              "path": [
+                "services",
+                "BPA_CustomerTribal",
+                "FeatureServer",
+                "0",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "1=1",
+                  "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+                },
+                {
+                  "disabled": false,
+                  "key": "outFields",
+                  "value": "*",
+                  "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "023fefc3-7da1-4551-aaf4-e79881752fa6",
+              "name": "ArcGIS query result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "BPA_CustomerTribal",
+                    "FeatureServer",
+                    "0",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "1=1"
+                    },
+                    {
+                      "key": "outFields",
+                      "value": "*"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "898864b1-b605-4b6e-9bfc-64a6de06902b",
+      "name": "Transmission",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c4370d2-6f3e-486f-9fda-69bf51ad7d51",
+          "name": "Query the BPA transmission lines view layer",
+          "request": {
+            "name": "Query the BPA transmission lines view layer",
+            "description": {},
+            "url": {
+              "path": [
+                "services",
+                "BPA_TransmissionLines_View",
+                "FeatureServer",
+                "0",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "1=1",
+                  "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+                },
+                {
+                  "disabled": false,
+                  "key": "outFields",
+                  "value": "*",
+                  "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0fb97484-bff6-4c05-8c22-294027e72401",
+              "name": "ArcGIS query result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "BPA_TransmissionLines_View",
+                    "FeatureServer",
+                    "0",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "1=1"
+                    },
+                    {
+                      "key": "outFields",
+                      "value": "*"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17e6fbec-28c6-4507-a38e-562fe2ce115e",
+          "name": "Query the BPA transmission structures view layer",
+          "request": {
+            "name": "Query the BPA transmission structures view layer",
+            "description": {},
+            "url": {
+              "path": [
+                "services",
+                "BPA_TransmissionStructure_View",
+                "FeatureServer",
+                "0",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "1=1",
+                  "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+                },
+                {
+                  "disabled": false,
+                  "key": "outFields",
+                  "value": "*",
+                  "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c999d8b9-be0f-4e7d-ae13-086b423dc425",
+              "name": "ArcGIS query result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "BPA_TransmissionStructure_View",
+                    "FeatureServer",
+                    "0",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "1=1"
+                    },
+                    {
+                      "key": "outFields",
+                      "value": "*"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2d0b002c-7ef6-4440-943f-6b581d9c81e9",
+      "name": "Right of Way",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b0d64cb-d34e-48e9-b9b2-44b1542fb8a4",
+          "name": "Query the BPA right-of-way view layer",
+          "request": {
+            "name": "Query the BPA right-of-way view layer",
+            "description": {},
+            "url": {
+              "path": [
+                "services",
+                "BPA_RightofWay_View",
+                "FeatureServer",
+                "0",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "1=1",
+                  "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+                },
+                {
+                  "disabled": false,
+                  "key": "outFields",
+                  "value": "*",
+                  "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1fe2852-aa60-432a-b602-0e751f77b031",
+              "name": "ArcGIS query result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "BPA_RightofWay_View",
+                    "FeatureServer",
+                    "0",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "1=1"
+                    },
+                    {
+                      "key": "outFields",
+                      "value": "*"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "de123b8e-f156-4802-addd-0b8382751596",
+      "name": "Hydrology",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "54c9c80f-a2e7-43ea-a658-fb6e39c57f51",
+          "name": "Query the Columbia River Basin layer",
+          "request": {
+            "name": "Query the Columbia River Basin layer",
+            "description": {},
+            "url": {
+              "path": [
+                "services",
+                "ColumbiaRiverBasin",
+                "FeatureServer",
+                "0",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "1=1",
+                  "description": "SQL where clause used to filter features. Use \"1=1\" to return all features."
+                },
+                {
+                  "disabled": false,
+                  "key": "outFields",
+                  "value": "*",
+                  "description": "Comma separated list of fields to return. Use \"*\" to return all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d70aea4a-d68f-4439-97df-d98ae6f2ef08",
+              "name": "ArcGIS query result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "ColumbiaRiverBasin",
+                    "FeatureServer",
+                    "0",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "1=1"
+                    },
+                    {
+                      "key": "outFields",
+                      "value": "*"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "38124230-bda8-44be-8435-3ecc25bec598",
+    "name": "Bonneville Power Administration GIS Hub API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "BPA GIS Data Hub serves public geospatial data via ArcGIS Online Feature\nServices. Each layer is exposed as a standard ArcGIS REST FeatureServer\nsupporting query, format conversion, replica creation, and size estimates.\nThe endpoints below cover the published BPA layers (service area, customer\nclasses, transmission lines, transmission structures, right-of-way, and\nColumbia River Basin).\n\n\nContact Support:\n Name: BPA GIS Data Hub",
+      "type": "text/plain"
+    }
+  }
+}
