@@ -67,6 +67,10 @@ apis:
       generation, net generation, and load data available for download. The data
       is used for grid operations planning and renewable energy tracking.
 common:
+  - type: DomainSecurity
+    url: security/bonneville-power-administration-domain-security.yml
+  - type: Blog
+    url: https://www.bpa.gov/rss-feeds/news-feed-no-cp
   - type: LinkedIn
     url: https://www.linkedin.com/company/bonnevillepower
   - type: Website
