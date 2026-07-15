@@ -67,6 +67,8 @@ apis:
       generation, net generation, and load data available for download. The data
       is used for grid operations planning and renewable energy tracking.
 common:
+  - type: AgenticAccess
+    url: agentic-access/bonneville-power-administration-agentic-access.yml
   - type: DomainSecurity
     url: security/bonneville-power-administration-domain-security.yml
   - type: Blog

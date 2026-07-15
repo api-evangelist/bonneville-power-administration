@@ -1,0 +1,94 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/bonneville-power-administration-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 8
+  by_action_class:
+    connected: 8
+  by_consequence:
+    read: 8
+  human_in_the_loop_required: 0
+operations:
+- path: /services/BPA_ServiceArea/FeatureServer/0/query
+  method: get
+  operationId: queryServiceArea
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/BPA_CustomerPublics/FeatureServer/0/query
+  method: get
+  operationId: queryCustomerPublics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/BPA_CustomerIOU/FeatureServer/0/query
+  method: get
+  operationId: queryCustomerIOU
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/BPA_CustomerTribal/FeatureServer/0/query
+  method: get
+  operationId: queryCustomerTribal
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/BPA_TransmissionLines_View/FeatureServer/0/query
+  method: get
+  operationId: queryTransmissionLines
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/BPA_TransmissionStructure_View/FeatureServer/0/query
+  method: get
+  operationId: queryTransmissionStructures
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/BPA_RightofWay_View/FeatureServer/0/query
+  method: get
+  operationId: queryRightOfWay
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/ColumbiaRiverBasin/FeatureServer/0/query
+  method: get
+  operationId: queryColumbiaRiverBasin
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
