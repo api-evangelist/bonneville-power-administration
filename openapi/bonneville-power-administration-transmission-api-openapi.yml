@@ -1,0 +1,81 @@
+openapi: 3.1.0
+info:
+  title: Bonneville Power Administration GIS Hub Customers Transmission API
+  description: 'BPA GIS Data Hub serves public geospatial data via ArcGIS Online Feature
+
+    Services. Each layer is exposed as a standard ArcGIS REST FeatureServer
+
+    supporting query, format conversion, replica creation, and size estimates.
+
+    The endpoints below cover the published BPA layers (service area, customer
+
+    classes, transmission lines, transmission structures, right-of-way, and
+
+    Columbia River Basin).
+
+    '
+  version: 1.0.0
+  contact:
+    name: BPA GIS Data Hub
+    url: https://data-bpagis.hub.arcgis.com
+servers:
+- url: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
+  description: BPA public ArcGIS REST services host
+security: []
+tags:
+- name: Transmission
+paths:
+  /services/BPA_TransmissionLines_View/FeatureServer/0/query:
+    get:
+      operationId: queryTransmissionLines
+      summary: Query the BPA transmission lines view layer
+      tags:
+      - Transmission
+      parameters:
+      - $ref: '#/components/parameters/Where'
+      - $ref: '#/components/parameters/OutFields'
+      - $ref: '#/components/parameters/F'
+      responses:
+        '200':
+          description: ArcGIS query result
+  /services/BPA_TransmissionStructure_View/FeatureServer/0/query:
+    get:
+      operationId: queryTransmissionStructures
+      summary: Query the BPA transmission structures view layer
+      tags:
+      - Transmission
+      parameters:
+      - $ref: '#/components/parameters/Where'
+      - $ref: '#/components/parameters/OutFields'
+      - $ref: '#/components/parameters/F'
+      responses:
+        '200':
+          description: ArcGIS query result
+components:
+  parameters:
+    OutFields:
+      name: outFields
+      in: query
+      description: Comma separated list of fields to return. Use "*" to return all fields.
+      schema:
+        type: string
+        default: '*'
+    F:
+      name: f
+      in: query
+      description: Response format.
+      schema:
+        type: string
+        enum:
+        - json
+        - geojson
+        - html
+        - pjson
+        default: json
+    Where:
+      name: where
+      in: query
+      description: SQL where clause used to filter features. Use "1=1" to return all features.
+      schema:
+        type: string
+        default: 1=1
