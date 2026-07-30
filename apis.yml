@@ -8,7 +8,19 @@ description: >-
   available GIS data, energy statistics, and operational data through its data hub and
   web services.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bonneville-power-administration.png
 url: https://raw.githubusercontent.com/api-evangelist/bonneville-power-administration/refs/heads/main/apis.yml
 created: '2024-11-25'
 modified: '2026-04-19'
@@ -23,49 +35,96 @@ tags:
   - Transmission
   - Wind
 apis:
-  - aid: bonneville-power-administration:gis-data-api
-    name: BPA GIS Data Hub API
-    tags:
-      - ArcGIS
-      - GeoServices
-      - GIS
-      - Government
-      - Geospatial
-      - WFS
-      - WMS
-    humanURL: https://data-bpagis.hub.arcgis.com
-    properties:
-      - url: https://data-bpagis.hub.arcgis.com
-        type: Documentation
-      - url: https://data-bpagis.hub.arcgis.com/datasets/998ba568128d46c0a38e285235b55d0c_0/geoservice
-        type: GeoService
-    description: >-
-      The BPA GIS Data Hub provides publicly available geospatial data from Bonneville
-      Power Administration. The hub is built on ArcGIS and supports data downloads in
-      multiple formats including CSV, KML, GeoJSON, GeoTIFF, and PNG. Developer API
-      access is available through GeoServices (ArcGIS REST API), WMS (Web Map Service),
-      and WFS (Web Feature Service) endpoints. Datasets include BPA service area boundaries,
-      transmission infrastructure, and energy facility data.
-  - aid: bonneville-power-administration:wind-solar-data
-    name: BPA Wind and Solar Generation Data
-    tags:
-      - Energy
-      - Government
-      - Renewable Energy
-      - Solar
-      - Statistics
-      - Wind
-    humanURL: https://transmission.bpa.gov/business/operations/Wind/
-    properties:
-      - url: https://transmission.bpa.gov/business/operations/Wind/
-        type: Documentation
-      - url: https://transmission.bpa.gov/business/operations/Wind/twndbspt.aspx
-        type: DataAPI
-    description: >-
-      BPA publishes real-time and historical wind and solar generation data for
-      the Balancing Authority area. Data includes total wind generation, total solar
-      generation, net generation, and load data available for download. The data
-      is used for grid operations planning and renewable energy tracking.
+- aid: bonneville-power-administration:gis-data-api
+  name: BPA GIS Data Hub API
+  tags:
+  - ArcGIS
+  - GeoServices
+  - GIS
+  - Government
+  - Geospatial
+  - WFS
+  - WMS
+  humanURL: https://data-bpagis.hub.arcgis.com
+  properties:
+  - url: https://data-bpagis.hub.arcgis.com
+    type: Documentation
+  - url: >-
+      https://data-bpagis.hub.arcgis.com/datasets/998ba568128d46c0a38e285235b55d0c_0/geoservice
+    type: GeoService
+  description: >-
+    The BPA GIS Data Hub provides publicly available geospatial data from Bonneville Power Administration.
+    The hub is built on ArcGIS and supports data downloads in multiple formats including CSV, KML, GeoJSON,
+    GeoTIFF, and PNG. Developer API access is available through GeoServices (ArcGIS REST API), WMS (Web
+    Map Service), and WFS (Web Feature Service) endpoints. Datasets include BPA service area boundaries,
+    transmission infrastructure, and energy facility data.
+- aid: bonneville-power-administration:wind-solar-data
+  name: BPA Wind and Solar Generation Data
+  tags:
+  - Energy
+  - Government
+  - Renewable Energy
+  - Solar
+  - Statistics
+  - Wind
+  humanURL: https://transmission.bpa.gov/business/operations/Wind/
+  properties:
+  - url: https://transmission.bpa.gov/business/operations/Wind/
+    type: Documentation
+  - url: https://transmission.bpa.gov/business/operations/Wind/twndbspt.aspx
+    type: DataAPI
+  description: >-
+    BPA publishes real-time and historical wind and solar generation data for the Balancing Authority
+    area. Data includes total wind generation, total solar generation, net generation, and load data available
+    for download. The data is used for grid operations planning and renewable energy tracking.
+- aid: bonneville-power-administration:bonneville-power-administration-customers-api
+  name: Bonneville Power Administration Customers API
+  description: The Customers API from Bonneville Power Administration — 3 operation(s) for customers.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-customers-api-openapi.yml
+- aid: bonneville-power-administration:bonneville-power-administration-hydrology-api
+  name: Bonneville Power Administration Hydrology API
+  description: The Hydrology API from Bonneville Power Administration — 1 operation(s) for hydrology.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  tags:
+  - Hydrology
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-hydrology-api-openapi.yml
+- aid: bonneville-power-administration:bonneville-power-administration-right-of-way-api
+  name: Bonneville Power Administration Right of Way API
+  description: >-
+    The Right of Way API from Bonneville Power Administration — 1 operation(s) for right of way.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  tags:
+  - Right of Way
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-right-of-way-api-openapi.yml
+- aid: bonneville-power-administration:bonneville-power-administration-service-area-api
+  name: Bonneville Power Administration Service Area API
+  description: >-
+    The Service Area API from Bonneville Power Administration — 1 operation(s) for service area.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  tags:
+  - Service Area
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-service-area-api-openapi.yml
+- aid: bonneville-power-administration:bonneville-power-administration-transmission-api
+  name: Bonneville Power Administration Transmission API
+  description: >-
+    The Transmission API from Bonneville Power Administration — 2 operation(s) for transmission.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  tags:
+  - Transmission
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-transmission-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/bonneville-power-administration-agentic-access.yml
