@@ -13,9 +13,10 @@
       "feed_url": "https://transmission.bpa.gov/business/operations/Wind/twndbspt.aspx",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "parse_failed"
     }
   ],
-  "fetched": "2026-07-11T11:50:51Z",
+  "fetched": "2026-08-01T15:38:58Z",
   "post_count": 50
 }

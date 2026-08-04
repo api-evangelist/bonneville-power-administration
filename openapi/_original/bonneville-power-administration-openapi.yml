@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: Bonneville Power Administration GIS Hub API
+  description: |
+    BPA GIS Data Hub serves public geospatial data via ArcGIS Online Feature
+    Services. Each layer is exposed as a standard ArcGIS REST FeatureServer
+    supporting query, format conversion, replica creation, and size estimates.
+    The endpoints below cover the published BPA layers (service area, customer
+    classes, transmission lines, transmission structures, right-of-way, and
+    Columbia River Basin).
+  version: "1.0.0"
+  contact:
+    name: BPA GIS Data Hub
+    url: https://data-bpagis.hub.arcgis.com
+servers:
+  - url: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
+    description: BPA public ArcGIS REST services host
+security: []
+tags:
+  - name: Service Area
+  - name: Customers
+  - name: Transmission
+  - name: Right of Way
+  - name: Hydrology
+paths:
+  /services/BPA_ServiceArea/FeatureServer/0/query:
+    get:
+      operationId: queryServiceArea
+      summary: Query the BPA Service Area boundary layer
+      tags: [Service Area]
+      parameters:
+        - $ref: '#/components/parameters/Where'
+        - $ref: '#/components/parameters/OutFields'
+        - $ref: '#/components/parameters/F'
+      responses:
+        '200':
+          description: ArcGIS query result
+  /services/BPA_CustomerPublics/FeatureServer/0/query:
+    get:
+      operationId: queryCustomerPublics
+      summary: Query the BPA public-utility customers layer
+      tags: [Customers]
+      parameters:
+        - $ref: '#/components/parameters/Where'
+        - $ref: '#/components/parameters/OutFields'
+        - $ref: '#/components/parameters/F'
+      responses:
+        '200':
+          description: ArcGIS query result
+  /services/BPA_CustomerIOU/FeatureServer/0/query:
+    get:
+      operationId: queryCustomerIOU
+      summary: Query the BPA investor-owned utility customers layer
+      tags: [Customers]
+      parameters:
+        - $ref: '#/components/parameters/Where'
+        - $ref: '#/components/parameters/OutFields'
+        - $ref: '#/components/parameters/F'
+      responses:
+        '200':
+          description: ArcGIS query result
+  /services/BPA_CustomerTribal/FeatureServer/0/query:
+    get:
+      operationId: queryCustomerTribal
+      summary: Query the BPA tribal customers layer
+      tags: [Customers]
+      parameters:
+        - $ref: '#/components/parameters/Where'
+        - $ref: '#/components/parameters/OutFields'
+        - $ref: '#/components/parameters/F'
+      responses:
+        '200':
+          description: ArcGIS query result
+  /services/BPA_TransmissionLines_View/FeatureServer/0/query:
+    get:
+      operationId: queryTransmissionLines
+      summary: Query the BPA transmission lines view layer
+      tags: [Transmission]
+      parameters:
+        - $ref: '#/components/parameters/Where'
+        - $ref: '#/components/parameters/OutFields'
+        - $ref: '#/components/parameters/F'
+      responses:
+        '200':
+          description: ArcGIS query result
+  /services/BPA_TransmissionStructure_View/FeatureServer/0/query:
+    get:
+      operationId: queryTransmissionStructures
+      summary: Query the BPA transmission structures view layer
+      tags: [Transmission]
+      parameters:
+        - $ref: '#/components/parameters/Where'
+        - $ref: '#/components/parameters/OutFields'
+        - $ref: '#/components/parameters/F'
+      responses:
+        '200':
+          description: ArcGIS query result
+  /services/BPA_RightofWay_View/FeatureServer/0/query:
+    get:
+      operationId: queryRightOfWay
+      summary: Query the BPA right-of-way view layer
+      tags: [Right of Way]
+      parameters:
+        - $ref: '#/components/parameters/Where'
+        - $ref: '#/components/parameters/OutFields'
+        - $ref: '#/components/parameters/F'
+      responses:
+        '200':
+          description: ArcGIS query result
+  /services/ColumbiaRiverBasin/FeatureServer/0/query:
+    get:
+      operationId: queryColumbiaRiverBasin
+      summary: Query the Columbia River Basin layer
+      tags: [Hydrology]
+      parameters:
+        - $ref: '#/components/parameters/Where'
+        - $ref: '#/components/parameters/OutFields'
+        - $ref: '#/components/parameters/F'
+      responses:
+        '200':
+          description: ArcGIS query result
+components:
+  parameters:
+    Where:
+      name: where
+      in: query
+      description: SQL where clause used to filter features. Use "1=1" to return all features.
+      schema:
+        type: string
+        default: "1=1"
+    OutFields:
+      name: outFields
+      in: query
+      description: Comma separated list of fields to return. Use "*" to return all fields.
+      schema:
+        type: string
+        default: "*"
+    F:
+      name: f
+      in: query
+      description: Response format.
+      schema:
+        type: string
+        enum: [json, geojson, html, pjson]
+        default: json

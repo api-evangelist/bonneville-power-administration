@@ -1,0 +1,22 @@
+{
+  "provider": "bonneville-power-administration",
+  "sources": [
+    "bonneville-power-administration-customers-api-openapi.yml",
+    "bonneville-power-administration-hydrology-api-openapi.yml",
+    "bonneville-power-administration-right-of-way-api-openapi.yml",
+    "bonneville-power-administration-service-area-api-openapi.yml",
+    "bonneville-power-administration-transmission-api-openapi.yml"
+  ],
+  "outputs": [
+    "bonneville-power-administration-customers-api-openapi.yml",
+    "bonneville-power-administration-hydrology-api-openapi.yml",
+    "bonneville-power-administration-right-of-way-api-openapi.yml",
+    "bonneville-power-administration-service-area-api-openapi.yml",
+    "bonneville-power-administration-transmission-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
