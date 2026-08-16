@@ -5,7 +5,7 @@
       "source": "https://www.bpa.gov/rss-feeds/news-feed-no-cp",
       "feed_url": "https://www.bpa.gov/rss-feeds/news-feed-no-cp",
       "title": "",
-      "saved": 0,
+      "saved": 3,
       "method": "feed"
     },
     {
@@ -17,6 +17,6 @@
       "error": "parse_failed"
     }
   ],
-  "fetched": "2026-08-06T13:56:59Z",
-  "post_count": 50
+  "fetched": "2026-08-15T12:11:08Z",
+  "post_count": 53
 }
