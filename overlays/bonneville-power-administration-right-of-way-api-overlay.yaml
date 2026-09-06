@@ -1,0 +1,87 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — Bonneville Power Administration Right of Way API
+  version: 1.0.0
+  x-generated: '2026-09-06'
+  x-method: derived
+  x-source: live probes of the BPA ArcGIS REST endpoints described by the extended document, 2026-09-06
+extends: openapi/bonneville-power-administration-right-of-way-api-openapi.yml
+actions:
+- target: $.info
+  description: Record how the response format is actually negotiated on this API.
+  update:
+    x-content-negotiation:
+      mechanism: query-parameter
+      parameter: f
+      values:
+      - json
+      - geojson
+      - pjson
+      - html
+      note: 'The Accept header is ignored. An agent that sets Accept: application/geo+json and omits f=geojson
+        receives ArcGIS JSON.'
+- target: $.info
+  description: Record that errors are returned inside HTTP 200, which the responses object cannot express.
+  update:
+    x-error-envelope:
+      format: esri-error
+      shape: '{"error": {"code": <int>, "message": <string>, "details": [<string>]}}'
+      http_status_is_authoritative: false
+      agent_rule: Treat a response as failed when the parsed body carries a top-level `error` key, regardless
+        of HTTP status.
+      catalog: errors/bonneville-power-administration-problem-types.yml
+      evidence: GET .../BPA_ServiceArea/FeatureServer/0/query?where=BADSQL&f=json returned HTTP 200 with
+        an error envelope, probed 2026-09-06.
+- target: $.info
+  description: Record the observed runtime rate-limit and cache signalling.
+  update:
+    x-runtime-signals:
+      rate_limit_headers:
+      - x-esri-org-request-units-per-min
+      - x-esri-query-request-units
+      rate_limit_model: Esri request units per minute, budgeted across the whole BPA tenant, not per caller.
+      cache_control: public, max-age=30, s-maxage=30
+      conditional_get: ETag returned on every layer response.
+      cors:
+        access-control-allow-origin: '*'
+      observed: '2026-09-06'
+- target: $.info
+  description: Record the read-only posture explicitly so agent tooling does not look for write guards.
+  update:
+    x-agent-semantics:
+      read_only: true
+      idempotency: na
+      reversibility: na
+      dry_run: na
+      rationale: Every operation is a GET query against a published dataset. There is no mutating operation,
+        so replay protection and reversal windows do not apply.
+      conventions: conventions/bonneville-power-administration-conventions.yml
+- target: $.paths['/services/BPA_RightofWay_View/FeatureServer/0/query'].get.parameters
+  description: Add the paging and projection parameters the layer supports but the spec omits (confirmed
+    against the live layer definition, advancedQueryCapabilities.supportsPagination true).
+  update:
+  - name: resultOffset
+    in: query
+    description: Zero-based index of the first feature to return. Pairs with resultRecordCount for paging.
+    schema:
+      type: integer
+      minimum: 0
+  - name: resultRecordCount
+    in: query
+    description: Maximum features to return; capped by the layer maxRecordCount. When more match, the
+      response sets exceededTransferLimit true.
+    schema:
+      type: integer
+      minimum: 1
+  - name: returnGeometry
+    in: query
+    description: Set false to return attributes only and omit the geometry.
+    schema:
+      type: boolean
+      default: true
+  - name: returnCountOnly
+    in: query
+    description: Set true to return only the count of matching features.
+    schema:
+      type: boolean
+      default: false

@@ -1,0 +1,123 @@
+generated: '2026-09-06'
+method: probed
+source: live anonymous HTTP probes of every host this record knows
+provider: Bonneville Power Administration
+providerId: bonneville-power-administration
+description: >-
+  Probe record for the RFC 8615 /.well-known/ namespace across every host in this
+  record — the bpa.gov registrable domain and www, the transmission.bpa.gov data
+  host, the ArcGIS Hub docs host, and the services3.arcgis.com OpenAPI servers[]
+  host. Nothing was found. BPA publishes no security.txt, no api-catalog, no
+  OAuth/OIDC discovery document and no agent manifest on any of them. No WellKnown
+  or SecurityTxt pointer is wired into apis.yml, because every path missed.
+note: >-
+  transmission.bpa.gov answers HTTP 200 for EVERY /.well-known/ path with the same
+  ASP.NET site chrome (a catch-all soft-200, not a document); those rows are recorded
+  with body_is_document false and count as misses. services3.arcgis.com is Esri
+  infrastructure hosting BPA's ArcGIS Online tenant, not a host BPA controls — it
+  answers 403 "Invalid URL" at the domain root for every path.
+hosts:
+- host: bpa.gov
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: www.bpa.gov
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: transmission.bpa.gov
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    body_is_document: false
+    note: HTML site shell, not RFC 9116 text — catch-all soft-200
+  - path: /.well-known/openid-configuration
+    status: 200
+    body_is_document: false
+    note: HTML site shell, not JSON — catch-all soft-200
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    body_is_document: false
+    note: HTML site shell, not JSON — catch-all soft-200
+  - path: /.well-known/api-catalog
+    status: 200
+    body_is_document: false
+    note: HTML site shell, not a linkset — catch-all soft-200
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    body_is_document: false
+    note: HTML site shell, not JSON — catch-all soft-200
+  - path: /.well-known/agent-card.json
+    status: 200
+    body_is_document: false
+    note: HTML site shell, not an AgentCard object — catch-all soft-200
+  - path: /.well-known/agent.json
+    status: 200
+    body_is_document: false
+    note: HTML site shell, not an AgentCard object — catch-all soft-200
+  - path: /llms.txt
+    status: 200
+    body_is_document: false
+    note: HTML site shell, not llms.txt markdown — catch-all soft-200
+- host: data-bpagis.hub.arcgis.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: services3.arcgis.com
+  note: >-
+    Esri-operated ArcGIS Online services host serving BPA's tenant (owningTenant
+    Iz3chmSt4P7oOoZy). Not a BPA-controlled host; probed for completeness only.
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+  - path: /llms.txt
+    status: 403
+summary:
+  hosts_probed: 5
+  paths_probed: 37
+  documents_found: 0
+  soft_200_shells: 8

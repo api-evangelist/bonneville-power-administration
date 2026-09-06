@@ -6,6 +6,9 @@ artifacts:
   agentic-access/bonneville-power-administration-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  authentication/bonneville-power-administration-authentication.yml:
+    method: unknown
+    evidence: no authorship recorded
   collections/bonneville-power-administration-customers-api.opencollection.json:
     method: derived
     evidence: openapi/bonneville-power-administration-customers-api
@@ -42,76 +45,28 @@ artifacts:
   collections/bonneville-power-administration.postman_collection.json:
     method: derived
     evidence: openapi/bonneville-power-administration
+  conformance/bonneville-power-administration-conformance.yml:
+    method: unknown
+    evidence: no authorship recorded
+  conformance/bonneville-power-administration-hub-search-conformance.json:
+    method: unknown
+    evidence: no authorship recorded
+  conventions/bonneville-power-administration-conventions.yml:
+    method: unknown
+    evidence: no authorship recorded
+  data-model/bonneville-power-administration-data-model.yml:
+    method: unknown
+    evidence: no authorship recorded
+  errors/bonneville-power-administration-problem-types.yml:
+    method: unknown
+    evidence: no authorship recorded
   finops/bonneville-power-administration-finops.yml:
     method: generated
     evidence: declared in the artifact
-  kin/checks-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T094130.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T182523.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-26T223651.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T083119.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T190208.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T115055.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T170848.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T172558.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T192327.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T200725.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T133250.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T151044.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T162206.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T202106.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163141.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163302.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T171935.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T113057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T161012.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-04T083143.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-05T153418.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-06T210741.yml:
+  json-ld/bonneville-power-administration-dcat-us-catalog.json:
+    method: unknown
+    evidence: no authorship recorded
+  kin/checks-2026-09-06T011047.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-07T135032.yml:
@@ -192,27 +147,144 @@ artifacts:
   kin/score-2026-08-28T221322.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  openapi/bonneville-power-administration-customers-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/bonneville-power-administration-hydrology-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/bonneville-power-administration-right-of-way-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/bonneville-power-administration-service-area-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  openapi/bonneville-power-administration-transmission-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  plans/bonneville-power-administration-plans-pricing.yml:
+  kin/score-2026-08-29T213958.yml:
     method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T230545.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T203505.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T220315.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-31T223420.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T063623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T210448.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T222808.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T224043.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T161828.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T174231.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T062714.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T212454.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T224856.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T055819.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T072335.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/bonneville-power-administration-lifecycle.yml:
+    method: unknown
+    evidence: no authorship recorded
+  llms/bonneville-power-administration-llms.txt:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  mcp/bonneville-power-administration-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
+  openapi/_original/bonneville-power-administration-data-search-api-openapi.json:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/_original/bonneville-power-administration-openapi.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
+  openapi/bonneville-power-administration-customers-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/bonneville-power-administration-data-search-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/bonneville-power-administration-hydrology-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/bonneville-power-administration-right-of-way-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/bonneville-power-administration-service-area-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/bonneville-power-administration-transmission-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/bonneville-power-administration-customers-api-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/bonneville-power-administration-data-search-api-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/bonneville-power-administration-hydrology-api-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/bonneville-power-administration-right-of-way-api-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/bonneville-power-administration-service-area-api-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  overlays/bonneville-power-administration-transmission-api-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  plans/bonneville-power-administration-plans-pricing.yml:
+    method: searched
     evidence: declared in the artifact
   rate-limits/bonneville-power-administration-rate-limits.yml:
+    method: unknown
+    evidence: no authorship recorded
+  security/bonneville-power-administration-domain-security.yml:
+    method: unknown
+    evidence: no authorship recorded
+  security/bonneville-power-administration-vulnerability-disclosure.yml:
+    method: searched
+    evidence: declared in the artifact
+  skills/_index.yml:
     method: generated
     evidence: declared in the artifact
-  security/bonneville-power-administration-domain-security.yml:
+  skills/bonneville-power-administration-discover-datasets.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/bonneville-power-administration-identify-serving-utility.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/bonneville-power-administration-map-transmission-corridor.md:
+    method: generated
+    evidence: declared in the artifact
+  well-known/bonneville-power-administration-well-known.yml:
     method: unknown
     evidence: no authorship recorded

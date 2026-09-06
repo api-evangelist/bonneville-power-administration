@@ -1,0 +1,1379 @@
+{
+	"@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+	"@type": "dcat:Catalog",
+	"conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+	"describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+	"dataset": [
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=998ba568128d46c0a38e285235b55d0c&sublayer=0",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-servicearea",
+			"title": "BPA ServiceArea",
+			"description": "BPA Service Area Boundary as defined by legislation and from the following definitions:\nBPA service area:     \nThe geographic area which includes Oregon, Washington, Idaho, Montana west of the Continental Divide, portions of Nevada, Utah, and Wyoming that lie within the Columbia River Basin, and any contiguous areas not more than 75 miles from the above areas of a rural electric cooperative customer served by BPA on the effective date of the Pacific Northwest Power Planning and Conservation Act and whose distribution system serves both within and without the region.\n\nPacific Northwest:     \nAccording to the Pacific Northwest Electric Power Planning and Conservation Act, Oregon, Washington, Idaho, and Montana west of the Continental Divide, as well as portions of Nevada, Utah, and Wyoming within the Columbia-Snake River Basin.  Also includes contiguous areas not more than 120 kilometers (75 miles) from the region defined above that are part of the service area of rural electric cooperative customers served by BPA on the effective date of the act whose distribution system serves both within and without the region.",
+			"keyword": [
+				"service area",
+				"SAB",
+				"BPA",
+				"Bonneville Power Administration",
+				"Data"
+			],
+			"issued": "2016-08-29T17:49:35.000Z",
+			"modified": "2016-09-21T20:28:59.641Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "-124.7332,40.8279,-109.7612,49.0025",
+			"license": "This product was made for informational purposes only and was created with the best available data at time of production. It does not represent any legal information or boundaries. BPA GIS disclaims responsibility or liability for any data discrepancies or errors.",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-servicearea"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_ServiceArea/FeatureServer/0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "CSV",
+					"format": "CSV",
+					"mediaType": "text/csv",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/998ba568128d46c0a38e285235b55d0c/csv?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Shapefile",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/998ba568128d46c0a38e285235b55d0c/shapefile?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoJSON",
+					"format": "GeoJSON",
+					"mediaType": "application/vnd.geo+json",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/998ba568128d46c0a38e285235b55d0c/geojson?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "KML",
+					"format": "KML",
+					"mediaType": "application/vnd.google-earth.kml+xml",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/998ba568128d46c0a38e285235b55d0c/kml?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "File Geodatabase",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/998ba568128d46c0a38e285235b55d0c/filegdb?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Feature Collection",
+					"format": "TXT",
+					"mediaType": "text/plain",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/998ba568128d46c0a38e285235b55d0c/featureCollection?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Excel",
+					"format": "XLSX",
+					"mediaType": "application/vnd.ms-excel",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/998ba568128d46c0a38e285235b55d0c/excel?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoPackage",
+					"format": "GPKG",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/998ba568128d46c0a38e285235b55d0c/geoPackage?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "SQLite Geodatabase",
+					"format": "GDB",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/998ba568128d46c0a38e285235b55d0c/sqlite?layers=0"
+				}
+			],
+			"theme": [
+				"geospatial"
+			]
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=39f77b6acb2f42679fd6a0ef87bfc2b0&sublayer=0",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-rightofway-view",
+			"title": "BPA RightofWay View",
+			"description": "Bonneville Power Administration Transmission Line Generalized Right of Way",
+			"keyword": [
+				"BPA",
+				"Bonneville Power Administration",
+				"Right of Way",
+				"Data"
+			],
+			"issued": "2022-11-28T21:01:16.000Z",
+			"modified": "2026-09-05T16:00:48.280Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "-124.4713,41.4436,-110.8357,49.0021",
+			"license": "This product was made for informational purposes only and was created with the best available data at time of production.  It does not represent any legal information or boundaries.  BPA GIS disclaims responsibility or liability for any data discrepancies or errors.",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-rightofway-view"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_RightofWay_View/FeatureServer/0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "CSV",
+					"format": "CSV",
+					"mediaType": "text/csv",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/39f77b6acb2f42679fd6a0ef87bfc2b0/csv?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Shapefile",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/39f77b6acb2f42679fd6a0ef87bfc2b0/shapefile?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoJSON",
+					"format": "GeoJSON",
+					"mediaType": "application/vnd.geo+json",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/39f77b6acb2f42679fd6a0ef87bfc2b0/geojson?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "KML",
+					"format": "KML",
+					"mediaType": "application/vnd.google-earth.kml+xml",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/39f77b6acb2f42679fd6a0ef87bfc2b0/kml?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "File Geodatabase",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/39f77b6acb2f42679fd6a0ef87bfc2b0/filegdb?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Feature Collection",
+					"format": "TXT",
+					"mediaType": "text/plain",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/39f77b6acb2f42679fd6a0ef87bfc2b0/featureCollection?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Excel",
+					"format": "XLSX",
+					"mediaType": "application/vnd.ms-excel",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/39f77b6acb2f42679fd6a0ef87bfc2b0/excel?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoPackage",
+					"format": "GPKG",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/39f77b6acb2f42679fd6a0ef87bfc2b0/geoPackage?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "SQLite Geodatabase",
+					"format": "GDB",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/39f77b6acb2f42679fd6a0ef87bfc2b0/sqlite?layers=0"
+				}
+			],
+			"theme": [
+				"geospatial"
+			]
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=05a51749358d4d75910b724ce3858354&sublayer=0",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-transmissionlines-view",
+			"title": "BPA TransmissionLines View",
+			"description": "Bonneville Power Administration Transmission lines within the Pacific Northwest",
+			"keyword": [
+				"BPA",
+				"Bonneville Power Administration",
+				"Transmission Lines",
+				"Data"
+			],
+			"issued": "2022-11-28T21:09:50.000Z",
+			"modified": "2024-07-03T17:57:49.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "-124.4710,41.4440,-110.8363,49.0019",
+			"license": "This product was made for informational purposes only and was created with the best available data at time of production.  It does not represent any legal information or boundaries.  BPA GIS disclaims responsibility or liability for any data discrepancies or errors.",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-transmissionlines-view"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_TransmissionLines_View/FeatureServer/0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "CSV",
+					"format": "CSV",
+					"mediaType": "text/csv",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/05a51749358d4d75910b724ce3858354/csv?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Shapefile",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/05a51749358d4d75910b724ce3858354/shapefile?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoJSON",
+					"format": "GeoJSON",
+					"mediaType": "application/vnd.geo+json",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/05a51749358d4d75910b724ce3858354/geojson?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "KML",
+					"format": "KML",
+					"mediaType": "application/vnd.google-earth.kml+xml",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/05a51749358d4d75910b724ce3858354/kml?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "File Geodatabase",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/05a51749358d4d75910b724ce3858354/filegdb?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Feature Collection",
+					"format": "TXT",
+					"mediaType": "text/plain",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/05a51749358d4d75910b724ce3858354/featureCollection?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Excel",
+					"format": "XLSX",
+					"mediaType": "application/vnd.ms-excel",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/05a51749358d4d75910b724ce3858354/excel?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoPackage",
+					"format": "GPKG",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/05a51749358d4d75910b724ce3858354/geoPackage?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "SQLite Geodatabase",
+					"format": "GDB",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/05a51749358d4d75910b724ce3858354/sqlite?layers=0"
+				}
+			],
+			"theme": [
+				"geospatial"
+			]
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=42ee6a316fbd4b28b5d601cb2d10fb48&sublayer=0",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-transmissionstructure-view",
+			"title": "BPA TransmissionStructure View",
+			"description": "Bonneville Power Administration Transmission structures within the Pacific Northwest",
+			"keyword": [
+				"BPA",
+				"Transmission Structure",
+				"Bonneville Power Administration",
+				"Data"
+			],
+			"issued": "2022-11-28T21:14:26.000Z",
+			"modified": "2026-09-05T16:30:20.656Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "-124.5231,41.4440,-110.8363,49.0019",
+			"license": "This product was made for informational purposes only and was created with the best available data at time of production.  It does not represent any legal information or boundaries.  BPA GIS disclaims responsibility or liability for any data discrepancies or errors.",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-transmissionstructure-view"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_TransmissionStructure_View/FeatureServer/0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "CSV",
+					"format": "CSV",
+					"mediaType": "text/csv",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/42ee6a316fbd4b28b5d601cb2d10fb48/csv?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Shapefile",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/42ee6a316fbd4b28b5d601cb2d10fb48/shapefile?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoJSON",
+					"format": "GeoJSON",
+					"mediaType": "application/vnd.geo+json",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/42ee6a316fbd4b28b5d601cb2d10fb48/geojson?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "KML",
+					"format": "KML",
+					"mediaType": "application/vnd.google-earth.kml+xml",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/42ee6a316fbd4b28b5d601cb2d10fb48/kml?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "File Geodatabase",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/42ee6a316fbd4b28b5d601cb2d10fb48/filegdb?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Feature Collection",
+					"format": "TXT",
+					"mediaType": "text/plain",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/42ee6a316fbd4b28b5d601cb2d10fb48/featureCollection?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Excel",
+					"format": "XLSX",
+					"mediaType": "application/vnd.ms-excel",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/42ee6a316fbd4b28b5d601cb2d10fb48/excel?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoPackage",
+					"format": "GPKG",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/42ee6a316fbd4b28b5d601cb2d10fb48/geoPackage?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "SQLite Geodatabase",
+					"format": "GDB",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/42ee6a316fbd4b28b5d601cb2d10fb48/sqlite?layers=0"
+				}
+			],
+			"theme": [
+				"geospatial"
+			]
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=90811a3f226041bf8657d73ff81e949c",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bpa-utility-customers",
+			"title": "BPA Utility Customers",
+			"description": "<span style='font:/26.35px &quot;Avenir Next W01&quot;, &quot;Avenir Next W00&quot;, &quot;Avenir Next&quot;, Avenir, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(77, 77, 77); text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: normal; widows: 1; -webkit-text-stroke-width: 0px;'>Map of the Bonneville Power Administration Service Area showing Utility Boundaries, National Energy Efficiency Alliance partners, and Energy Trust of Oregon members.</span>",
+			"keyword": [
+				"BPA",
+				"Bonneville Power Administration",
+				"Utility Customers"
+			],
+			"issued": "2016-08-02T15:29:20.000Z",
+			"modified": "2025-12-22T19:20:01.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "<span style='color: rgb(54, 95, 145); font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; font-size: 9pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;'><font color='#000000' size='3' style='background-color: rgb(255, 255, 255);'><b>This product was made informational purposes only and was created with the best available data at time of production. It does not represent any legal information or boundaries. BPA GIS disclaims responsibility or liability for any data discrepancies or errors. Source: BPA Regional GIS Database.</b></font></span>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bpa-utility-customers"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://bpagis.maps.arcgis.com/apps/webappviewer/index.html?id=90811a3f226041bf8657d73ff81e949c"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=0236e10b634c4bacad0c2be2f4762074&sublayer=0",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-customerpublics",
+			"title": "BPA CustomerPublics",
+			"description": "Cooperatives, municipalities, federal utilities and public utility districts for the Pacific Northwest. These are all BPA customers. Varies with accuracy. Some utilities provided feedback on their territories.",
+			"keyword": [
+				"BPA",
+				"Bonneville Power Administration",
+				"utility service area",
+				"Data"
+			],
+			"issued": "2016-09-12T21:24:53.000Z",
+			"modified": "2026-03-09T22:52:15.829Z",
+			"publisher": {
+				"name": "BPA"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "-124.7450,39.8967,-110.0545,49.0024",
+			"license": "This product was made for informational purposes only and was created with the best available data at time of production. It does not represent any legal information or boundaries. BPA GIS disclaims responsibility or liability for any data discrepancies or errors.",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-customerpublics"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_CustomerPublics/FeatureServer/0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "CSV",
+					"format": "CSV",
+					"mediaType": "text/csv",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/0236e10b634c4bacad0c2be2f4762074/csv?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Shapefile",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/0236e10b634c4bacad0c2be2f4762074/shapefile?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoJSON",
+					"format": "GeoJSON",
+					"mediaType": "application/vnd.geo+json",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/0236e10b634c4bacad0c2be2f4762074/geojson?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "KML",
+					"format": "KML",
+					"mediaType": "application/vnd.google-earth.kml+xml",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/0236e10b634c4bacad0c2be2f4762074/kml?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "File Geodatabase",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/0236e10b634c4bacad0c2be2f4762074/filegdb?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Feature Collection",
+					"format": "TXT",
+					"mediaType": "text/plain",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/0236e10b634c4bacad0c2be2f4762074/featureCollection?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Excel",
+					"format": "XLSX",
+					"mediaType": "application/vnd.ms-excel",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/0236e10b634c4bacad0c2be2f4762074/excel?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoPackage",
+					"format": "GPKG",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/0236e10b634c4bacad0c2be2f4762074/geoPackage?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "SQLite Geodatabase",
+					"format": "GDB",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/0236e10b634c4bacad0c2be2f4762074/sqlite?layers=0"
+				}
+			],
+			"theme": [
+				"geospatial"
+			]
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=91859004b3a145489e5f73ae21ff60cf&sublayer=0",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-customeriou",
+			"title": "BPA CustomerIOU",
+			"description": "Investor-Owned Utility Boundaries for the Pacific Northwest. These are all BPA customers. Varies with accuracy. Some utilities provided feedback on their territories.",
+			"keyword": [
+				"BPA",
+				"Bonneville Power Administration",
+				"utility service area",
+				"Data"
+			],
+			"issued": "2016-09-14T17:37:01.000Z",
+			"modified": "2025-12-22T18:54:38.386Z",
+			"publisher": {
+				"name": "BPA"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "-124.4213,40.8742,-109.0361,49.0025",
+			"license": "This product was made for informational purposes only and was created with the best available data at time of production. It does not represent any legal information or boundaries. BPA GIS disclaims responsibility or liability for any data discrepancies or errors.",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-customeriou"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_CustomerIOU/FeatureServer/0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "CSV",
+					"format": "CSV",
+					"mediaType": "text/csv",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/91859004b3a145489e5f73ae21ff60cf/csv?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Shapefile",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/91859004b3a145489e5f73ae21ff60cf/shapefile?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoJSON",
+					"format": "GeoJSON",
+					"mediaType": "application/vnd.geo+json",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/91859004b3a145489e5f73ae21ff60cf/geojson?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "KML",
+					"format": "KML",
+					"mediaType": "application/vnd.google-earth.kml+xml",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/91859004b3a145489e5f73ae21ff60cf/kml?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "File Geodatabase",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/91859004b3a145489e5f73ae21ff60cf/filegdb?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Feature Collection",
+					"format": "TXT",
+					"mediaType": "text/plain",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/91859004b3a145489e5f73ae21ff60cf/featureCollection?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Excel",
+					"format": "XLSX",
+					"mediaType": "application/vnd.ms-excel",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/91859004b3a145489e5f73ae21ff60cf/excel?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoPackage",
+					"format": "GPKG",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/91859004b3a145489e5f73ae21ff60cf/geoPackage?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "SQLite Geodatabase",
+					"format": "GDB",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/91859004b3a145489e5f73ae21ff60cf/sqlite?layers=0"
+				}
+			],
+			"theme": [
+				"geospatial"
+			]
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=8218b4096e72485f91782734e1932cd3",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bpa-service-area-renewable-generation-sites-3",
+			"title": "BPA Service Area Renewable Generation Sites",
+			"description": "<p>Map of existing and proposed renewable generation sites in the Bonneville Power Administration (BPA) Service Area that have some interconnection to the BPA Transmission grid. Sites are depicted as general point locations in the vicinity of the facility site. Due to the expansive nature of wind and other renewable generation facilities, these points should be interpreted and used for general reference only. Renewable generation facilities are privately owned and BPA cannot validate the accuracy or completeness of the facility attributes listed.</p>",
+			"keyword": [
+				"Power Generation",
+				"Renewable Power",
+				"Solar",
+				"Wind"
+			],
+			"issued": "2025-10-06T20:06:22.000Z",
+			"modified": "2025-10-20T22:56:19.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bpa-service-area-renewable-generation-sites-3"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://experience.arcgis.com/experience/8218b4096e72485f91782734e1932cd3"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=b4e2f7abddf349eb81260f4b352a805f",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bpa-transmission-climatic-data-1",
+			"title": "BPA Transmission Climatic Data",
+			"description": "<p>This web Application displays Bonneville Power Administration Transmission Assets with 25-Year Ice Zones and Cable Vibration Terrain Classification for transmission design.</p>",
+			"keyword": [
+				"Transmission Line",
+				"Ice",
+				"Cable Vibration"
+			],
+			"issued": "2025-10-06T20:53:11.000Z",
+			"modified": "2025-10-20T20:42:29.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "<p>This product was made for informational purposes only and was created with the best available data at time of production. It does not represent any legal information or boundaries. BPA GIS disclaims responsibility or liability for any data discrepancies or errors.</p>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bpa-transmission-climatic-data-1"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://experience.arcgis.com/experience/b4e2f7abddf349eb81260f4b352a805f"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=0b1c347a2c9641b584efd6546036b981",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-montana",
+			"title": "Bonneville Power Administration Cadastral Control - Montana",
+			"description": "<span style='font-family:Arial, sans-serif; font-size:16px;'>The purpose of this map is to provide historical records of PLSS monuments recovered by Bonneville Power Administration (BPA) field crews in the BPA service area. Land surveyors may use this as a reference only for research purposes. Coordinate values are not to be used as absolute locations; they were obtained by one of three methods: 1) field surveyed values from 2010-present, 2) record locations from BPA maps, 3) GCDB coordinate values. This map was developed by land surveyors at BPA. Please submit any errors found to the site administrator. These values are to be used as search coordinates only and not held for actual positional values. </span>",
+			"keyword": [
+				"Survey Control",
+				"Cadastral",
+				"Bonneville Power Administration"
+			],
+			"issued": "2025-06-24T21:19:06.000Z",
+			"modified": "2025-09-09T19:55:34.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "<span style='font-family:Arial, sans-serif; font-size:16px;'>All information contained herein shall be used for reference purposes only.</span>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-montana"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://experience.arcgis.com/experience/0b1c347a2c9641b584efd6546036b981"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=510786f9ce1344d89f03dc128810bb16",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-washington",
+			"title": "Bonneville Power Administration Cadastral Control - Washington",
+			"description": "",
+			"keyword": [
+				"Survey Control",
+				"Cadastral",
+				"Bonneville Power Administration"
+			],
+			"issued": "2025-06-25T17:32:46.000Z",
+			"modified": "2025-09-09T19:55:34.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "<span style='font-family:Arial, sans-serif; font-size:16px;'>All information contained herein shall be used for reference purposes only.</span>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-washington"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://experience.arcgis.com/experience/510786f9ce1344d89f03dc128810bb16"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=55774c8f90df4e279ae129d2ac4b26e7",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-wyoming",
+			"title": "Bonneville Power Administration Cadastral Control - Wyoming",
+			"description": "<p><span style='font-family:&quot;Arial&quot;,sans-serif; color:#4C4C4C; background:white;'>The purpose of this map is to provide historical records of\nPLSS monuments recovered by Bonneville Power Administration (BPA) field crews\nin the BPA service area. Land surveyors may use this as a reference only for\nresearch purposes. Coordinate values are not to be used as absolute locations;\nthey were obtained by one of three methods: 1) field surveyed values from\n2010-present, 2) record locations from BPA maps, 3) GCDB coordinate values.\nThis map was developed by land surveyors at BPA. Please submit any errors found\nto the site administrator. These values are to be used as search coordinates\nonly and not held for actual positional values. </span></p>",
+			"keyword": [
+				"Survey Control",
+				"Cadastral",
+				"Bonneville Power Administration"
+			],
+			"issued": "2025-06-24T21:03:46.000Z",
+			"modified": "2025-09-09T19:55:34.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "<p style='background:white;'><span style='font-family:&quot;Arial&quot;,sans-serif; color:#4C4C4C;'>All information contained herein shall be used for reference purposes only.</span></p>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-wyoming"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://experience.arcgis.com/experience/55774c8f90df4e279ae129d2ac4b26e7"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=74bb31a3df0b4623b07341e2f286a9ee",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-california",
+			"title": "Bonneville Power Administration Cadastral Control - California",
+			"description": "",
+			"keyword": [
+				"Survey Control",
+				"Cadastral",
+				"Bonneville Power Administration"
+			],
+			"issued": "2025-06-25T17:04:36.000Z",
+			"modified": "2025-09-09T19:55:34.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "<span style='font-family:Arial, sans-serif; font-size:16px;'>All information contained herein shall be used for reference purposes only.</span>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-california"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://experience.arcgis.com/experience/74bb31a3df0b4623b07341e2f286a9ee"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=d9c9c3902dec4d3a9f2d23dc95433e2b",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-idaho",
+			"title": "Bonneville Power Administration Cadastral Control - Idaho",
+			"description": "",
+			"keyword": [
+				"Survey Control",
+				"Cadastral",
+				"Bonneville Power Administration"
+			],
+			"issued": "2025-06-25T17:22:15.000Z",
+			"modified": "2025-09-09T19:55:34.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "<span style='font-family:Arial, sans-serif; font-size:16px;'>All information contained herein shall be used for reference purposes only.</span>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-idaho"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://experience.arcgis.com/experience/d9c9c3902dec4d3a9f2d23dc95433e2b"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=fc1b726ff7b04415a8151dfc0fa88bea",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-oregon-1",
+			"title": "Bonneville Power Administration Cadastral Control - Oregon",
+			"description": "",
+			"keyword": [
+				"Survey Control",
+				"Cadastral",
+				"Bonneville Power Administration"
+			],
+			"issued": "2025-06-25T17:40:59.000Z",
+			"modified": "2025-09-09T19:55:34.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "<span style='font-family:Arial, sans-serif; font-size:16px;'>All information contained herein shall be used for reference purposes only.</span>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bonneville-power-administration-cadastral-control-oregon-1"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://experience.arcgis.com/experience/fc1b726ff7b04415a8151dfc0fa88bea"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=c3c0d406cffb4f41b2b2cfb0b4810af3",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::wildfire-activity-in-the-bpa-service-area-2",
+			"title": "Wildfire Activity in the BPA Service Area",
+			"description": "<p><span style='font-family:&quot;Avenir Next W01&quot;, &quot;Avenir Next W00&quot;, &quot;Avenir Next&quot;, Avenir, &quot;Helvetica Neue&quot;, sans-serif; font-size:medium;'>Current Wildfire Activity within BPA Service Area, showing BPA Customers and Tribal Boundaries, 2025.&nbsp; Fire information is provided by ESRI service utilizing IRWIN fire starts and NIFC fire perimeters along with Northwest Inter-agency Coordination Center services.&nbsp; Tribal Lands comes from the BIA American Indian Reservation dataset, which is a representation of Indian Land.&nbsp; There are likely minor edits and updates that have occurred since 2005 that are not reflected in this data.&nbsp; Its use should be confined to general reference purposes only and by no means should it be used for engineering applications to define boundaries.&nbsp; For official tribal boundaries contact BIA directly.</span></p>",
+			"keyword": [
+				"Bonneville Power Administration",
+				"Fire",
+				"BPA",
+				"Transmission Assets",
+				"Wildfire",
+				"Public Utility"
+			],
+			"issued": "2025-06-02T16:31:04.000Z",
+			"modified": "2025-08-27T20:13:17.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "<p>This product was made for informational purposes only and was created with the best available data at time of production. It does not represent any legal information or boundaries. BPA GIS disclaims responsibility or liability for any data discrepancies or errors. Source: BPA Regional GIS Database, 2025.</p>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::wildfire-activity-in-the-bpa-service-area-2"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://experience.arcgis.com/experience/c3c0d406cffb4f41b2b2cfb0b4810af3"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=352fee2c878d4765841a63fff5954320&sublayer=0",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-customertribal",
+			"title": "BPA CustomerTribal",
+			"description": "Tribal utility boundaries for the Pacific Northwest. These are all BPA customers. Varies with accuracy. Some utilities provided feedback on their terrirories.",
+			"keyword": [
+				"BPA",
+				"Bonneville Power Administration",
+				"utility service area",
+				"Data"
+			],
+			"issued": "2016-09-12T21:26:46.000Z",
+			"modified": "2024-10-11T16:46:54.598Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "-123.2766,42.8750,-113.6796,47.9423",
+			"license": "This product was made for informational purposes only and was created with the best available data at time of production. It does not represent any legal information or boundaries. BPA GIS disclaims responsibility or liability for any data discrepancies or errors.",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::bpa-customertribal"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_CustomerTribal/FeatureServer/0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "CSV",
+					"format": "CSV",
+					"mediaType": "text/csv",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/352fee2c878d4765841a63fff5954320/csv?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Shapefile",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/352fee2c878d4765841a63fff5954320/shapefile?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoJSON",
+					"format": "GeoJSON",
+					"mediaType": "application/vnd.geo+json",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/352fee2c878d4765841a63fff5954320/geojson?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "KML",
+					"format": "KML",
+					"mediaType": "application/vnd.google-earth.kml+xml",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/352fee2c878d4765841a63fff5954320/kml?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "File Geodatabase",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/352fee2c878d4765841a63fff5954320/filegdb?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Feature Collection",
+					"format": "TXT",
+					"mediaType": "text/plain",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/352fee2c878d4765841a63fff5954320/featureCollection?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Excel",
+					"format": "XLSX",
+					"mediaType": "application/vnd.ms-excel",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/352fee2c878d4765841a63fff5954320/excel?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoPackage",
+					"format": "GPKG",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/352fee2c878d4765841a63fff5954320/geoPackage?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "SQLite Geodatabase",
+					"format": "GDB",
+					"mediaType": "application/geopackage+sqlite3",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/352fee2c878d4765841a63fff5954320/sqlite?layers=0"
+				}
+			],
+			"theme": [
+				"geospatial"
+			]
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=c7dbc2d8a2cc41318080db5131755a72",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/maps/BPAGIS::bpa-environmetal-scoping-map",
+			"title": "BPA Environmetal Scoping Map",
+			"description": "This map displays Bonneville Power Administration Transmission Assets (transmission lines, transmission towers, right-of-ways, access roads and substations) within the Pacific Northwest.",
+			"keyword": [
+				"Bonneville Power Administration",
+				"BPA",
+				"Transmission Assets",
+				"Substations",
+				"environmental"
+			],
+			"issued": "2016-12-29T18:22:55.000Z",
+			"modified": "2022-12-07T15:34:37.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "-130.3888,38.5365,-102.1978,51.3213",
+			"license": "<span style='color: rgb(54, 95, 145); font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; font-size: 9pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;'><font face='Verdana'><font size='3'><font size='2'><font color='#000000'>This product was made informational purposes only and was created with the best available data at time of production. It does not represent any legal information or boundaries. BPA GIS disclaims responsibility or liability for any data discrepancies or errors. Source: BPA Regional GIS Database.</font></font></font></font></span>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/maps/BPAGIS::bpa-environmetal-scoping-map"
+				}
+			],
+			"theme": [
+				"geospatial"
+			]
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=b2a74327c1fa47109c5d6b1c3d9b1337",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bpa-visitor-center-experience",
+			"title": "BPA Visitor Center Experience",
+			"description": "<span style='font-family:&quot;Avenir Next W01&quot;, &quot;Avenir Next W00&quot;, &quot;Avenir Next&quot;, Avenir, &quot;Helvetica Neue&quot;, sans-serif; font-size:medium;'>This interactive map explores BPA and the people behind it.  Learn more about transmission facilities, buildings, and dams in the Columbia River Basin and the people behind them.</span>",
+			"keyword": [],
+			"issued": "2022-08-01T20:34:38.000Z",
+			"modified": "2022-09-15T21:50:26.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "<span style='color:rgb(0, 0, 0); font-family:Arial; font-size:medium;'>This product was made informational purposes only and was created with the best available data at time of production. It does not represent any legal information or boundaries. BPA GIS disclaims responsibility or liability for any data discrepancies or errors. Source: BPA Regional GIS Database, 2015.</span>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bpa-visitor-center-experience"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://experience.arcgis.com/experience/b2a74327c1fa47109c5d6b1c3d9b1337/"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=275cd78c003349719b28f7130d4b933e",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bpa-transmission-assets",
+			"title": "BPA Transmission Assets",
+			"description": "This map displays Bonneville Power Administration Transmission Assets (transmission lines, transmission towers, right-of-ways, access roads and substations)within the Pacific Northwest. ",
+			"keyword": [
+				"Bonneville Power Administration",
+				"BPA",
+				"Transmission Assets"
+			],
+			"issued": "2016-12-19T21:49:00.000Z",
+			"modified": "2019-06-03T18:26:06.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "",
+			"license": "<span style='color: rgb(54, 95, 145); font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; font-size: 9pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;'><font face='Verdana'><font size='3'><font size='2'><font color='#000000'>This product was made informational purposes only and was created with the best available data at time of production. It does not represent any legal information or boundaries. BPA GIS disclaims responsibility or liability for any data discrepancies or errors. Source: BPA Regional GIS Database.</font></font></font></font></span>",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/apps/BPAGIS::bpa-transmission-assets"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://bpagis.maps.arcgis.com/apps/webappviewer/index.html?id=275cd78c003349719b28f7130d4b933e"
+				}
+			],
+			"theme": ""
+		},
+		{
+			"@type": "dcat:Dataset",
+			"identifier": "https://www.arcgis.com/home/item.html?id=d086757d1d1649e09077d8d1cb9f2d9a&sublayer=0",
+			"landingPage": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::columbiariverbasin",
+			"title": "ColumbiaRiverBasin",
+			"description": "Basin outline created from a variety of source data, most likely scales of 100k to 500k.",
+			"keyword": [
+				"Columbia",
+				" Basin"
+			],
+			"issued": "2016-08-29T17:35:25.000Z",
+			"modified": "2018-08-13T15:36:47.000Z",
+			"publisher": {
+				"name": "Bonneville Power Administration"
+			},
+			"contactPoint": {
+				"@type": "vcard:Contact",
+				"fn": "BPA_Publish",
+				"hasEmail": "mailto:gis_agol@bpa.gov"
+			},
+			"accessLevel": "public",
+			"spatial": "-124.0884,41.1283,-109.7629,52.8800",
+			"license": "",
+			"distribution": [
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS Hub Dataset",
+					"format": "Web Page",
+					"mediaType": "text/html",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/datasets/BPAGIS::columbiariverbasin"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "ArcGIS GeoService",
+					"format": "ArcGIS GeoServices REST API",
+					"mediaType": "application/json",
+					"accessURL": "https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/ColumbiaRiverBasin/FeatureServer/0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "CSV",
+					"format": "CSV",
+					"mediaType": "text/csv",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/d086757d1d1649e09077d8d1cb9f2d9a/csv?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "Shapefile",
+					"format": "ZIP",
+					"mediaType": "application/zip",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/d086757d1d1649e09077d8d1cb9f2d9a/shapefile?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "GeoJSON",
+					"format": "GeoJSON",
+					"mediaType": "application/vnd.geo+json",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/d086757d1d1649e09077d8d1cb9f2d9a/geojson?layers=0"
+				},
+				{
+					"@type": "dcat:Distribution",
+					"title": "KML",
+					"format": "KML",
+					"mediaType": "application/vnd.google-earth.kml+xml",
+					"accessURL": "https://data-bpagis.hub.arcgis.com/api/download/v1/items/d086757d1d1649e09077d8d1cb9f2d9a/kml?layers=0"
+				}
+			],
+			"theme": [
+				"geospatial"
+			]
+		}
+	]
+}

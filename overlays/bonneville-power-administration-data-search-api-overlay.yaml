@@ -1,0 +1,52 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — Bonneville Power Administration Data Search API
+  version: 1.0.0
+  x-generated: '2026-09-06'
+  x-method: derived
+  x-source: https://data-bpagis.hub.arcgis.com/api/search/definition/?f=json plus the API landing page
+    and conformance document, fetched 2026-09-06
+extends: openapi/bonneville-power-administration-data-search-api-openapi.yml
+actions:
+- target: $.servers
+  description: The published document ships an empty servers[]. The host is taken from the API's own landing-page
+    self link, not guessed from the domain.
+  update:
+  - url: https://data-bpagis.hub.arcgis.com
+    description: BPA GIS Data Hub — the ArcGIS Hub site instance BPA operates (ArcGIS Online org Iz3chmSt4P7oOoZy)
+- target: $.info
+  description: Record the OGC conformance classes this API declares about itself.
+  update:
+    x-ogc-conformance:
+      document: https://data-bpagis.hub.arcgis.com/api/search/v1/conformance
+      saved: conformance/bonneville-power-administration-hub-search-conformance.json
+      classes:
+      - http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core
+      - http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/json
+      - http://www.opengis.net/spec/ogcapi-common-2/0.0/conf/collections
+      - http://www.opengis.net/spec/ogcapi-common-2/0.0/conf/json
+      - http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core
+      - http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson
+      - http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30
+      - http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/core
+      - http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/json
+      fetched: '2026-09-06'
+- target: $.info
+  description: Record ownership provenance — this is a platform-templated API scoped to BPA's own catalog.
+  update:
+    x-ownership:
+      operator: Bonneville Power Administration
+      platform: Esri ArcGIS Hub
+      arcgis_org_id: Iz3chmSt4P7oOoZy
+      note: Served from BPA's own data-bpagis.hub.arcgis.com host; info.title names BPA; the landing-page
+        item is owned by BPA_AGOnline_Admin in the BPA org. The document is a platform template scoped
+        to this tenant's catalog, the same shape as a {site}/wp-json spec.
+- target: $.info
+  description: Record the read-only posture and auth-free access confirmed by probe.
+  update:
+    x-agent-semantics:
+      read_only: true
+      auth: none
+      idempotency: na
+      reversibility: na
+      verified: '2026-09-06'

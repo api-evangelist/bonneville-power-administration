@@ -17,6 +17,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "bonneville-power-administration-customers-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "bonneville-power-administration-hydrology-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "bonneville-power-administration-right-of-way-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "bonneville-power-administration-service-area-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "bonneville-power-administration-transmission-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

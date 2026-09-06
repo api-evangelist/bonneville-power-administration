@@ -1,0 +1,165 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  live probes of the BPA ArcGIS REST FeatureServer (service, layer and query
+  endpoints) plus openapi/_original/bonneville-power-administration-openapi.yml
+provider: Bonneville Power Administration
+providerId: bonneville-power-administration
+description: >-
+  Cross-cutting runtime semantics for the BPA public API surface. BPA does not author
+  its own API conventions: the callable surface is an Esri ArcGIS Online tenant, so the
+  conventions below are the ArcGIS REST (GeoServices) ones, confirmed against BPA's own
+  live endpoints rather than assumed from Esri documentation.
+auth:
+  style: none
+  detail: Anonymous public access; see authentication/bonneville-power-administration-authentication.yml
+idempotency:
+  coverage: na
+  scope: []
+  mechanism: none
+  detail: >-
+    The registered surface is read-only. Every operation in openapi/ is a GET query
+    against a published FeatureServer layer; there is no mutating operation for an
+    idempotency key to protect. Recorded as `na`, not `none` — there is no write
+    surface being left unguarded.
+  evidence: openapi/_original/bonneville-power-administration-openapi.yml (8 operations, all GET)
+reversibility:
+  applicability: na
+  detail: >-
+    Read-only surface. No create, update, delete, submit, order or transaction
+    operation exists on any registered BPA endpoint, so there is nothing an agent
+    could take that would need taking back. No reversal operation and no reversal
+    window are claimed, because none exists and none is needed.
+  write_surfaces: []
+  evidence: openapi/_original/bonneville-power-administration-openapi.yml
+dry_run_mode:
+  supported: na
+  detail: Read-only surface; a rehearsal mode has nothing to rehearse.
+pagination:
+  style: offset
+  params:
+  - name: resultOffset
+    description: Zero-based index of the first feature to return.
+  - name: resultRecordCount
+    description: Maximum features to return in one response; capped by the layer maxRecordCount.
+  response_fields:
+  - name: exceededTransferLimit
+    description: Boolean set true when more features match than were returned.
+  - name: features
+    description: The returned feature array.
+  limits:
+  - layer: BPA_ServiceArea
+    max_record_count: 1000
+  - layer: BPA_CustomerPublics
+    max_record_count: 1000
+  - layer: BPA_CustomerIOU
+    max_record_count: 1000
+  - layer: BPA_CustomerTribal
+    max_record_count: 1000
+  - layer: BPA_TransmissionLines_View
+    max_record_count: 1000
+  - layer: BPA_TransmissionStructure_View
+    max_record_count: 2000
+  - layer: BPA_RightofWay_View
+    max_record_count: 1000
+  - layer: ColumbiaRiverBasin
+    max_record_count: 1000
+  evidence: >-
+    Each layer's ?f=json definition reports advancedQueryCapabilities.supportsPagination
+    true and its own maxRecordCount; fetched 2026-09-06.
+field_selection:
+  style: explicit-field-list
+  param: outFields
+  detail: >-
+    Comma-separated attribute list, or `*` for every field. There is no expansion or
+    include-graph mechanism; ArcGIS layers are flat attribute tables plus a geometry.
+  also:
+  - param: returnGeometry
+    description: Set false to omit the geometry and return attributes only.
+  - param: returnCountOnly
+    description: Set true to return only the matching feature count.
+filtering:
+  style: sql-where
+  param: where
+  detail: >-
+    A SQL-92 style predicate evaluated server-side (`1=1` returns everything).
+    Spatial filters are expressed with `geometry` + `spatialRel` rather than in `where`.
+content_negotiation:
+  mechanism: query-parameter
+  param: f
+  values: [json, geojson, html, pjson]
+  detail: >-
+    Format is chosen with the `f` query parameter, NOT the Accept header — an agent that
+    sets Accept: application/geo+json and omits f=geojson gets ArcGIS JSON back. This is
+    the single most common integration mistake against this surface.
+metadata:
+  supported: false
+  detail: No caller-supplied metadata or tagging; the layers are read-only published datasets.
+request_tracing:
+  headers:
+  - name: x-arcgis-trace-id
+    description: Per-request trace identifier returned by the Esri platform.
+  - name: x-arcgis-correlation-id
+    description: Correlation identifier returned by the Esri platform.
+  caller_supplied: false
+  detail: >-
+    Trace identifiers are server-generated and returned on every response; there is no
+    documented request-id header a caller can supply. Quote these values when reporting
+    a problem.
+  evidence: observed on a live 200 response, 2026-09-06
+versioning:
+  style: path-embedded-service-version
+  detail: >-
+    The ArcGIS REST API reports currentVersion 12 / fullVersion 12.0.0 at
+    /arcgis/rest/info. BPA does not version its own layers: a layer is identified by
+    service name and layer index (for example BPA_ServiceArea/FeatureServer/0), and a
+    schema change is published in place. There is no /v1/ path segment, no version
+    header, and no version query parameter.
+  evidence: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/info?f=json
+error_envelope:
+  format: esri-error
+  media_type: application/json
+  shape: '{"error": {"code": <int>, "message": <string>, "details": [<string>]}}'
+  detail: >-
+    NOT RFC 9457 problem+json, and — critically — NOT signalled by the HTTP status line.
+    A malformed query returns HTTP 200 with an error envelope in the body. An agent
+    must parse the body for an `error` key rather than trusting the status code.
+  evidence: >-
+    GET .../BPA_ServiceArea/FeatureServer/0/query?where=BADSQL&f=json returned HTTP 200
+    with {"error":{"code":400,"message":"Cannot perform query. Invalid query parameters.",
+    "details":["'where' parameter is invalid"]}}, probed 2026-09-06.
+  see: errors/bonneville-power-administration-problem-types.yml
+rate_limit_signaling:
+  headers:
+  - name: x-esri-org-request-units-per-min
+    description: 'Tenant credit budget, formatted usage=<n>;max=<n> (observed usage=13;max=28800).'
+  - name: x-esri-query-request-units
+    description: Request units consumed by this single query.
+  status_on_exhaustion: unknown
+  detail: >-
+    The limit is expressed in Esri request units per minute against the whole BPA
+    tenant, not in requests per key. There is no X-RateLimit-* family and no
+    Retry-After on a normal response.
+  see: rate-limits/bonneville-power-administration-rate-limits.yml
+caching:
+  headers:
+  - name: cache-control
+    value: public, max-age=30, s-maxage=30
+  - name: etag
+    description: Layer-scoped entity tag; conditional GET is supported.
+  - name: last-modified
+    description: Layer edit timestamp, not response time.
+  detail: >-
+    Query responses are cacheable for 30 seconds. Poll no faster than that against the
+    GIS layers; the transmission.bpa.gov operational feeds refresh on a 5-minute cycle.
+cors:
+  enabled: true
+  allow_origin: '*'
+  allow_headers: [Content-Type, Authorization, X-Esri-Authorization]
+  detail: Browser-callable directly; observed on a live response 2026-09-06.
+cross_links:
+  errors: errors/bonneville-power-administration-problem-types.yml
+  lifecycle: lifecycle/bonneville-power-administration-lifecycle.yml
+  authentication: authentication/bonneville-power-administration-authentication.yml
+  rate_limits: rate-limits/bonneville-power-administration-rate-limits.yml
+  data_model: data-model/bonneville-power-administration-data-model.yml

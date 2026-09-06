@@ -1,0 +1,181 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  live fetches of https://data-bpagis.hub.arcgis.com/api/search/v1/conformance,
+  /data.json, /api/feed/dcat-ap/2.1.1.json and the BPA ArcGIS REST services host
+provider: Bonneville Power Administration
+providerId: bonneville-power-administration
+description: >-
+  Standards conformance for the BPA public data surface, established by fetching the
+  provider's own self-describing documents rather than by reading marketing prose. The
+  headline finding is that BPA's ArcGIS Hub site is a genuine OGC API surface: its
+  /conformance document declares nine opengis.net conformance classes, and it publishes
+  a DCAT-US 1.1 catalog at the canonical federal /data.json path.
+conformance:
+- id: ogc-api-common-1-core
+  standard: OGC API — Common Part 1 (Core)
+  class: http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core
+  conforms: true
+  evidence:
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1/conformance
+    http_status: 200
+    fetched: '2026-09-06'
+    file: conformance/bonneville-power-administration-hub-search-conformance.json
+- id: ogc-api-common-1-json
+  standard: OGC API — Common Part 1 (JSON)
+  class: http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/json
+  conforms: true
+  evidence:
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1/conformance
+    http_status: 200
+- id: ogc-api-common-2-collections
+  standard: OGC API — Common Part 2 (Collections)
+  class: http://www.opengis.net/spec/ogcapi-common-2/0.0/conf/collections
+  conforms: true
+  evidence:
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1/collections
+    http_status: 200
+- id: ogc-api-common-2-json
+  standard: OGC API — Common Part 2 (JSON)
+  class: http://www.opengis.net/spec/ogcapi-common-2/0.0/conf/json
+  conforms: true
+  evidence:
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1/conformance
+    http_status: 200
+- id: ogc-api-features-1-core
+  standard: OGC API — Features Part 1 (Core)
+  class: http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core
+  conforms: true
+  evidence:
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1/conformance
+    http_status: 200
+- id: ogc-api-features-1-geojson
+  standard: OGC API — Features Part 1 (GeoJSON)
+  class: http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson
+  conforms: true
+  evidence:
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1/conformance
+    http_status: 200
+- id: ogc-api-features-1-oas30
+  standard: OGC API — Features Part 1 (OpenAPI 3.0)
+  class: http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30
+  conforms: true
+  evidence:
+    url: https://data-bpagis.hub.arcgis.com/api/search/definition/?f=json
+    http_status: 200
+    note: >-
+      The OAS30 class is not merely asserted — the service-desc link resolves to a real
+      OpenAPI 3.0.0 document, saved verbatim to
+      openapi/_original/bonneville-power-administration-data-search-api-openapi.json.
+- id: ogc-api-records-1-core
+  standard: OGC API — Records Part 1 (Core)
+  class: http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/core
+  conforms: true
+  evidence:
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1/conformance
+    http_status: 200
+- id: ogc-api-records-1-json
+  standard: OGC API — Records Part 1 (JSON)
+  class: http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/json
+  conforms: true
+  evidence:
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1/conformance
+    http_status: 200
+- id: dcat-us-1.1
+  standard: DCAT-US 1.1 (Project Open Data catalog schema)
+  conforms: true
+  domain_standard: true
+  evidence:
+    url: https://data-bpagis.hub.arcgis.com/data.json
+    http_status: 200
+    fetched: '2026-09-06'
+    file: json-ld/bonneville-power-administration-dcat-us-catalog.json
+    note: >-
+      The catalog declares conformsTo "https://project-open-data.cio.gov/v1.1/schema",
+      names publisher "Bonneville Power Administration", and describes 21 datasets, each
+      with an "ArcGIS GeoServices REST API" distribution pointing at the callable
+      FeatureServer endpoint. Served at the canonical federal /data.json path required
+      of US federal agencies under OMB M-13-13 / Project Open Data.
+- id: dcat-ap-2.1.1
+  standard: DCAT-AP 2.1.1 (EU application profile)
+  conforms: true
+  evidence:
+    url: https://data-bpagis.hub.arcgis.com/api/feed/dcat-ap/2.1.1.json
+    http_status: 200
+    fetched: '2026-09-06'
+- id: geojson-rfc7946
+  standard: GeoJSON (RFC 7946)
+  conforms: true
+  evidence:
+    url: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_CustomerTribal/FeatureServer/0/query?where=1%3D1&outFields=Name&f=geojson&resultRecordCount=1
+    http_status: 200
+    fetched: '2026-09-06'
+    note: Returned a valid FeatureCollection. Selected with f=geojson, not the Accept header.
+- id: geoservices-rest
+  standard: Esri ArcGIS GeoServices REST API
+  conforms: true
+  evidence:
+    url: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services?f=json
+    http_status: 200
+    fetched: '2026-09-06'
+    note: >-
+      Self-describing service directory reporting currentVersion 12 and 173 published
+      FeatureServers in the BPA tenant. A de-facto vendor standard, not an accredited one.
+- id: cors
+  standard: CORS (Fetch / W3C CORS)
+  conforms: true
+  evidence:
+    url: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_ServiceArea/FeatureServer/0/query
+    http_status: 200
+    note: 'access-control-allow-origin: * observed on a live response.'
+- id: ferc-order-889-oasis
+  standard: FERC Order 889 / NAESB WEQ-002 OASIS
+  conforms: unverified
+  domain_standard: true
+  evidence:
+    url: http://www.oasis.oati.com/bpat/index.html
+    http_status: 0
+    fetched: '2026-09-06'
+    note: >-
+      BPA links an OASIS node (OATI, node BPAT) from its transmission operations page,
+      as FERC Order 889 requires of a transmission provider. DNS resolves
+      (174.141.249.8, 216.234.82.8) but the connection times out from a general-purpose
+      client — OATI OASIS nodes are registered-participant surfaces. The mandate is real
+      and BPA plainly participates; the INTERFACE could not be verified anonymously, so
+      this is recorded as unverified rather than as a conformance claim.
+- id: rfc9457
+  standard: RFC 9457 Problem Details for HTTP APIs
+  conforms: false
+  evidence:
+    url: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_ServiceArea/FeatureServer/0/query?where=BADSQL&f=json
+    http_status: 200
+    note: >-
+      Errors are returned as an ArcGIS error envelope inside an HTTP 200 body, not as
+      application/problem+json. See errors/bonneville-power-administration-problem-types.yml.
+- id: oauth2
+  standard: OAuth 2.0
+  conforms: false
+  evidence:
+    url: https://www.bpa.gov/.well-known/oauth-authorization-server
+    http_status: 404
+    note: No authorization server metadata on any BPA host; the public surface is anonymous.
+not_applicable:
+- standard: Green Button / ESPI
+  reason: >-
+    Green Button covers RETAIL customer meter data. BPA is a federal wholesale power
+    marketer and transmission operator; it has no retail meter accounts, so the standard
+    its regime map lists for energy_utilities does not attach to this provider.
+- standard: IEEE 2030.5 / OpenADR
+  reason: >-
+    Distributed-energy-resource and demand-response signalling standards for the
+    distribution edge. BPA operates bulk transmission and a Balancing Authority; no such
+    interface is published.
+- standard: CDR Energy (Australia) / Smart Energy Code (GB)
+  reason: Non-US regimes; BPA is a US federal agency operating only in the Pacific Northwest.
+compliance_programs:
+  published: false
+  note: >-
+    No SOC 2, ISO 27001, FedRAMP or PCI attestation is published for any BPA public data
+    surface. BPA is a US federal agency under the Department of Energy and inherits
+    FISMA obligations, but publishes no certification artifact this pipeline could fetch,
+    so no Compliance pointer is wired.

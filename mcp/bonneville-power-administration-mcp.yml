@@ -1,0 +1,111 @@
+generated: '2026-09-06'
+method: derived
+source: >-
+  openapi/_original/bonneville-power-administration-openapi.yml and
+  openapi/bonneville-power-administration-data-search-api-openapi.yml
+provider: Bonneville Power Administration
+providerId: bonneville-power-administration
+status: candidate
+description: >-
+  CANDIDATE tool surface derived from BPA's published OpenAPI operations. BPA ships no
+  MCP server. Nothing here is running anywhere; this file describes what a server over
+  the existing public endpoints would expose, so an integrator can build one without
+  guessing at the parameters.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: none
+  verified: derived
+  note: >-
+    Searched the BPA web estate, the ArcGIS Hub site, npm and PyPI on 2026-09-06 and
+    found no first-party or third-party MCP server for BPA. No endpoint URL is guessed:
+    mode is none precisely because nobody ships one. The upstream endpoints need no
+    credential, so a server built from this list would be auth-free.
+search_evidence:
+- url: https://www.bpa.gov/llms.txt
+  http_status: 404
+- url: https://data-bpagis.hub.arcgis.com/.well-known/ai-plugin.json
+  http_status: 404
+- url: https://www.bpa.gov/.well-known/agent-card.json
+  http_status: 404
+tools:
+- name: query_bpa_service_area
+  description: Return the BPA service-area boundary polygon.
+  rest: queryServiceArea
+  method: GET
+  path: /services/BPA_ServiceArea/FeatureServer/0/query
+  read_only: true
+  input_schema_source: openapi components.parameters Where/OutFields/F
+- name: query_bpa_customer_publics
+  description: Query publicly-owned utility customer boundaries by name, state or category.
+  rest: queryCustomerPublics
+  method: GET
+  path: /services/BPA_CustomerPublics/FeatureServer/0/query
+  read_only: true
+- name: query_bpa_customer_iou
+  description: Query investor-owned utility customer boundaries.
+  rest: queryCustomerIOU
+  method: GET
+  path: /services/BPA_CustomerIOU/FeatureServer/0/query
+  read_only: true
+- name: query_bpa_customer_tribal
+  description: Query tribal utility customer boundaries.
+  rest: queryCustomerTribal
+  method: GET
+  path: /services/BPA_CustomerTribal/FeatureServer/0/query
+  read_only: true
+- name: query_bpa_transmission_lines
+  description: Query BPA transmission line centrelines by operating line name or voltage.
+  rest: queryTransmissionLines
+  method: GET
+  path: /services/BPA_TransmissionLines_View/FeatureServer/0/query
+  read_only: true
+- name: query_bpa_transmission_structures
+  description: Query BPA transmission towers and poles by serial number or operating line.
+  rest: queryTransmissionStructures
+  method: GET
+  path: /services/BPA_TransmissionStructure_View/FeatureServer/0/query
+  read_only: true
+- name: query_bpa_right_of_way
+  description: Query BPA right-of-way corridor polygons.
+  rest: queryRightOfWay
+  method: GET
+  path: /services/BPA_RightofWay_View/FeatureServer/0/query
+  read_only: true
+- name: query_columbia_river_basin
+  description: Return the Columbia River Basin outline.
+  rest: queryColumbiaRiverBasin
+  method: GET
+  path: /services/ColumbiaRiverBasin/FeatureServer/0/query
+  read_only: true
+- name: search_bpa_catalog
+  description: Search the BPA open-data catalog for datasets by keyword, extent or type.
+  rest: OgcItemController_getSiteCollectionItems_api/search/v1
+  method: GET
+  path: /api/search/v1/collections/{collectionId}/items
+  host: https://data-bpagis.hub.arcgis.com
+  read_only: true
+- name: get_bpa_catalog_record
+  description: Fetch one BPA catalog record by id, including its distribution endpoints.
+  rest: OgcItemController_getSiteCollectionItemById_api/search/v1
+  method: GET
+  path: /api/search/v1/collections/{collectionId}/items/{itemId}
+  host: https://data-bpagis.hub.arcgis.com
+  read_only: true
+surfaces:
+  gis_rest:
+    base: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
+    auth: none
+    gated: false
+  hub_search:
+    base: https://data-bpagis.hub.arcgis.com
+    auth: none
+    gated: false
+notes:
+- Every candidate tool is read-only; there is no mutating BPA endpoint to expose.
+- >-
+  A server implementing these must parse the response body for an `error` key rather than
+  trusting the HTTP status — the upstream returns 200 on failure. See
+  errors/bonneville-power-administration-problem-types.yml.

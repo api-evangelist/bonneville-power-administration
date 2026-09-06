@@ -1,0 +1,39 @@
+generated: '2026-09-06'
+method: generated
+source: >-
+  openapi/ operations in this repository, grounded against live BPA endpoints probed
+  2026-09-06
+provider: Bonneville Power Administration
+providerId: bonneville-power-administration
+description: >-
+  Packaged agent skills for the BPA public data surface. Written by API Evangelist, not by
+  BPA — BPA publishes no skills, no AGENTS.md and no llms.txt (checked 2026-09-06). Every
+  operationId referenced below appears in a spec in openapi/; none was invented.
+provider_published: false
+skills:
+- name: map-bpa-transmission-corridor
+  file: bonneville-power-administration-map-transmission-corridor.md
+  api: bonneville-power-administration:bonneville-power-administration-transmission-api
+  operations: [queryTransmissionLines, queryTransmissionStructures, queryRightOfWay]
+  summary: Assemble line centrelines, the towers on them and the surrounding right-of-way as GeoJSON.
+- name: identify-bpa-serving-utility
+  file: bonneville-power-administration-identify-serving-utility.md
+  api: bonneville-power-administration:bonneville-power-administration-customers-api
+  operations: [queryServiceArea, queryCustomerPublics, queryCustomerIOU, queryCustomerTribal]
+  summary: Resolve a point to the BPA customer utility that serves it, and to its ownership class.
+- name: discover-bpa-datasets
+  file: bonneville-power-administration-discover-datasets.md
+  api: bonneville-power-administration:bonneville-power-administration-data-search-api
+  operations:
+  - OgcRootController_getSiteRoot_api/search/v1
+  - CollectionController_getSiteCollections_api/search/v1
+  - OgcItemController_getSiteCollectionItems_api/search/v1
+  - OgcItemController_getSiteCollectionItemById_api/search/v1
+  - QueryableController_getSiteCollectionQueryables_api/search/v1
+  summary: Search the OGC API Records catalog and follow a record to its callable endpoint.
+shared_rules:
+- Anonymous access; no credential exists for any BPA public surface.
+- Response format is selected with the f query parameter, not the Accept header.
+- FeatureServer errors arrive inside HTTP 200 as an ArcGIS error envelope; parse for an `error` key.
+- Honour exceededTransferLimit and page with resultOffset / resultRecordCount.
+- The whole surface is read-only; idempotency and reversibility are not applicable.

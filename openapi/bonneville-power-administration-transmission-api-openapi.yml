@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Bonneville Power Administration GIS Hub Customers Transmission API
   description: 'BPA GIS Data Hub serves public geospatial data via ArcGIS Online Feature
@@ -53,13 +53,6 @@ paths:
           description: ArcGIS query result
 components:
   parameters:
-    OutFields:
-      name: outFields
-      in: query
-      description: Comma separated list of fields to return. Use "*" to return all fields.
-      schema:
-        type: string
-        default: '*'
     F:
       name: f
       in: query
@@ -72,6 +65,13 @@ components:
         - html
         - pjson
         default: json
+    OutFields:
+      name: outFields
+      in: query
+      description: Comma separated list of fields to return. Use "*" to return all fields.
+      schema:
+        type: string
+        default: '*'
     Where:
       name: where
       in: query

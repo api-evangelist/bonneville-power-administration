@@ -1,0 +1,217 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  live layer-definition fetches at
+  https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/<Service>/FeatureServer/0?f=json
+  for each of the eight layers registered in openapi/, plus the DCAT-US catalog at
+  https://data-bpagis.hub.arcgis.com/data.json
+provider: Bonneville Power Administration
+providerId: bonneville-power-administration
+description: >-
+  Entity model for the BPA GIS Data Hub. Every field name, type and cardinality below was
+  read from the live ArcGIS layer definition on 2026-09-06 — none of it is inferred from
+  the OpenAPI, which declares no component schemas. The model is flat by construction:
+  ArcGIS FeatureServer layers are independent attribute tables plus a geometry, with no
+  server-side joins and no foreign-key enforcement.
+shape:
+  paradigm: geospatial-feature-tables
+  identifier_field: OBJECTID
+  identifier_type: integer, layer-scoped, system-maintained, NOT stable across republication
+  global_identifier_field: GlobalID
+  global_identifier_type: GUID, stable across edits where present
+  id_prefixes: none
+  note: >-
+    There is no cross-layer primary key. OBJECTID is unique only within one layer and is
+    reassigned when a layer is rebuilt; an integration that persists OBJECTID as a
+    long-lived reference will silently drift. Use GlobalID where the layer exposes it.
+entities:
+- name: ServiceArea
+  layer: BPA_ServiceArea
+  operation: queryServiceArea
+  geometry: esriGeometryPolygon
+  max_record_count: 1000
+  supports_pagination: true
+  description: BPA service-area boundary as defined by the Pacific Northwest Electric Power Planning and Conservation Act.
+  fields:
+  - {name: OBJECTID, type: OID}
+  note: >-
+    Publishes only the object id and the geometry — the boundary itself is the payload.
+    outFields=* returns no descriptive attributes.
+- name: CustomerPublic
+  layer: BPA_CustomerPublics
+  operation: queryCustomerPublics
+  geometry: esriGeometryPolygon
+  max_record_count: 1000
+  supports_pagination: true
+  description: Publicly-owned utility service-territory boundaries for BPA preference customers.
+  fields:
+  - {name: OBJECTID, type: OID}
+  - {name: NAME, type: String}
+  - {name: STATE, type: String}
+  - {name: CAT, type: String, description: Customer category code}
+  - {name: FULLNAME, type: String}
+  - {name: BES_NUM, type: SmallInteger, description: Bulk electric system number}
+  - {name: GlobalID, type: GlobalID}
+  - {name: created_user, type: String}
+  - {name: created_date, type: Date}
+  - {name: last_edited_user, type: String}
+  - {name: last_edited_date, type: Date}
+  - {name: Shape__Area, type: Double}
+  - {name: Shape__Length, type: Double}
+- name: CustomerIOU
+  layer: BPA_CustomerIOU
+  operation: queryCustomerIOU
+  geometry: esriGeometryPolygon
+  max_record_count: 1000
+  supports_pagination: true
+  description: Investor-owned utility boundaries for the Pacific Northwest; all BPA customers.
+  fields:
+  - {name: OBJECTID, type: OID}
+  - {name: NAME, type: String}
+  - {name: BES_NUM, type: SmallInteger}
+  - {name: GlobalID, type: GlobalID}
+  - {name: created_user, type: String}
+  - {name: created_date, type: Date}
+  - {name: last_edited_user, type: String}
+  - {name: last_edited_date, type: Date}
+  - {name: Shape__Area, type: Double}
+  - {name: Shape__Length, type: Double}
+- name: CustomerTribal
+  layer: BPA_CustomerTribal
+  operation: queryCustomerTribal
+  geometry: esriGeometryPolygon
+  max_record_count: 1000
+  supports_pagination: true
+  description: Tribal utility boundaries for the Pacific Northwest; all BPA customers.
+  fields:
+  - {name: OBJECTID, type: OID}
+  - {name: Name, type: String}
+  - {name: Website, type: String}
+  - {name: Shape__Area, type: Double}
+  - {name: Shape__Length, type: Double}
+  - {name: GlobalID, type: GlobalID}
+  note: >-
+    Field is `Name`, not `NAME` as on the other two customer layers. ArcGIS where-clause
+    field names are case-sensitive on this backend; a query written against
+    BPA_CustomerPublics will fail here.
+- name: TransmissionLine
+  layer: BPA_TransmissionLines_View
+  operation: queryTransmissionLines
+  geometry: esriGeometryPolyline
+  max_record_count: 1000
+  supports_pagination: true
+  description: BPA high-voltage transmission line centrelines.
+  fields:
+  - {name: OBJECTID, type: OID}
+  - {name: XRefCd, type: String, description: Cross-reference code}
+  - {name: OperatingLineNm, type: String, description: Operating line name — the join key to transmission structures}
+  - {name: VoltageMeas, type: Double, description: Operating voltage}
+  - {name: Shape__Length, type: Double}
+  - {name: CreationDate, type: Date}
+  - {name: Creator, type: String}
+  - {name: EditDate, type: Date}
+  - {name: Editor, type: String}
+  - {name: GlobalID, type: GlobalID}
+- name: TransmissionStructure
+  layer: BPA_TransmissionStructure_View
+  operation: queryTransmissionStructures
+  geometry: esriGeometryPoint
+  max_record_count: 2000
+  supports_pagination: true
+  description: Individual towers and poles carrying BPA transmission lines.
+  fields:
+  - {name: OBJECTID, type: OID}
+  - {name: StrcSerialNbr, type: String, description: Structure serial number}
+  - {name: OperatingLineNm, type: String, description: Operating line name — the join key to transmission lines}
+  - {name: StrcSymbolCd, type: String, description: Structure symbol code}
+  - {name: MileStrcKey, type: String, description: Mile-and-structure key locating the structure along its line}
+  - {name: CreationDate, type: Date}
+  - {name: Creator, type: String}
+  - {name: EditDate, type: Date}
+  - {name: Editor, type: String}
+  - {name: GlobalID, type: GlobalID}
+- name: RightOfWay
+  layer: BPA_RightofWay_View
+  operation: queryRightOfWay
+  geometry: esriGeometryPolygon
+  max_record_count: 1000
+  supports_pagination: true
+  description: BPA right-of-way corridor polygons.
+  fields:
+  - {name: OBJECTID, type: OID}
+  - {name: GlobalID, type: GlobalID}
+  - {name: Shape__Area, type: Double}
+  - {name: Shape__Length, type: Double}
+  note: Geometry-only; carries no corridor name or line reference, so it can be joined to lines only spatially.
+- name: ColumbiaRiverBasin
+  layer: ColumbiaRiverBasin
+  operation: queryColumbiaRiverBasin
+  geometry: esriGeometryPolygon
+  max_record_count: 1000
+  supports_pagination: true
+  description: Columbia River Basin outline, compiled from mixed source data at roughly 1:100k scale.
+  fields:
+  - {name: OBJECTID, type: OID}
+  - {name: GlobalID, type: GlobalID}
+relationships:
+- from: TransmissionStructure
+  to: TransmissionLine
+  cardinality: belongs_to
+  via: OperatingLineNm
+  enforced: false
+  confidence: high
+  note: >-
+    Both layers carry an identically-named OperatingLineNm string. The join is by value
+    on the client; the server enforces no referential integrity and offers no relationship
+    query.
+- from: TransmissionLine
+  to: TransmissionStructure
+  cardinality: has_many
+  via: OperatingLineNm
+  enforced: false
+  confidence: high
+- from: TransmissionLine
+  to: RightOfWay
+  cardinality: has_many
+  via: spatial-intersection
+  enforced: false
+  confidence: medium
+  note: >-
+    No shared attribute. Relate with a spatial query (geometry + spatialRel=esriSpatialRelIntersects)
+    rather than a where clause.
+- from: CustomerPublic
+  to: ServiceArea
+  cardinality: belongs_to
+  via: spatial-containment
+  enforced: false
+  confidence: medium
+- from: CustomerIOU
+  to: ServiceArea
+  cardinality: belongs_to
+  via: spatial-containment
+  enforced: false
+  confidence: medium
+- from: CustomerTribal
+  to: ServiceArea
+  cardinality: belongs_to
+  via: spatial-containment
+  enforced: false
+  confidence: medium
+catalog_entities:
+- name: Dataset
+  source: json-ld/bonneville-power-administration-dcat-us-catalog.json
+  count: 21
+  description: >-
+    DCAT-US Dataset records describing the published BPA layers, each with an identifier,
+    landingPage, keyword list, license, spatial extent and a distribution list. The
+    "ArcGIS GeoServices REST API" distribution is the callable endpoint; the CSV, GeoJSON,
+    KML, Shapefile and File Geodatabase distributions are export downloads.
+  note: >-
+    The catalog is the authoritative index of what BPA considers published — 21 datasets —
+    against 173 FeatureServers visible in the tenant service directory. Prefer the catalog.
+search_api_entities:
+  source: openapi/bonneville-power-administration-data-search-api-openapi.yml
+  note: >-
+    The Data Search API declares 45 component schemas of its own (OgcItemDto, CollectionDto,
+    FeatureLayerDto, and the rest). Those are the OGC API Records envelope types for the
+    catalog, not BPA domain entities, and are deliberately not duplicated here.

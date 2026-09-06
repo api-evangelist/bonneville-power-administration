@@ -1,0 +1,110 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  live error-path probes against
+  https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/*/FeatureServer/0/query,
+  reconciled with openapi/_original/bonneville-power-administration-openapi.yml
+provider: Bonneville Power Administration
+providerId: bonneville-power-administration
+format: esri-error
+media_type: application/json
+rfc9457: false
+description: >-
+  Error catalog for the BPA public ArcGIS REST surface. This is NOT an RFC 9457
+  problem+json API. Errors are returned as an ArcGIS error envelope inside an
+  otherwise successful HTTP response, so the HTTP status line is not a reliable
+  success signal. Every entry below was reproduced against a live BPA endpoint on
+  2026-09-06; nothing here is copied from Esri documentation.
+envelope:
+  shape: '{"error": {"code": <int>, "message": <string>, "details": [<string>]}}'
+  discriminator_field: error
+  agent_rule: >-
+    Treat a response as failed when the parsed body contains a top-level `error` key,
+    regardless of the HTTP status. Read error.code, not the HTTP status, as the
+    machine-readable error identity.
+  http_status_is_authoritative: false
+caveat_openapi: >-
+  The OpenAPI documents in openapi/ declare only 200 responses. That is faithful to the
+  wire — the transport really does answer 200 on failure — but it means the specs carry
+  no 4xx/5xx response objects to derive from. This catalog was built by probing instead.
+problem_types:
+- id: invalid-query-parameters
+  error_code: 400
+  http_status: 200
+  title: Cannot perform query. Invalid query parameters.
+  detail_examples:
+  - "'where' parameter is invalid"
+  - "'outFields' parameter is invalid"
+  causes:
+  - A `where` clause that is not valid SQL-92 for the layer, or references an unknown field.
+  - An `outFields` entry naming a field the layer does not define.
+  remediation: >-
+    Fetch the layer definition at
+    .../services/<Service>/FeatureServer/<n>?f=json and use only the field names it
+    lists. Use where=1%3D1 to return everything and outFields=* to see the real schema.
+  retryable: false
+  evidence:
+    url: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_ServiceArea/FeatureServer/0/query?where=BADSQL&f=json
+    fetched: '2026-09-06'
+- id: invalid-url
+  error_code: 400
+  http_status: 200
+  title: Invalid URL
+  detail_examples:
+  - Invalid URL
+  causes:
+  - A service name that does not exist in the BPA tenant.
+  - A layer index that does not exist on an existing FeatureServer.
+  - An endpoint suffix the service does not implement (for example OGCFeatureServer on a layer where it is not enabled).
+  remediation: >-
+    Enumerate what actually exists at
+    https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services?f=json before
+    constructing a path. Note that a missing resource is reported as 400 Invalid URL,
+    not 404 — do not branch on 404.
+  retryable: false
+  evidence:
+    url: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/NOPE_Layer/FeatureServer/0/query?where=1%3D1&f=json
+    fetched: '2026-09-06'
+- id: bad-request-plaintext
+  error_code: null
+  http_status: 400
+  title: Bad Request
+  detail_examples:
+  - Bad Request
+  causes:
+  - An unrecognised value for the `f` format parameter.
+  remediation: >-
+    Use only f=json, f=geojson, f=pjson or f=html. This is the one failure mode that
+    escapes the JSON envelope entirely and returns a bare plain-text body, so a client
+    that assumes every response parses as JSON will throw here.
+  retryable: false
+  evidence:
+    url: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_CustomerIOU/FeatureServer/0/query?where=1%3D1&f=bogus
+    fetched: '2026-09-06'
+- id: token-required
+  error_code: 499
+  http_status: 200
+  title: Token Required
+  detail_examples: []
+  causes:
+  - Requesting a private item in the BPA ArcGIS Online tenant without an Esri token.
+  remediation: >-
+    The eight layers registered in this repo are shared publicly and never return this.
+    If you hit it, the item is not public — request access through the BPA GIS Data Hub
+    rather than attempting to authenticate.
+  retryable: false
+  observed: false
+  note: >-
+    Declared by the platform's authInfo (isTokenBasedSecurity true at /arcgis/rest/info)
+    but NOT reproduced against any BPA public layer. Listed as a possible, not a probed,
+    failure mode.
+undocumented:
+- >-
+  No 429 / rate-limit rejection was reproduced. The tenant credit budget is signalled on
+  successful responses (x-esri-org-request-units-per-min) but the behaviour on exhaustion
+  is not published and was not induced.
+- >-
+  No 5xx was reproduced. There is no published SLA or error-rate commitment.
+see_also:
+  conventions: conventions/bonneville-power-administration-conventions.yml
+  rate_limits: rate-limits/bonneville-power-administration-rate-limits.yml

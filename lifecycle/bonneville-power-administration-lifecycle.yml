@@ -1,0 +1,94 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  live probes of the BPA ArcGIS REST service directory, layer definitions and
+  transmission.bpa.gov operational pages; plus
+  openapi/_original/bonneville-power-administration-openapi.yml
+provider: Bonneville Power Administration
+providerId: bonneville-power-administration
+description: >-
+  Lifecycle posture for the BPA public API surface. The honest headline is that BPA
+  runs published datasets, not a versioned API product: there is no versioning policy,
+  no deprecation policy, no Sunset/Deprecation header practice, no SLA and no API
+  status page. Layers appear and disappear from the tenant service directory without
+  notice. Everything below was checked on 2026-09-06.
+versioning:
+  policy_published: false
+  scheme: none
+  detail: >-
+    Layers are addressed by service name and layer index. There is no version segment,
+    header or parameter, and a schema change is published in place over the same URL.
+    The only version number on the wire is the Esri platform's own (currentVersion 12 /
+    fullVersion 12.0.0 at /arcgis/rest/info), which is Esri's release, not BPA's.
+  evidence:
+    url: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/info?f=json
+    http_status: 200
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  detail: >-
+    No deprecation policy was found on bpa.gov, transmission.bpa.gov or the ArcGIS Hub
+    site, and no Sunset or Deprecation response header was observed on any live BPA
+    endpoint. No operation in openapi/ carries deprecated: true. The practical risk is
+    real and unmanaged: the tenant currently publishes 173 FeatureServers, several of
+    which are dated snapshots (Solar_Projects_in_Queue_2018,
+    BPA_Visitor_Center_Data_2022, BPA_Lines_StoryMap_111925), and a consumer has no
+    signal before one is withdrawn.
+  risk: unmanaged
+sla:
+  published: false
+  detail: No availability, latency or error-rate commitment is published for any BPA public data surface.
+status_page:
+  provider_operated: false
+  detail: >-
+    BPA operates no API or service status page. transmission.bpa.gov publishes
+    "System News & Studies" and "Outage & Reliability Reports" — these are report
+    libraries about the physical transmission system, not the availability of the API,
+    and are deliberately NOT wired as a StatusPage pointer.
+  platform_dependency:
+    name: ArcGIS Online Health Dashboard
+    url: https://status.arcgis.com/
+    operated_by: Esri
+    http_status: 200
+    note: >-
+      The GIS API's real availability is Esri's, not BPA's. Recorded as a dependency an
+      integrator should watch; NOT claimed as a BPA-published status page.
+  operational_pages:
+  - name: System News & Studies
+    url: https://transmission.bpa.gov/Business/Operations/SystemNews/default.aspx
+    http_status: 200
+  - name: Outage & Reliability Reports
+    url: https://transmission.bpa.gov/Business/Operations/Outages/default.aspx
+    http_status: 200
+change_communication:
+  changelog_published: false
+  detail: >-
+    No dated API or dataset changelog exists. The nearest signal is per-record edit
+    metadata inside the data itself — several layers carry created_date /
+    last_edited_date / CreationDate / EditDate fields — plus the agency news feed at
+    https://www.bpa.gov/rss-feeds/news-feed-no-cp (HTTP 200), which is corporate news
+    and does not announce data or endpoint changes.
+data_refresh:
+  - surface: BPA Balancing Authority load and VER generation
+    cadence: 5 minutes
+    retention: rolling 7 days in the text feed
+    evidence:
+      url: https://transmission.bpa.gov/business/operations/wind/baltwg.txt
+      http_status: 200
+      observed: 'header line read "Dates: 31Aug2026 - 07Sep2026 (last updated 6Sep2026 15:41:28) Pacific Time"'
+  - surface: BPA GIS Data Hub layers
+    cadence: irregular
+    detail: >-
+      Edited in place. Response cache-control is public, max-age=30 and each layer
+      carries an ETag, so conditional GET is the correct polling strategy.
+stability_observations:
+- >-
+  All eight layers registered in openapi/ answered HTTP 200 on 2026-09-06 with intact
+  schemas — the registered contract still matches the live surface.
+- >-
+  The BPA tenant service directory lists 173 FeatureServers; only 8 are registered here.
+  The gap is deliberate — the rest are county cadastral control layers, story-map
+  backing services and project snapshots, not a stable published API.

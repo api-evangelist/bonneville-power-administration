@@ -1,0 +1,68 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  live anonymous requests to
+  https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_ServiceArea/FeatureServer/0/query
+  plus openapi/_original/bonneville-power-administration-openapi.yml
+provider: Bonneville Power Administration
+providerId: bonneville-power-administration
+docs: https://data-bpagis.hub.arcgis.com
+description: >-
+  Authentication profile for the BPA public API surface. There is no credential to
+  obtain: BPA's published ArcGIS Online layers are shared publicly and answer
+  anonymous GET requests with HTTP 200, and the transmission.bpa.gov operational
+  data files are static public downloads. No sign-up, no API key, no OAuth.
+summary:
+  schemes: 0
+  anonymous_access: true
+  registration_required: false
+  verdict: public-anonymous
+schemes: []
+surfaces:
+- name: BPA GIS Data Hub — ArcGIS REST FeatureServer
+  base: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
+  auth: none
+  evidence:
+    url: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest/services/BPA_ServiceArea/FeatureServer/0/query?where=1%3D1&outFields=*&f=json
+    http_status: 200
+    fetched: '2026-09-06'
+    note: >-
+      Returned a full FeatureSet with no credential. The service /info document
+      reports authInfo.isTokenBasedSecurity true and a tokenServicesUrl at
+      www.arcgis.com, which is the Esri platform's token service for PRIVATE items
+      in the tenant; the BPA layers registered in this repo are shared publicly and
+      do not require it.
+  optional_credential:
+    type: arcgis-token
+    header: X-Esri-Authorization
+    query_param: token
+    token_service: https://www.arcgis.com/sharing/rest/generateToken
+    applies_to: private items in the BPA ArcGIS Online tenant, not the public layers here
+    note: >-
+      Platform-level Esri mechanism, not a BPA-issued credential. Recorded because the
+      service /info document advertises it; no BPA public layer in this repo needs it.
+- name: BPA Balancing Authority load and VER generation data
+  base: https://transmission.bpa.gov/business/operations/wind/
+  auth: none
+  evidence:
+    url: https://transmission.bpa.gov/business/operations/wind/baltwg.txt
+    http_status: 200
+    fetched: '2026-09-06'
+    note: Plain-text 5-minute-interval feed served anonymously, no credential.
+- name: BPA OASIS node (NAESB WEQ-002 transmission service)
+  base: http://www.oasis.oati.com/bpat/
+  auth: gated
+  evidence:
+    url: http://www.oasis.oati.com/bpat/index.html
+    http_status: 0
+    fetched: '2026-09-06'
+    note: >-
+      DNS resolves (174.141.249.8 / 216.234.82.8) but the connection times out from a
+      general-purpose client. OATI OASIS nodes are registered-participant surfaces;
+      credentials are issued by OATI to transmission customers, not published by BPA.
+      Not probed further and NOT registered as a callable API in this record.
+notes:
+- No API key, OAuth client, or account registration exists for any BPA public data surface.
+- >-
+  Because there is no credential to rotate, scope, or leak, the OAuthScopes and Sandbox
+  artifacts are not applicable for this provider and are deliberately absent.
