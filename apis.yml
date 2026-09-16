@@ -97,7 +97,8 @@ apis:
     type: DataAPI
   - url: https://transmission.bpa.gov/business/operations/wind/baltwg.txt
     type: DataFeed
-    name: Balancing Authority load and total wind generation — plain text, 5-minute intervals, rolling 7 days
+    name: >-
+      Balancing Authority load and total wind generation — plain text, 5-minute intervals, rolling 7 days
   description: >-
     BPA publishes real-time and historical wind and solar generation data for the Balancing Authority
     area. Data includes total wind generation, total solar generation, net generation, and load data available
@@ -165,42 +166,156 @@ apis:
     url: openapi/bonneville-power-administration-transmission-api-openapi.yml
   - type: Overlay
     url: overlays/bonneville-power-administration-transmission-api-overlay.yaml
-- aid: bonneville-power-administration:bonneville-power-administration-data-search-api
-  name: Bonneville Power Administration Data Search API
-  description: >-
-    BPA's ArcGIS Hub site publishes a real OGC API Records catalog search over the agency's
-    open geospatial data — 17 operations across collections, items, queryables, related and
-    connected records, aggregations, and a GeoService projection of any collection. The
-    service declares nine OGC conformance classes about itself (API Common Parts 1 and 2,
-    Features Part 1 core/geojson/oas30, Records Part 1 core/json) and ships its own
-    OpenAPI 3.0 definition. No credential is required.
-  humanURL: https://data-bpagis.hub.arcgis.com/api/search/definition/
-  baseURL: https://data-bpagis.hub.arcgis.com
+- aid: bonneville-power-administration:bonneville-power-administration-catalog-api
+  name: Bonneville Power Administration Catalog API
+  description: The Catalog API from Bonneville Power Administration — 1 operation(s) for catalog.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  baseURL: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
   tags:
   - Catalog
-  - DCAT
-  - GIS
-  - Geospatial
-  - Government
-  - OGC API
-  - Open Data
-  - Records
-  - Search
   properties:
   - type: OpenAPI
-    url: openapi/bonneville-power-administration-data-search-api-openapi.yml
+    url: openapi/bonneville-power-administration-catalog-api-openapi.yml
   - type: APIReference
     url: https://data-bpagis.hub.arcgis.com/api/search/definition/
   - type: Documentation
     url: https://data-bpagis.hub.arcgis.com/api/search/v1
   - type: Conformance
     url: conformance/bonneville-power-administration-hub-search-conformance.json
-  - type: Overlay
-    url: overlays/bonneville-power-administration-data-search-api-overlay.yaml
   - type: DataCatalog
     url: https://data-bpagis.hub.arcgis.com/data.json
-    name: DCAT-US 1.1 catalog — 21 published BPA datasets
+- aid: bonneville-power-administration:bonneville-power-administration-collection-api
+  name: Bonneville Power Administration Collection API
+  description: The Collection API from Bonneville Power Administration — 2 operation(s) for collection.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  baseURL: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
+  tags:
+  - Collection
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-collection-api-openapi.yml
+  - type: APIReference
+    url: https://data-bpagis.hub.arcgis.com/api/search/definition/
+  - type: Documentation
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1
+  - type: Conformance
+    url: conformance/bonneville-power-administration-hub-search-conformance.json
+  - type: DataCatalog
+    url: https://data-bpagis.hub.arcgis.com/data.json
+- aid: bonneville-power-administration:bonneville-power-administration-geoservice-beta-api
+  name: Bonneville Power Administration Geoservice Beta API
+  description: >-
+    The Geoservice-Beta API from Bonneville Power Administration — 6 operation(s) for geoservice-beta.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  baseURL: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
+  tags:
+  - Geoservice-Beta
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-geoservice-beta-api-openapi.yml
+  - type: APIReference
+    url: https://data-bpagis.hub.arcgis.com/api/search/definition/
+  - type: Documentation
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1
+  - type: Conformance
+    url: conformance/bonneville-power-administration-hub-search-conformance.json
+  - type: DataCatalog
+    url: https://data-bpagis.hub.arcgis.com/data.json
+- aid: bonneville-power-administration:bonneville-power-administration-ogcitem-api
+  name: Bonneville Power Administration Ogc Item API
+  description: The OgcItem API from Bonneville Power Administration — 4 operation(s) for ogcitem.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  baseURL: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
+  tags:
+  - OgcItem
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-ogcitem-api-openapi.yml
+  - type: APIReference
+    url: https://data-bpagis.hub.arcgis.com/api/search/definition/
+  - type: Documentation
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1
+  - type: Conformance
+    url: conformance/bonneville-power-administration-hub-search-conformance.json
+  - type: DataCatalog
+    url: https://data-bpagis.hub.arcgis.com/data.json
+- aid: bonneville-power-administration:bonneville-power-administration-ogcitemaggregation-api
+  name: Bonneville Power Administration Ogc Item Aggregation API
+  description: >-
+    The OgcItemAggregation API from Bonneville Power Administration — 1 operation(s) for ogcitemaggregation.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  baseURL: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
+  tags:
+  - OgcItemAggregation
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-ogcitemaggregation-api-openapi.yml
+  - type: APIReference
+    url: https://data-bpagis.hub.arcgis.com/api/search/definition/
+  - type: Documentation
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1
+  - type: Conformance
+    url: conformance/bonneville-power-administration-hub-search-conformance.json
+  - type: DataCatalog
+    url: https://data-bpagis.hub.arcgis.com/data.json
+- aid: bonneville-power-administration:bonneville-power-administration-ogcroot-api
+  name: Bonneville Power Administration Ogc Root API
+  description: The OgcRoot API from Bonneville Power Administration — 1 operation(s) for ogcroot.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  baseURL: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
+  tags:
+  - OgcRoot
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-ogcroot-api-openapi.yml
+  - type: APIReference
+    url: https://data-bpagis.hub.arcgis.com/api/search/definition/
+  - type: Documentation
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1
+  - type: Conformance
+    url: conformance/bonneville-power-administration-hub-search-conformance.json
+  - type: DataCatalog
+    url: https://data-bpagis.hub.arcgis.com/data.json
+- aid: bonneville-power-administration:bonneville-power-administration-ogcrootconformance-api
+  name: Bonneville Power Administration Ogc Root Conformance API
+  description: >-
+    The OgcRootConformance API from Bonneville Power Administration — 1 operation(s) for ogcrootconformance.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  baseURL: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
+  tags:
+  - OgcRootConformance
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-ogcrootconformance-api-openapi.yml
+  - type: APIReference
+    url: https://data-bpagis.hub.arcgis.com/api/search/definition/
+  - type: Documentation
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1
+  - type: Conformance
+    url: conformance/bonneville-power-administration-hub-search-conformance.json
+  - type: DataCatalog
+    url: https://data-bpagis.hub.arcgis.com/data.json
+- aid: bonneville-power-administration:bonneville-power-administration-queryable-api
+  name: Bonneville Power Administration Queryable API
+  description: The Queryable API from Bonneville Power Administration — 1 operation(s) for queryable.
+  humanURL: https://data-bpagis.hub.arcgis.com
+  baseURL: https://services3.arcgis.com/Iz3chmSt4P7oOoZy/arcgis/rest
+  tags:
+  - Queryable
+  properties:
+  - type: OpenAPI
+    url: openapi/bonneville-power-administration-queryable-api-openapi.yml
+  - type: APIReference
+    url: https://data-bpagis.hub.arcgis.com/api/search/definition/
+  - type: Documentation
+    url: https://data-bpagis.hub.arcgis.com/api/search/v1
+  - type: Conformance
+    url: conformance/bonneville-power-administration-hub-search-conformance.json
+  - type: DataCatalog
+    url: https://data-bpagis.hub.arcgis.com/data.json
 common:
+  - type: Overlay
+    url: overlays/bonneville-power-administration-data-search-api-overlay.yaml
   - type: AgenticAccess
     url: agentic-access/bonneville-power-administration-agentic-access.yml
   - type: DomainSecurity
