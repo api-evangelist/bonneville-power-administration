@@ -1,20 +1,46 @@
-generated: '2026-07-15'
+generated: '2026-09-16'
 method: generated
-source: openapi/bonneville-power-administration-openapi.yml
+source: openapi/bonneville-power-administration-catalog-api-openapi.yml, openapi/bonneville-power-administration-collection-api-openapi.yml,
+  openapi/bonneville-power-administration-customers-api-openapi.yml, openapi/bonneville-power-administration-geoservice-beta-api-openapi.yml,
+  openapi/bonneville-power-administration-hydrology-api-openapi.yml, openapi/bonneville-power-administration-ogcitem-api-openapi.yml,
+  openapi/bonneville-power-administration-ogcitemaggregation-api-openapi.yml, openapi/bonneville-power-administration-ogcroot-api-openapi.yml,
+  openapi/bonneville-power-administration-ogcrootconformance-api-openapi.yml, openapi/bonneville-power-administration-queryable-api-openapi.yml,
+  openapi/bonneville-power-administration-right-of-way-api-openapi.yml, openapi/bonneville-power-administration-service-area-api-openapi.yml,
+  openapi/bonneville-power-administration-transmission-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 8
+  operations: 25
   by_action_class:
-    connected: 8
+    connected: 25
   by_consequence:
-    read: 8
+    read: 25
   human_in_the_loop_required: 0
 operations:
-- path: /services/BPA_ServiceArea/FeatureServer/0/query
+- path: /api/search/v1/catalog
   method: get
-  operationId: queryServiceArea
+  operationId: CatalogController_getSiteCatalog_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/collections
+  method: get
+  operationId: CollectionController_getSiteCollections_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/collections/{collectionId}
+  method: get
+  operationId: CollectionController_getSiteCollectionFromId_api/search/v1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -52,9 +78,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /services/BPA_TransmissionLines_View/FeatureServer/0/query
+- path: /api/search/v1/rest/info
   method: get
-  operationId: queryTransmissionLines
+  operationId: GeoserviceController_restInfo_api/search/v1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -62,9 +88,139 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /services/BPA_TransmissionStructure_View/FeatureServer/0/query
+- path: /api/search/v1/rest/services/collections/{collectionId}/geoservice/FeatureServer
   method: get
-  operationId: queryTransmissionStructures
+  operationId: GeoserviceController_featureServer_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/rest/services/collections/{collectionId}/geoservice/FeatureServer/layers
+  method: get
+  operationId: GeoserviceController_featureLayers_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/rest/services/collections/{collectionId}/geoservice/FeatureServer/{layerIndex}
+  method: get
+  operationId: GeoserviceController_featureLayer_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/rest/services/collections/{collectionId}/geoservice/FeatureServer/{layerIndex}/info
+  method: get
+  operationId: GeoserviceController_featureLayerInfo_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/rest/services/collections/{collectionId}/geoservice/FeatureServer/{layerIndex}/query
+  method: get
+  operationId: GeoserviceController_featureLayerQuery_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/ColumbiaRiverBasin/FeatureServer/0/query
+  method: get
+  operationId: queryColumbiaRiverBasin
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/collections/{collectionId}/items
+  method: get
+  operationId: OgcItemController_getSiteCollectionItems_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/collections/{collectionId}/items/{itemId}
+  method: get
+  operationId: OgcItemController_getSiteCollectionItemById_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/collections/{collectionId}/items/{recordId}/related
+  method: get
+  operationId: OgcItemController_getRelatedOgcItemsById_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/collections/{collectionId}/items/{recordId}/connected
+  method: get
+  operationId: OgcItemController_getConnectedOgcItemsById_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/collections/{collectionId}/aggregations
+  method: get
+  operationId: OgcItemAggregationController_getAggregations_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1
+  method: get
+  operationId: OgcRootController_getSiteRoot_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/conformance
+  method: get
+  operationId: OgcRootConformanceController_getApiConformance_api/search/v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search/v1/collections/{collectionId}/queryables
+  method: get
+  operationId: QueryableController_getSiteCollectionQueryables_api/search/v1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -82,9 +238,29 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /services/ColumbiaRiverBasin/FeatureServer/0/query
+- path: /services/BPA_ServiceArea/FeatureServer/0/query
   method: get
-  operationId: queryColumbiaRiverBasin
+  operationId: queryServiceArea
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/BPA_TransmissionLines_View/FeatureServer/0/query
+  method: get
+  operationId: queryTransmissionLines
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/BPA_TransmissionStructure_View/FeatureServer/0/query
+  method: get
+  operationId: queryTransmissionStructures
   x-agentic-access:
     action-class: connected
     consequence: read
