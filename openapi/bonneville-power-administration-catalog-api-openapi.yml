@@ -1,0 +1,37 @@
+openapi: 3.2.0
+info:
+  title: Bonneville Power Administration Data Search Catalog API
+  description: Welcome to the Search API.
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: Catalog
+paths:
+  /api/search/v1/catalog:
+    get:
+      description: Provides information about the site and its catalog of organized resources and collections.
+      operationId: CatalogController_getSiteCatalog_api/search/v1
+      parameters:
+      - name: token
+        required: false
+        in: query
+        description: ArcGIS token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A data object describing the site and its catalog.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catalog'
+      summary: Catalog controller get site catalog api/search/v1
+      tags:
+      - Catalog
+      x-summary-source: derived
+components:
+  schemas:
+    Catalog:
+      type: object
+      properties: {}

@@ -1,0 +1,73 @@
+openapi: 3.2.0
+info:
+  title: Bonneville Power Administration Data Search Ogc Root…
+  description: Welcome to the Search API.
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: OgcRootConformance
+paths:
+  /api/search/v1/conformance:
+    get:
+      description: Returns the conformance specifications the API meets
+      operationId: OgcRootConformanceController_getApiConformance_api/search/v1
+      parameters:
+      - name: token
+        required: false
+        in: query
+        description: ArcGIS token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OgcApiConformancePageDto'
+      summary: Ogc root conformance controller get api conformance api/search/v1
+      tags:
+      - OgcRootConformance
+      x-summary-source: derived
+components:
+  schemas:
+    OgcApiConformancePageLinkDto:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: relationship
+        type:
+          type: string
+          description: link MIME type
+        title:
+          type: string
+          description: link title
+        href:
+          type: string
+          description: link uri
+        hreflang:
+          type: string
+          description: link uri
+      required:
+      - rel
+      - type
+      - title
+      - href
+    OgcApiConformancePageDto:
+      type: object
+      properties:
+        conformsTo:
+          description: Array of links to conformance specifications that API conforms to
+          type: array
+          items:
+            type: string
+        links:
+          description: API links
+          type: array
+          items:
+            $ref: '#/components/schemas/OgcApiConformancePageLinkDto'
+      required:
+      - conformsTo
+      - links

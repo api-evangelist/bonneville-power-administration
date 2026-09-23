@@ -1,0 +1,1806 @@
+openapi: 3.2.0
+info:
+  title: Bonneville Power Administration Data Search Geoservice Beta…
+  description: Welcome to the Search API.
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: Geoservice-Beta
+paths:
+  /api/search/v1/rest/info:
+    get:
+      operationId: GeoserviceController_restInfo_api/search/v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestInfoDto'
+      tags:
+      - Geoservice-Beta
+      summary: Geoservice controller rest info api/search/v1
+      x-summary-source: derived
+  /api/search/v1/rest/services/collections/{collectionId}/geoservice/FeatureServer:
+    get:
+      operationId: GeoserviceController_featureServer_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        description: Key/id of the collection for which item should be filtered and returned.
+        schema:
+          example: dataset
+          type: string
+      - name: q
+        required: false
+        in: query
+        description: A general text search filter.
+        schema:
+          title: q
+          type: string
+      - name: bbox
+        required: false
+        in: query
+        description: A bbox filter, must be 4 comma-separated coordinates
+        schema:
+          title: bbox
+          type: string
+      - name: filter
+        required: false
+        in: query
+        description: query parameter that represents a parse-able string of filter expressions, structured according to the <a href="https://portal.ogc.org/files/96288">Common Query Language Specification of the OGC Features API</a>. If filter values must include whitespace, try wrapping the value in single quotes.
+        schema:
+          title: filter
+          type: string
+        examples:
+          equals:
+            summary: Equals
+            value: type='Feature Service'
+          greaterThan:
+            summary: Greater Than
+            value: created > 1670531235
+          greaterThanOrEquals:
+            summary: Greater Than Or Equals
+            value: created >= 1670531235
+          LessThan:
+            summary: Less Than
+            value: created < 1670531235
+          lessThanOrEquals:
+            summary: Less Than Or Equals
+            value: created <= 1670531235
+          in:
+            summary: IN
+            value: tags IN (tag1, 'tag2', tag3)
+          notIn:
+            summary: NOT IN
+            value: tags NOT IN (tag1, 'tag2', tag3)
+          betweenAnd:
+            summary: BETWEEN AND
+            value: created BETWEEN 1670531235 AND 1770531235
+          notBetweenAnd:
+            summary: NOT BETWEEN AND
+            value: created NOT BETWEEN 1670531235 AND 1770531235
+          like:
+            summary: LIKE
+            value: description LIKE 'moby*'
+          'null':
+            summary: IS NULL
+            value: source IS NULL
+          notNull:
+            summary: IS NOT NULL
+            value: owner IS NOT NULL
+          and:
+            summary: AND
+            value: tags NOT IN (tag1, 'tag2', tag3) AND owner IS NOT NULL
+          or:
+            summary: OR
+            value: tags NOT IN (tag1, 'tag2', tag3) OR owner IS NOT NULL
+          not:
+            summary: NOT
+            value: tags NOT IN (tag1, 'tag2', tag3) NOT owner IS NULL
+          subExpressions:
+            summary: Subexpressions
+            value: ((type='Feature Service' AND access=public) OR (type='Web Mapping Application' AND access=shared))
+      - name: limit
+        required: false
+        in: query
+        description: The number of results to return.
+        schema:
+          title: limit
+          type: integer
+          minimum: 0
+          maximum: 100
+      - name: startindex
+        required: false
+        in: query
+        description: The initial index of the results to return, starting at 1.
+        schema:
+          title: startindex
+          type: integer
+          minimum: 1
+      - name: type
+        required: false
+        in: query
+        description: The type of resource.
+        schema:
+          title: type
+          type: string
+          description: the type of the underlying resource
+      - name: title
+        required: false
+        in: query
+        description: The title of resource to return.
+        schema:
+          title: title
+          type: string
+          description: the title of the underlying resource
+      - name: recordId
+        required: false
+        in: query
+        description: The recordId of resource to return. recordId could be itemId or itemId_layerId
+        schema:
+          title: recordId
+          type: string
+          description: id of the record
+      - name: sortBy
+        required: false
+        in: query
+        description: Sort results by specific fields. Prefixed by either "+" for ascending or "-" for descending. If no prefix is provided, "+" is assumed.
+        schema:
+          title: sortBy
+          type: string
+      - name: tags
+        required: false
+        in: query
+        description: Tags for items search
+        schema:
+          example: 'true'
+          type: string
+      - name: token
+        required: false
+        in: query
+        description: Token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          title: token
+          type: string
+      - name: openData
+        required: false
+        in: query
+        description: Boolean flag to get items that are shared to Opendata group
+        schema:
+          example: 'true'
+          type: string
+      - name: f
+        required: false
+        in: query
+        description: The available output formats for feature server
+        schema:
+          $ref: '#/components/schemas/FeatureServerFormats'
+      - name: where
+        required: false
+        in: query
+        description: Where clause for feature server querying
+        schema:
+          example: 1=1
+      - name: geometryType
+        required: false
+        in: query
+        description: Filter by geometry types
+        schema:
+          example:
+          - esriGeometryPoint
+          - esriGeometryMultipoint
+          - esriGeometryPolyline
+          - esriGeometryPolygon
+          - esriGeometryEnvelope
+      - name: groupByFieldsForStatistics
+        required: false
+        in: query
+        description: Attribute to use as key for aggregation
+        schema:
+          example: zipCode
+      - name: outStatistics
+        required: false
+        in: query
+        schema:
+          $ref: '#/components/schemas/OutputStatistics'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureServerDto'
+      tags:
+      - Geoservice-Beta
+      summary: Geoservice controller feature server api/search/v1
+      x-summary-source: derived
+  /api/search/v1/rest/services/collections/{collectionId}/geoservice/FeatureServer/layers:
+    get:
+      operationId: GeoserviceController_featureLayers_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        description: Key/id of the collection for which item should be filtered and returned.
+        schema:
+          example: dataset
+          type: string
+      - name: q
+        required: false
+        in: query
+        description: A general text search filter.
+        schema:
+          title: q
+          type: string
+      - name: bbox
+        required: false
+        in: query
+        description: A bbox filter, must be 4 comma-separated coordinates
+        schema:
+          title: bbox
+          type: string
+      - name: filter
+        required: false
+        in: query
+        description: query parameter that represents a parse-able string of filter expressions, structured according to the <a href="https://portal.ogc.org/files/96288">Common Query Language Specification of the OGC Features API</a>. If filter values must include whitespace, try wrapping the value in single quotes.
+        schema:
+          title: filter
+          type: string
+        examples:
+          equals:
+            summary: Equals
+            value: type='Feature Service'
+          greaterThan:
+            summary: Greater Than
+            value: created > 1670531235
+          greaterThanOrEquals:
+            summary: Greater Than Or Equals
+            value: created >= 1670531235
+          LessThan:
+            summary: Less Than
+            value: created < 1670531235
+          lessThanOrEquals:
+            summary: Less Than Or Equals
+            value: created <= 1670531235
+          in:
+            summary: IN
+            value: tags IN (tag1, 'tag2', tag3)
+          notIn:
+            summary: NOT IN
+            value: tags NOT IN (tag1, 'tag2', tag3)
+          betweenAnd:
+            summary: BETWEEN AND
+            value: created BETWEEN 1670531235 AND 1770531235
+          notBetweenAnd:
+            summary: NOT BETWEEN AND
+            value: created NOT BETWEEN 1670531235 AND 1770531235
+          like:
+            summary: LIKE
+            value: description LIKE 'moby*'
+          'null':
+            summary: IS NULL
+            value: source IS NULL
+          notNull:
+            summary: IS NOT NULL
+            value: owner IS NOT NULL
+          and:
+            summary: AND
+            value: tags NOT IN (tag1, 'tag2', tag3) AND owner IS NOT NULL
+          or:
+            summary: OR
+            value: tags NOT IN (tag1, 'tag2', tag3) OR owner IS NOT NULL
+          not:
+            summary: NOT
+            value: tags NOT IN (tag1, 'tag2', tag3) NOT owner IS NULL
+          subExpressions:
+            summary: Subexpressions
+            value: ((type='Feature Service' AND access=public) OR (type='Web Mapping Application' AND access=shared))
+      - name: limit
+        required: false
+        in: query
+        description: The number of results to return.
+        schema:
+          title: limit
+          type: integer
+          minimum: 0
+          maximum: 100
+      - name: startindex
+        required: false
+        in: query
+        description: The initial index of the results to return, starting at 1.
+        schema:
+          title: startindex
+          type: integer
+          minimum: 1
+      - name: type
+        required: false
+        in: query
+        description: The type of resource.
+        schema:
+          title: type
+          type: string
+          description: the type of the underlying resource
+      - name: title
+        required: false
+        in: query
+        description: The title of resource to return.
+        schema:
+          title: title
+          type: string
+          description: the title of the underlying resource
+      - name: recordId
+        required: false
+        in: query
+        description: The recordId of resource to return. recordId could be itemId or itemId_layerId
+        schema:
+          title: recordId
+          type: string
+          description: id of the record
+      - name: sortBy
+        required: false
+        in: query
+        description: Sort results by specific fields. Prefixed by either "+" for ascending or "-" for descending. If no prefix is provided, "+" is assumed.
+        schema:
+          title: sortBy
+          type: string
+      - name: tags
+        required: false
+        in: query
+        description: Tags for items search
+        schema:
+          example: 'true'
+          type: string
+      - name: token
+        required: false
+        in: query
+        description: Token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          title: token
+          type: string
+      - name: openData
+        required: false
+        in: query
+        description: Boolean flag to get items that are shared to Opendata group
+        schema:
+          example: 'true'
+          type: string
+      - name: f
+        required: false
+        in: query
+        description: The available output formats for feature server
+        schema:
+          $ref: '#/components/schemas/FeatureServerFormats'
+      - name: where
+        required: false
+        in: query
+        description: Where clause for feature server querying
+        schema:
+          example: 1=1
+      - name: geometryType
+        required: false
+        in: query
+        description: Filter by geometry types
+        schema:
+          example:
+          - esriGeometryPoint
+          - esriGeometryMultipoint
+          - esriGeometryPolyline
+          - esriGeometryPolygon
+          - esriGeometryEnvelope
+      - name: groupByFieldsForStatistics
+        required: false
+        in: query
+        description: Attribute to use as key for aggregation
+        schema:
+          example: zipCode
+      - name: outStatistics
+        required: false
+        in: query
+        schema:
+          $ref: '#/components/schemas/OutputStatistics'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureLayersDto'
+      tags:
+      - Geoservice-Beta
+      summary: Geoservice controller feature layers api/search/v1
+      x-summary-source: derived
+  /api/search/v1/rest/services/collections/{collectionId}/geoservice/FeatureServer/{layerIndex}:
+    get:
+      operationId: GeoserviceController_featureLayer_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        description: Key/id of the collection for which item should be filtered and returned.
+        schema:
+          example: dataset
+          type: string
+      - name: layerIndex
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: q
+        required: false
+        in: query
+        description: A general text search filter.
+        schema:
+          title: q
+          type: string
+      - name: bbox
+        required: false
+        in: query
+        description: A bbox filter, must be 4 comma-separated coordinates
+        schema:
+          title: bbox
+          type: string
+      - name: filter
+        required: false
+        in: query
+        description: query parameter that represents a parse-able string of filter expressions, structured according to the <a href="https://portal.ogc.org/files/96288">Common Query Language Specification of the OGC Features API</a>. If filter values must include whitespace, try wrapping the value in single quotes.
+        schema:
+          title: filter
+          type: string
+        examples:
+          equals:
+            summary: Equals
+            value: type='Feature Service'
+          greaterThan:
+            summary: Greater Than
+            value: created > 1670531235
+          greaterThanOrEquals:
+            summary: Greater Than Or Equals
+            value: created >= 1670531235
+          LessThan:
+            summary: Less Than
+            value: created < 1670531235
+          lessThanOrEquals:
+            summary: Less Than Or Equals
+            value: created <= 1670531235
+          in:
+            summary: IN
+            value: tags IN (tag1, 'tag2', tag3)
+          notIn:
+            summary: NOT IN
+            value: tags NOT IN (tag1, 'tag2', tag3)
+          betweenAnd:
+            summary: BETWEEN AND
+            value: created BETWEEN 1670531235 AND 1770531235
+          notBetweenAnd:
+            summary: NOT BETWEEN AND
+            value: created NOT BETWEEN 1670531235 AND 1770531235
+          like:
+            summary: LIKE
+            value: description LIKE 'moby*'
+          'null':
+            summary: IS NULL
+            value: source IS NULL
+          notNull:
+            summary: IS NOT NULL
+            value: owner IS NOT NULL
+          and:
+            summary: AND
+            value: tags NOT IN (tag1, 'tag2', tag3) AND owner IS NOT NULL
+          or:
+            summary: OR
+            value: tags NOT IN (tag1, 'tag2', tag3) OR owner IS NOT NULL
+          not:
+            summary: NOT
+            value: tags NOT IN (tag1, 'tag2', tag3) NOT owner IS NULL
+          subExpressions:
+            summary: Subexpressions
+            value: ((type='Feature Service' AND access=public) OR (type='Web Mapping Application' AND access=shared))
+      - name: limit
+        required: false
+        in: query
+        description: The number of results to return.
+        schema:
+          title: limit
+          type: integer
+          minimum: 0
+          maximum: 100
+      - name: startindex
+        required: false
+        in: query
+        description: The initial index of the results to return, starting at 1.
+        schema:
+          title: startindex
+          type: integer
+          minimum: 1
+      - name: type
+        required: false
+        in: query
+        description: The type of resource.
+        schema:
+          title: type
+          type: string
+          description: the type of the underlying resource
+      - name: title
+        required: false
+        in: query
+        description: The title of resource to return.
+        schema:
+          title: title
+          type: string
+          description: the title of the underlying resource
+      - name: recordId
+        required: false
+        in: query
+        description: The recordId of resource to return. recordId could be itemId or itemId_layerId
+        schema:
+          title: recordId
+          type: string
+          description: id of the record
+      - name: sortBy
+        required: false
+        in: query
+        description: Sort results by specific fields. Prefixed by either "+" for ascending or "-" for descending. If no prefix is provided, "+" is assumed.
+        schema:
+          title: sortBy
+          type: string
+      - name: tags
+        required: false
+        in: query
+        description: Tags for items search
+        schema:
+          example: 'true'
+          type: string
+      - name: token
+        required: false
+        in: query
+        description: Token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          title: token
+          type: string
+      - name: openData
+        required: false
+        in: query
+        description: Boolean flag to get items that are shared to Opendata group
+        schema:
+          example: 'true'
+          type: string
+      - name: f
+        required: false
+        in: query
+        description: The available output formats for feature server
+        schema:
+          $ref: '#/components/schemas/FeatureServerFormats'
+      - name: where
+        required: false
+        in: query
+        description: Where clause for feature server querying
+        schema:
+          example: 1=1
+      - name: geometryType
+        required: false
+        in: query
+        description: Filter by geometry types
+        schema:
+          example:
+          - esriGeometryPoint
+          - esriGeometryMultipoint
+          - esriGeometryPolyline
+          - esriGeometryPolygon
+          - esriGeometryEnvelope
+      - name: groupByFieldsForStatistics
+        required: false
+        in: query
+        description: Attribute to use as key for aggregation
+        schema:
+          example: zipCode
+      - name: outStatistics
+        required: false
+        in: query
+        schema:
+          $ref: '#/components/schemas/OutputStatistics'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureLayerDto'
+      tags:
+      - Geoservice-Beta
+      summary: Geoservice controller feature layer api/search/v1
+      x-summary-source: derived
+  /api/search/v1/rest/services/collections/{collectionId}/geoservice/FeatureServer/{layerIndex}/info:
+    get:
+      operationId: GeoserviceController_featureLayerInfo_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        description: Key/id of the collection for which item should be filtered and returned.
+        schema:
+          example: dataset
+          type: string
+      - name: layerIndex
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: q
+        required: false
+        in: query
+        description: A general text search filter.
+        schema:
+          title: q
+          type: string
+      - name: bbox
+        required: false
+        in: query
+        description: A bbox filter, must be 4 comma-separated coordinates
+        schema:
+          title: bbox
+          type: string
+      - name: filter
+        required: false
+        in: query
+        description: query parameter that represents a parse-able string of filter expressions, structured according to the <a href="https://portal.ogc.org/files/96288">Common Query Language Specification of the OGC Features API</a>. If filter values must include whitespace, try wrapping the value in single quotes.
+        schema:
+          title: filter
+          type: string
+        examples:
+          equals:
+            summary: Equals
+            value: type='Feature Service'
+          greaterThan:
+            summary: Greater Than
+            value: created > 1670531235
+          greaterThanOrEquals:
+            summary: Greater Than Or Equals
+            value: created >= 1670531235
+          LessThan:
+            summary: Less Than
+            value: created < 1670531235
+          lessThanOrEquals:
+            summary: Less Than Or Equals
+            value: created <= 1670531235
+          in:
+            summary: IN
+            value: tags IN (tag1, 'tag2', tag3)
+          notIn:
+            summary: NOT IN
+            value: tags NOT IN (tag1, 'tag2', tag3)
+          betweenAnd:
+            summary: BETWEEN AND
+            value: created BETWEEN 1670531235 AND 1770531235
+          notBetweenAnd:
+            summary: NOT BETWEEN AND
+            value: created NOT BETWEEN 1670531235 AND 1770531235
+          like:
+            summary: LIKE
+            value: description LIKE 'moby*'
+          'null':
+            summary: IS NULL
+            value: source IS NULL
+          notNull:
+            summary: IS NOT NULL
+            value: owner IS NOT NULL
+          and:
+            summary: AND
+            value: tags NOT IN (tag1, 'tag2', tag3) AND owner IS NOT NULL
+          or:
+            summary: OR
+            value: tags NOT IN (tag1, 'tag2', tag3) OR owner IS NOT NULL
+          not:
+            summary: NOT
+            value: tags NOT IN (tag1, 'tag2', tag3) NOT owner IS NULL
+          subExpressions:
+            summary: Subexpressions
+            value: ((type='Feature Service' AND access=public) OR (type='Web Mapping Application' AND access=shared))
+      - name: limit
+        required: false
+        in: query
+        description: The number of results to return.
+        schema:
+          title: limit
+          type: integer
+          minimum: 0
+          maximum: 100
+      - name: startindex
+        required: false
+        in: query
+        description: The initial index of the results to return, starting at 1.
+        schema:
+          title: startindex
+          type: integer
+          minimum: 1
+      - name: type
+        required: false
+        in: query
+        description: The type of resource.
+        schema:
+          title: type
+          type: string
+          description: the type of the underlying resource
+      - name: title
+        required: false
+        in: query
+        description: The title of resource to return.
+        schema:
+          title: title
+          type: string
+          description: the title of the underlying resource
+      - name: recordId
+        required: false
+        in: query
+        description: The recordId of resource to return. recordId could be itemId or itemId_layerId
+        schema:
+          title: recordId
+          type: string
+          description: id of the record
+      - name: sortBy
+        required: false
+        in: query
+        description: Sort results by specific fields. Prefixed by either "+" for ascending or "-" for descending. If no prefix is provided, "+" is assumed.
+        schema:
+          title: sortBy
+          type: string
+      - name: tags
+        required: false
+        in: query
+        description: Tags for items search
+        schema:
+          example: 'true'
+          type: string
+      - name: token
+        required: false
+        in: query
+        description: Token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          title: token
+          type: string
+      - name: openData
+        required: false
+        in: query
+        description: Boolean flag to get items that are shared to Opendata group
+        schema:
+          example: 'true'
+          type: string
+      - name: f
+        required: false
+        in: query
+        description: The available output formats for feature server
+        schema:
+          $ref: '#/components/schemas/FeatureServerFormats'
+      - name: where
+        required: false
+        in: query
+        description: Where clause for feature server querying
+        schema:
+          example: 1=1
+      - name: geometryType
+        required: false
+        in: query
+        description: Filter by geometry types
+        schema:
+          example:
+          - esriGeometryPoint
+          - esriGeometryMultipoint
+          - esriGeometryPolyline
+          - esriGeometryPolygon
+          - esriGeometryEnvelope
+      - name: groupByFieldsForStatistics
+        required: false
+        in: query
+        description: Attribute to use as key for aggregation
+        schema:
+          example: zipCode
+      - name: outStatistics
+        required: false
+        in: query
+        schema:
+          $ref: '#/components/schemas/OutputStatistics'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureLayerDto'
+      tags:
+      - Geoservice-Beta
+      summary: Geoservice controller feature layer info api/search/v1
+      x-summary-source: derived
+  /api/search/v1/rest/services/collections/{collectionId}/geoservice/FeatureServer/{layerIndex}/query:
+    get:
+      operationId: GeoserviceController_featureLayerQuery_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        description: Key/id of the collection for which item should be filtered and returned.
+        schema:
+          example: dataset
+          type: string
+      - name: layerIndex
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: q
+        required: false
+        in: query
+        description: A general text search filter.
+        schema:
+          title: q
+          type: string
+      - name: bbox
+        required: false
+        in: query
+        description: A bbox filter, must be 4 comma-separated coordinates
+        schema:
+          title: bbox
+          type: string
+      - name: filter
+        required: false
+        in: query
+        description: query parameter that represents a parse-able string of filter expressions, structured according to the <a href="https://portal.ogc.org/files/96288">Common Query Language Specification of the OGC Features API</a>. If filter values must include whitespace, try wrapping the value in single quotes.
+        schema:
+          title: filter
+          type: string
+        examples:
+          equals:
+            summary: Equals
+            value: type='Feature Service'
+          greaterThan:
+            summary: Greater Than
+            value: created > 1670531235
+          greaterThanOrEquals:
+            summary: Greater Than Or Equals
+            value: created >= 1670531235
+          LessThan:
+            summary: Less Than
+            value: created < 1670531235
+          lessThanOrEquals:
+            summary: Less Than Or Equals
+            value: created <= 1670531235
+          in:
+            summary: IN
+            value: tags IN (tag1, 'tag2', tag3)
+          notIn:
+            summary: NOT IN
+            value: tags NOT IN (tag1, 'tag2', tag3)
+          betweenAnd:
+            summary: BETWEEN AND
+            value: created BETWEEN 1670531235 AND 1770531235
+          notBetweenAnd:
+            summary: NOT BETWEEN AND
+            value: created NOT BETWEEN 1670531235 AND 1770531235
+          like:
+            summary: LIKE
+            value: description LIKE 'moby*'
+          'null':
+            summary: IS NULL
+            value: source IS NULL
+          notNull:
+            summary: IS NOT NULL
+            value: owner IS NOT NULL
+          and:
+            summary: AND
+            value: tags NOT IN (tag1, 'tag2', tag3) AND owner IS NOT NULL
+          or:
+            summary: OR
+            value: tags NOT IN (tag1, 'tag2', tag3) OR owner IS NOT NULL
+          not:
+            summary: NOT
+            value: tags NOT IN (tag1, 'tag2', tag3) NOT owner IS NULL
+          subExpressions:
+            summary: Subexpressions
+            value: ((type='Feature Service' AND access=public) OR (type='Web Mapping Application' AND access=shared))
+      - name: limit
+        required: false
+        in: query
+        description: The number of results to return.
+        schema:
+          title: limit
+          type: integer
+          minimum: 0
+          maximum: 100
+      - name: startindex
+        required: false
+        in: query
+        description: The initial index of the results to return, starting at 1.
+        schema:
+          title: startindex
+          type: integer
+          minimum: 1
+      - name: type
+        required: false
+        in: query
+        description: The type of resource.
+        schema:
+          title: type
+          type: string
+          description: the type of the underlying resource
+      - name: title
+        required: false
+        in: query
+        description: The title of resource to return.
+        schema:
+          title: title
+          type: string
+          description: the title of the underlying resource
+      - name: recordId
+        required: false
+        in: query
+        description: The recordId of resource to return. recordId could be itemId or itemId_layerId
+        schema:
+          title: recordId
+          type: string
+          description: id of the record
+      - name: sortBy
+        required: false
+        in: query
+        description: Sort results by specific fields. Prefixed by either "+" for ascending or "-" for descending. If no prefix is provided, "+" is assumed.
+        schema:
+          title: sortBy
+          type: string
+      - name: tags
+        required: false
+        in: query
+        description: Tags for items search
+        schema:
+          example: 'true'
+          type: string
+      - name: token
+        required: false
+        in: query
+        description: Token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          title: token
+          type: string
+      - name: openData
+        required: false
+        in: query
+        description: Boolean flag to get items that are shared to Opendata group
+        schema:
+          example: 'true'
+          type: string
+      - name: f
+        required: false
+        in: query
+        description: The available output formats for feature server
+        schema:
+          $ref: '#/components/schemas/FeatureServerFormats'
+      - name: where
+        required: false
+        in: query
+        description: Where clause for feature server querying
+        schema:
+          example: 1=1
+      - name: geometryType
+        required: false
+        in: query
+        description: Filter by geometry types
+        schema:
+          example:
+          - esriGeometryPoint
+          - esriGeometryMultipoint
+          - esriGeometryPolyline
+          - esriGeometryPolygon
+          - esriGeometryEnvelope
+      - name: groupByFieldsForStatistics
+        required: false
+        in: query
+        description: Attribute to use as key for aggregation
+        schema:
+          example: zipCode
+      - name: outStatistics
+        required: false
+        in: query
+        schema:
+          $ref: '#/components/schemas/OutputStatistics'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureLayerQueryDto'
+      tags:
+      - Geoservice-Beta
+      summary: Geoservice controller feature layer query api/search/v1
+      x-summary-source: derived
+components:
+  schemas:
+    FeatureLayerFieldDto:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        alias:
+          type: string
+        sqlType:
+          type: string
+        domain:
+          type:
+          - object
+          - 'null'
+        defaultValue:
+          type:
+          - object
+          - 'null'
+        length:
+          type: number
+        editable:
+          type: boolean
+        nullable:
+          type: boolean
+      required:
+      - name
+      - type
+      - alias
+      - sqlType
+      - editable
+      - nullable
+    FeatureLayerSymbolOutlineDto:
+      type: object
+      properties:
+        color:
+          type: array
+          items:
+            type: number
+        width:
+          type: number
+        type:
+          type: string
+        style:
+          type: string
+      required:
+      - color
+      - width
+      - type
+      - style
+    FeatureLayerRendererDto:
+      type: object
+      properties:
+        type:
+          type: string
+        symbol:
+          $ref: '#/components/schemas/FeatureLayerSymbolDto'
+      required:
+      - type
+      - symbol
+    FeatureInfoDto:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        type:
+          type: string
+        parentLayerId:
+          type: number
+        defaultVisibility:
+          type: boolean
+        subLayerIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: number
+        minScale:
+          type: number
+        maxScale:
+          type: number
+        geometryType:
+          type: string
+      required:
+      - id
+      - name
+      - type
+      - parentLayerId
+      - defaultVisibility
+      - minScale
+      - maxScale
+      - geometryType
+    StatisticType:
+      type: string
+      enum:
+      - count
+      - sum
+      - avg
+      - var
+      - max
+      - min
+    FeatureLayerIndexDto:
+      type: object
+      properties:
+        name:
+          type: string
+        fields:
+          type: string
+        isAscending:
+          type: boolean
+        isUnique:
+          type: boolean
+        description:
+          type: string
+        indexType:
+          type: string
+      required:
+      - name
+      - fields
+      - isAscending
+      - isUnique
+      - description
+      - indexType
+    AuthInfoDto:
+      type: object
+      properties:
+        isTokenBasedSecurity:
+          type: boolean
+          description: Indicates whether token-based security is enabled
+          example: true
+        tokenServicesUrl:
+          type: string
+          description: Token generation endpoint URL
+          example: https://totoro-purple-qa-pre-hub.hubqa.arcgis.com/events/rest/generateToken
+      required:
+      - isTokenBasedSecurity
+      - tokenServicesUrl
+    FeatureLayerDto:
+      type: object
+      properties:
+        currentVersion:
+          type: number
+        id:
+          type: number
+        name:
+          type: string
+        type:
+          type: string
+        displayField:
+          type: string
+        description:
+          type: string
+        copyrightText:
+          type: string
+        defaultVisibility:
+          type: boolean
+        isDataVersioned:
+          type: boolean
+        hasContingentValuesDefinition:
+          type: boolean
+        supportsAppend:
+          type: boolean
+        supportsCalculate:
+          type: boolean
+        supportsASyncCalculate:
+          type: boolean
+        supportsTruncate:
+          type: boolean
+        supportsAttachmentsByUploadId:
+          type: boolean
+        supportsAttachmentsResizing:
+          type: boolean
+        supportsRollbackOnFailureParameter:
+          type: boolean
+        supportsStatistics:
+          type: boolean
+        supportsExceedsLimitStatistics:
+          type: boolean
+        supportsAdvancedQueries:
+          type: boolean
+        supportsValidateSql:
+          type: boolean
+        supportsLayerOverrides:
+          type: boolean
+        supportsTilesAndBasicQueriesMode:
+          type: boolean
+        supportsFieldDescriptionProperty:
+          type: boolean
+        supportsQuantizationEditMode:
+          type: boolean
+        supportsApplyEditsWithGlobalIds:
+          type: boolean
+        supportsReturningQueryGeometry:
+          type: boolean
+        supportedPbfFeatureEncodings:
+          type: string
+        advancedQueryCapabilities:
+          $ref: '#/components/schemas/FeatureLayerAdvancedQueryCapabilitiesDto'
+        useStandardizedQueries:
+          type: boolean
+        allowGeometryUpdates:
+          type: boolean
+        hasAttachments:
+          type: boolean
+        htmlPopupType:
+          type: string
+        hasM:
+          type: boolean
+        hasZ:
+          type: boolean
+        objectIdField:
+          type: string
+        uniqueIdField:
+          $ref: '#/components/schemas/FeatureLayerUniqueIdFieldDto'
+        globalIdField:
+          type: string
+        typeIdField:
+          type: string
+        dateFieldsTimeReference:
+          $ref: '#/components/schemas/FeatureLayerDateFieldsTimeReferenceDto'
+        preferredTimeReference:
+          type:
+          - object
+          - 'null'
+        templates:
+          type: array
+          items:
+            type: object
+        supportedQueryFormats:
+          type: string
+        supportedAppendFormats:
+          type: string
+        supportedExportFormats:
+          type: string
+        supportedSpatialRelationships:
+          type: array
+          items:
+            type: string
+        supportedContingentValuesFormats:
+          type: string
+        hasStaticData:
+          type: boolean
+        maxRecordCount:
+          type: number
+        standardMaxRecordCount:
+          type: number
+        standardMaxRecordCountNoGeometry:
+          type: number
+        tileMaxRecordCount:
+          type: number
+        maxRecordCountFactor:
+          type: number
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerFieldDto'
+        relationships:
+          type: array
+          items:
+            type: object
+        indexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerIndexDto'
+        capabilities:
+          type: string
+        ownershipBasedAccessControlForFeatures:
+          $ref: '#/components/schemas/FeatureLayerOwnershipBasedAccessControlForFeaturesDto'
+        types:
+          type: array
+          items:
+            type: object
+        timeInfo:
+          type: object
+        minScale:
+          type: number
+        maxScale:
+          type: number
+        drawingInfo:
+          $ref: '#/components/schemas/FeatureLayerDrawingInfoDto'
+        extent:
+          $ref: '#/components/schemas/FeatureServerExtentDto'
+        supportsCoordinatesQuantization:
+          type: boolean
+        hasLabels:
+          type: boolean
+        geometryType:
+          type: string
+      required:
+      - currentVersion
+      - id
+      - name
+      - type
+      - displayField
+      - description
+      - copyrightText
+      - defaultVisibility
+      - isDataVersioned
+      - hasContingentValuesDefinition
+      - supportsAppend
+      - supportsCalculate
+      - supportsASyncCalculate
+      - supportsTruncate
+      - supportsAttachmentsByUploadId
+      - supportsAttachmentsResizing
+      - supportsRollbackOnFailureParameter
+      - supportsStatistics
+      - supportsExceedsLimitStatistics
+      - supportsAdvancedQueries
+      - supportsValidateSql
+      - supportsLayerOverrides
+      - supportsTilesAndBasicQueriesMode
+      - supportsFieldDescriptionProperty
+      - supportsQuantizationEditMode
+      - supportsApplyEditsWithGlobalIds
+      - supportsReturningQueryGeometry
+      - supportedPbfFeatureEncodings
+      - advancedQueryCapabilities
+      - useStandardizedQueries
+      - allowGeometryUpdates
+      - hasAttachments
+      - htmlPopupType
+      - hasM
+      - hasZ
+      - objectIdField
+      - uniqueIdField
+      - globalIdField
+      - typeIdField
+      - dateFieldsTimeReference
+      - templates
+      - supportedQueryFormats
+      - supportedAppendFormats
+      - supportedExportFormats
+      - supportedSpatialRelationships
+      - supportedContingentValuesFormats
+      - hasStaticData
+      - maxRecordCount
+      - standardMaxRecordCount
+      - standardMaxRecordCountNoGeometry
+      - tileMaxRecordCount
+      - maxRecordCountFactor
+      - fields
+      - relationships
+      - indexes
+      - capabilities
+      - ownershipBasedAccessControlForFeatures
+      - types
+      - timeInfo
+      - minScale
+      - maxScale
+      - drawingInfo
+      - extent
+      - supportsCoordinatesQuantization
+      - hasLabels
+      - geometryType
+    FeatureServerExtentDto:
+      type: object
+      properties:
+        spatialReference:
+          description: Spatial reference for the extent
+          allOf:
+          - $ref: '#/components/schemas/SpatialReferenceDto'
+        xmin:
+          type: number
+        xmax:
+          type: number
+        ymin:
+          type: number
+        ymax:
+          type: number
+      required:
+      - spatialReference
+      - xmin
+      - xmax
+      - ymin
+      - ymax
+    RestInfoDto:
+      type: object
+      properties:
+        currentVersion:
+          type: number
+          description: Current numeric version of the service
+          example: 11.2
+        fullVersion:
+          type: string
+          description: Full service version string
+          example: 11.2.0
+        authInfo:
+          description: Authentication metadata for the service
+          allOf:
+          - $ref: '#/components/schemas/AuthInfoDto'
+      required:
+      - currentVersion
+      - fullVersion
+      - authInfo
+    FeatureLayersDto:
+      type: object
+      properties:
+        layers:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerDto'
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerDto'
+      required:
+      - layers
+      - tables
+    FeatureLayerDateFieldsTimeReferenceDto:
+      type: object
+      properties:
+        timeZone:
+          type: string
+        respectsDaylightSaving:
+          type: boolean
+      required:
+      - timeZone
+      - respectsDaylightSaving
+    FeatureServerFormats:
+      type: string
+      enum:
+      - json
+    FeatureLayerSymbolDto:
+      type: object
+      properties:
+        color:
+          type: array
+          items:
+            type: number
+        outline:
+          $ref: '#/components/schemas/FeatureLayerSymbolOutlineDto'
+        type:
+          type: string
+        style:
+          type: string
+      required:
+      - color
+      - outline
+      - type
+      - style
+    FeatureLayerUniqueIdFieldDto:
+      type: object
+      properties:
+        name:
+          type: string
+        isSystemMaintained:
+          type: boolean
+      required:
+      - name
+      - isSystemMaintained
+    FeatureLayerQueryFeatureDto:
+      type: object
+      properties:
+        attributes:
+          type: object
+        geometry:
+          type:
+          - object
+          - 'null'
+      required:
+      - attributes
+    FeatureServerDto:
+      type: object
+      properties:
+        currentVersion:
+          type: number
+        serviceDescription:
+          type: string
+        hasVersionedData:
+          type: boolean
+        supportsDisconnectedEditing:
+          type: boolean
+        hasStaticData:
+          type: boolean
+        hasSharedDomains:
+          type: boolean
+        maxRecordCount:
+          type: number
+        supportedQueryFormats:
+          type: string
+        supportsVCSProjection:
+          type: boolean
+        supportedExportFormats:
+          type: string
+        capabilities:
+          type: string
+        description:
+          type: string
+        copyrightText:
+          type: string
+        spatialReference:
+          $ref: '#/components/schemas/SpatialReferenceDto'
+        fullExtent:
+          $ref: '#/components/schemas/FeatureServerExtentDto'
+        initialExtent:
+          $ref: '#/components/schemas/FeatureServerExtentDto'
+        allowGeometryUpdates:
+          type: boolean
+        units:
+          type: string
+        supportsAppend:
+          type: boolean
+        supportsSharedDomains:
+          type: boolean
+        supportsWebHooks:
+          type: boolean
+        supportsTemporalLayers:
+          type: boolean
+        layerOverridesEnabled:
+          type: boolean
+        syncEnabled:
+          type: boolean
+        supportsApplyEditsWithGlobalIds:
+          type: boolean
+        supportsReturnDeleteResults:
+          type: boolean
+        supportsLayerOverrides:
+          type: boolean
+        supportsTilesAndBasicQueriesMode:
+          type: boolean
+        supportsQueryContingentValues:
+          type: boolean
+        supportedContingentValuesFormats:
+          type: string
+        supportsContingentValuesJson:
+          type:
+          - object
+          - 'null'
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureInfoDto'
+        layers:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureInfoDto'
+        relationships:
+          type: array
+          items:
+            type: object
+        supportsRelationshipsResource:
+          type: boolean
+      required:
+      - currentVersion
+      - serviceDescription
+      - hasVersionedData
+      - supportsDisconnectedEditing
+      - hasStaticData
+      - hasSharedDomains
+      - maxRecordCount
+      - supportedQueryFormats
+      - supportsVCSProjection
+      - supportedExportFormats
+      - capabilities
+      - description
+      - copyrightText
+      - spatialReference
+      - fullExtent
+      - initialExtent
+      - allowGeometryUpdates
+      - units
+      - supportsAppend
+      - supportsSharedDomains
+      - supportsWebHooks
+      - supportsTemporalLayers
+      - layerOverridesEnabled
+      - syncEnabled
+      - supportsApplyEditsWithGlobalIds
+      - supportsReturnDeleteResults
+      - supportsLayerOverrides
+      - supportsTilesAndBasicQueriesMode
+      - supportsQueryContingentValues
+      - supportedContingentValuesFormats
+      - tables
+      - layers
+      - relationships
+      - supportsRelationshipsResource
+    FeatureLayerAdvancedQueryCapabilitiesDto:
+      type: object
+      properties:
+        supportsPagination:
+          type: boolean
+        supportsQueryAttachmentsCountOnly:
+          type: boolean
+        supportsPaginationOnAggregatedQueries:
+          type: boolean
+        supportsQueryRelatedPagination:
+          type: boolean
+        supportsQueryWithDistance:
+          type: boolean
+        supportsReturningQueryExtent:
+          type: boolean
+        supportsStatistics:
+          type: boolean
+        supportsOrderBy:
+          type: boolean
+        supportsDistinct:
+          type: boolean
+        supportsQueryWithResultType:
+          type: boolean
+        supportsSqlExpression:
+          type: boolean
+        supportsAdvancedQueryRelated:
+          type: boolean
+        supportsCountDistinct:
+          type: boolean
+        supportsPercentileStatistics:
+          type: boolean
+        supportedSpatialAggregationStatistics:
+          type: array
+          items:
+            type: string
+        supportsLod:
+          type: boolean
+        supportsQueryWithLodSR:
+          type: boolean
+        supportedLodTypes:
+          type: array
+          items:
+            type: string
+        supportsReturningGeometryCentroid:
+          type: boolean
+        supportsReturningGeometryEnvelope:
+          type: boolean
+        supportsQueryWithDatumTransformation:
+          type: boolean
+        supportsCurrentUserQueries:
+          type: boolean
+        supportsHavingClause:
+          type: boolean
+        supportsOutFieldSQLExpression:
+          type: boolean
+        supportsMaxRecordCountFactor:
+          type: boolean
+        supportsTopFeaturesQuery:
+          type: boolean
+        supportsDisjointSpatialRel:
+          type: boolean
+        supportsQueryWithCacheHint:
+          type: boolean
+        supportedOperationsWithCacheHint:
+          type: array
+          items:
+            type: string
+        supportsQueryAnalytic:
+          type: boolean
+        supportsDefaultSR:
+          type: boolean
+        supportsFullTextSearch:
+          type: boolean
+        advancedQueryAnalyticCapabilities:
+          type: object
+        advancedEditingCapabilities:
+          type: object
+      required:
+      - supportsPagination
+      - supportsQueryAttachmentsCountOnly
+      - supportsPaginationOnAggregatedQueries
+      - supportsQueryRelatedPagination
+      - supportsQueryWithDistance
+      - supportsReturningQueryExtent
+      - supportsStatistics
+      - supportsOrderBy
+      - supportsDistinct
+      - supportsQueryWithResultType
+      - supportsSqlExpression
+      - supportsAdvancedQueryRelated
+      - supportsCountDistinct
+      - supportsPercentileStatistics
+      - supportedSpatialAggregationStatistics
+      - supportsLod
+      - supportsQueryWithLodSR
+      - supportedLodTypes
+      - supportsReturningGeometryCentroid
+      - supportsReturningGeometryEnvelope
+      - supportsQueryWithDatumTransformation
+      - supportsCurrentUserQueries
+      - supportsHavingClause
+      - supportsOutFieldSQLExpression
+      - supportsMaxRecordCountFactor
+      - supportsTopFeaturesQuery
+      - supportsDisjointSpatialRel
+      - supportsQueryWithCacheHint
+      - supportedOperationsWithCacheHint
+      - supportsQueryAnalytic
+      - supportsDefaultSR
+      - supportsFullTextSearch
+      - advancedQueryAnalyticCapabilities
+      - advancedEditingCapabilities
+    SpatialReferenceDto:
+      type: object
+      properties:
+        latestVcsWkid:
+          type: number
+        latestWkid:
+          type: number
+        latestWkt:
+          type: string
+        vcsWkid:
+          type: number
+        wkid:
+          type: number
+        wkt:
+          type: string
+    FeatureLayerOwnershipBasedAccessControlForFeaturesDto:
+      type: object
+      properties:
+        allowOthersToQuery:
+          type: boolean
+      required:
+      - allowOthersToQuery
+    FeatureLayerDrawingInfoDto:
+      type: object
+      properties:
+        renderer:
+          $ref: '#/components/schemas/FeatureLayerRendererDto'
+        labelingInfo:
+          type:
+          - object
+          - 'null'
+      required:
+      - renderer
+    OutputStatistics:
+      type: object
+      properties:
+        outStatisticFieldName:
+          type: string
+          description: The name of the statistic
+          example: RegistrationAverage
+        onStatisticField:
+          type: string
+          description: The layer attribute to calculate statistic on
+          example: registrationCount
+        statisticType:
+          description: The type of statistic to calculate
+          example:
+          - count
+          - sum
+          - avg
+          - var
+          - max
+          - min
+          allOf:
+          - $ref: '#/components/schemas/StatisticType'
+      required:
+      - outStatisticFieldName
+      - onStatisticField
+      - statisticType
+    FeatureLayerQueryDto:
+      type: object
+      properties:
+        objectIdFieldName:
+          type: string
+        uniqueIdField:
+          $ref: '#/components/schemas/FeatureLayerUniqueIdFieldDto'
+        globalIdFieldName:
+          type: string
+        hasZ:
+          type: boolean
+        hasM:
+          type: boolean
+        spatialReference:
+          $ref: '#/components/schemas/SpatialReferenceDto'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerFieldDto'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerQueryFeatureDto'
+        exceededTransferLimit:
+          type: boolean
+        geometryType:
+          type: string
+      required:
+      - objectIdFieldName
+      - uniqueIdField
+      - globalIdFieldName
+      - hasZ
+      - hasM
+      - spatialReference
+      - fields
+      - features
+      - exceededTransferLimit
+      - geometryType

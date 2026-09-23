@@ -1,0 +1,181 @@
+openapi: 3.2.0
+info:
+  title: Bonneville Power Administration Data Search Ogc Item…
+  description: Welcome to the Search API.
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: OgcItemAggregation
+paths:
+  /api/search/v1/collections/{collectionId}/aggregations:
+    get:
+      description: Returns requested aggregations from the specified site catalog collection
+      operationId: OgcItemAggregationController_getAggregations_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        description: Key/id of the collection for which item should be filtered and returned.
+        schema:
+          example: dataset
+          type: string
+      - name: exampleAggregationName
+        required: false
+        in: query
+        description: <b>This is an EXAMPLE aggregation expression</b>. More aggregation expressions can be specified by adding additional query parameters, where the name of the parameter is an arbitrary alphabetic aggregation name
+        examples:
+          terms:
+            summary: Terms
+            value: terms(fields=(access,tags,source))
+            description: An aggregation that analyzes matching items by the unique values of the specified fields. Returns buckets by field and unique value. The mandatory "fields" parameter is a comma-separated list of field names to aggregate on.
+          max:
+            summary: Max
+            value: max(fields=(totalReplies, totalReactions))
+            description: An aggregation that calculates the maximum value of one or more fields across all matching items. The mandatory "fields" parameter is a comma-separated list of field names to aggregate on.
+          min:
+            summary: Min
+            value: min(fields=(totalReplies, totalReactions))
+            description: An aggregation that calculates the minimum value of one or more fields across all matching items. The mandatory "fields" parameter is a comma-separated list of field names to aggregate on.
+          avg:
+            summary: Avg
+            value: avg(fields=(totalReactions, totalReplies))
+            description: An aggregation that calculates the averages value of one or more fields across all matching items. The mandatory "fields" parameter is a comma-separated list of field names to aggregate on.
+          histogram:
+            summary: Histogram
+            value: histogram(fields=(totalReplies,totalReactions), interval=5)
+            description: An aggregation that groups items into buckets based on a numeric field. The mandatory "fields" parameter are the numeric fields to aggregate on. The mandatory "interval" parameter is the interval to use for bucketing, and has a minimum value of 0.1.
+          date_histogram:
+            summary: Date Histogram
+            value: date_histogram(fields=(createdAt, updatedAt),interval=month,bycreator=terms(fields=(creator,editor)))
+            description: 'An aggregation that groups items into buckets based on a date field. The mandatory "fields" parameter are the date fields to aggregate on. The mandatory "interval" parameter is the time interval to use for bucketing. Valid intervals are: "year", "month", "week", and "day". You can also specify a number of days from 1-99 inclusive, e.g. "14d" for fourteen days. Finally, sub-aggregations can provided that summate discussion post data on a per-bucket basis. This example aggregates posts based on the createdAt and updatedAt fields and, for each, further sub-aggregating by creator, and editor.'
+          geohash:
+            summary: Geohash
+            value: geohash(fields=(geometry), precision=6, byCreator=terms(fields=(creator)), byCreatedDate=date_histogram(fields=(createdAt), interval=month), avgSentiment=avg(fields=(sentiment)))
+            description: An aggregation that groups items into buckets based on a geohash on a geospatial field. The mandatory "fields" parameter are the geospatial fields for which to aggregate on. "Precision" can be optionally provided (defaults to 5) to allow for hashing with various geospatial precisions (https://en.wikipedia.org/wiki/Geohash#Digits_and_precision_in_km). Finally, sub-aggregations can provided that summate discussion post data on a per-geohash basis. This example geohashes posts based on the geometry field, further sub-aggregating by creator, post creation date, and average sentiment.
+        schema:
+          type: string
+      - name: filter
+        required: false
+        in: query
+        description: CQL filter expression that can be used to refine the aggregation search
+        schema:
+          title: filter
+          type: string
+          readOnly: true
+        examples:
+          equals:
+            summary: Equals
+            value: type='Feature Service'
+          greaterThan:
+            summary: Greater Than
+            value: created > 1670531235
+          greaterThanOrEquals:
+            summary: Greater Than Or Equals
+            value: created >= 1670531235
+          LessThan:
+            summary: Less Than
+            value: created < 1670531235
+          lessThanOrEquals:
+            summary: Less Than Or Equals
+            value: created <= 1670531235
+          in:
+            summary: IN
+            value: tags IN (tag1, 'tag2', tag3)
+          notIn:
+            summary: NOT IN
+            value: tags NOT IN (tag1, 'tag2', tag3)
+          betweenAnd:
+            summary: BETWEEN AND
+            value: created BETWEEN 1670531235 AND 1770531235
+          notBetweenAnd:
+            summary: NOT BETWEEN AND
+            value: created NOT BETWEEN 1670531235 AND 1770531235
+          like:
+            summary: LIKE
+            value: description LIKE 'moby*'
+          'null':
+            summary: IS NULL
+            value: source IS NULL
+          notNull:
+            summary: IS NOT NULL
+            value: owner IS NOT NULL
+          and:
+            summary: AND
+            value: tags NOT IN (tag1, 'tag2', tag3) AND owner IS NOT NULL
+          or:
+            summary: OR
+            value: tags NOT IN (tag1, 'tag2', tag3) OR owner IS NOT NULL
+          not:
+            summary: NOT
+            value: tags NOT IN (tag1, 'tag2', tag3) NOT owner IS NULL
+          subExpressions:
+            summary: Subexpressions
+            value: ((type='Feature Service' AND access=public) OR (type='Web Mapping Application' AND access=shared))
+      - name: limit
+        required: false
+        in: query
+        description: Limit the number of results returned for "bucket"-based aggregations
+        schema:
+          title: limit
+          type: integer
+          readOnly: true
+      - name: token
+        required: false
+        in: query
+        description: Token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          title: token
+          type: string
+      responses:
+        '200':
+          description: A response describing requested collection aggregations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OgcItemAggregationResponseDto'
+      summary: Ogc item aggregation controller get aggregations api/search/v1
+      tags:
+      - OgcItemAggregation
+      x-summary-source: derived
+components:
+  schemas:
+    OgcItemAggregationLinkDto:
+      type: object
+      properties:
+        type:
+          type: string
+          title: type
+        rel:
+          type: string
+          title: rel
+        title:
+          type: string
+          title: title
+        href:
+          type: string
+          title: href
+      required:
+      - type
+      - rel
+      - title
+      - href
+    OgcItemAggregationResponseDto:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          title: timestamp
+          format: date-time
+        aggregations:
+          type: object
+          title: aggregations
+        links:
+          title: links
+          type: array
+          items:
+            $ref: '#/components/schemas/OgcItemAggregationLinkDto'
+      required:
+      - timestamp
+      - aggregations
+      - links

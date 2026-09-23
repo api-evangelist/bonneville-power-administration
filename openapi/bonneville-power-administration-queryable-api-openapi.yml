@@ -1,0 +1,223 @@
+openapi: 3.2.0
+info:
+  title: Bonneville Power Administration Data Search Queryable API
+  description: Welcome to the Search API.
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: Queryable
+paths:
+  /api/search/v1/collections/{collectionId}/queryables:
+    get:
+      description: Lists the minimal item properties expected to be returned when searching items in the specified collection.
+      operationId: QueryableController_getSiteCollectionQueryables_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        description: Key/id of the collection for which queryables should be obtained.
+        schema:
+          example: dataset
+          type: string
+      - name: token
+        required: false
+        in: query
+        description: ArcGIS token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A data object describing the core queryable fields of a site catalog collection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OgcQueryablesResponseDto'
+      summary: Queryable controller get site collection queryables api/search/v1
+      tags:
+      - Queryable
+      x-summary-source: derived
+components:
+  schemas:
+    OgcQueryablesResponseDto:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - object
+        title:
+          type: string
+        $schema:
+          type: string
+        $id:
+          type: string
+        properties:
+          type: object
+          properties:
+            recordId:
+              title: recordId
+              type: string
+              description: id of the record
+            geometry:
+              title: geometry
+              type: object
+              description: geometry of the underlying resource
+              oneOf:
+              - title: GeoJSON Point
+                type: object
+                required:
+                - type
+                - coordinates
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - Point
+                  coordinates:
+                    type: array
+                    minItems: 2
+                    items:
+                      type: number
+                  bbox:
+                    type:
+                    - array
+                    - 'null'
+                    minItems: 4
+                    items:
+                      type: number
+              - title: GeoJSON LineString
+                type: object
+                required:
+                - type
+                - coordinates
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - LineString
+                  coordinates:
+                    type: array
+                    minItems: 2
+                    items:
+                      type: array
+                      minItems: 2
+                      items:
+                        type: number
+                  bbox:
+                    type: array
+                    minItems: 4
+                    items:
+                      type: number
+              - title: GeoJSON Polygon
+                type: object
+                required:
+                - type
+                - coordinates
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - Polygon
+                  coordinates:
+                    type: array
+                    items:
+                      type: array
+                      minItems: 4
+                      items:
+                        type: array
+                        minItems: 2
+                        items:
+                          type: number
+                  bbox:
+                    type: array
+                    minItems: 4
+                    items:
+                      type: number
+              - title: GeoJSON MultiPoint
+                type: object
+                required:
+                - type
+                - coordinates
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - MultiPoint
+                  coordinates:
+                    type: array
+                    items:
+                      type: array
+                      minItems: 2
+                      items:
+                        type: number
+                  bbox:
+                    type: array
+                    minItems: 4
+                    items:
+                      type: number
+              - title: GeoJSON MultiLineString
+                type: object
+                required:
+                - type
+                - coordinates
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - MultiLineString
+                  coordinates:
+                    type: array
+                    items:
+                      type: array
+                      minItems: 2
+                      items:
+                        type: array
+                        minItems: 2
+                        items:
+                          type: number
+                  bbox:
+                    type: array
+                    minItems: 4
+                    items:
+                      type: number
+              - title: GeoJSON MultiPolygon
+                type: object
+                required:
+                - type
+                - coordinates
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - MultiPolygon
+                  coordinates:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: array
+                        minItems: 4
+                        items:
+                          type: array
+                          minItems: 2
+                          items:
+                            type: number
+                  bbox:
+                    type: array
+                    minItems: 4
+                    items:
+                      type: number
+            type:
+              title: type
+              type: string
+              description: the type of the underlying resource
+            title:
+              title: title
+              type: string
+              description: the title of the underlying resource
+      required:
+      - type
+      - title
+      - $schema
+      - properties

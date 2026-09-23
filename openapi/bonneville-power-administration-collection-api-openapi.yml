@@ -1,0 +1,1072 @@
+openapi: 3.2.0
+info:
+  title: Bonneville Power Administration Data Search Collection API
+  description: Welcome to the Search API.
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: Collection
+paths:
+  /api/search/v1/collections:
+    get:
+      description: Lists the collections described in the site's catalog.
+      operationId: CollectionController_getSiteCollections_api/search/v1
+      parameters:
+      - name: token
+        required: false
+        in: query
+        description: ArcGIS token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A data object containing a list of site catalog collections.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionsResponseDto'
+      summary: Collection controller get site collections api/search/v1
+      tags:
+      - Collection
+      x-summary-source: derived
+  /api/search/v1/collections/{collectionId}:
+    get:
+      description: Retrieves the collection from a site's catalog with a provided id/key
+      operationId: CollectionController_getSiteCollectionFromId_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        description: Key/id for the desired collection.
+        schema:
+          example: dataset
+          type: string
+      - name: token
+        required: false
+        in: query
+        description: ArcGIS token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A data object describing a site collection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionWithLinksDto'
+      summary: Collection controller get site collection from id api/search/v1
+      tags:
+      - Collection
+      x-summary-source: derived
+components:
+  schemas:
+    GeometryFilterDto:
+      type: object
+      properties:
+        relation:
+          type: string
+          description: Type of relation, defaults to "intersects"
+          enum:
+          - intersects
+          - disjoint
+          - within
+          - contains
+        geometry:
+          anyOf:
+          - $ref: '#/components/schemas/EnvelopeDto'
+          allOf:
+          - $ref: '#/components/schemas/GeometryDto'
+      required:
+      - geometry
+    GeometryDto:
+      type: object
+      properties:
+        bbox:
+          type: array
+          minItems: 4
+          items:
+            type: number
+    CollectionDto:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '12345'
+        type:
+          type: string
+          enum:
+          - Collection
+        title:
+          type: string
+          example: Collection Title
+        description:
+          type: string
+          example: Collection description
+        itemType:
+          type: string
+        crs:
+          type: array
+          items:
+            type: string
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemSearchFiltersBlockDto'
+      required:
+      - id
+      - type
+      - title
+      - description
+      - itemType
+      - crs
+    EnvelopeDto:
+      type: object
+      properties:
+        bbox:
+          type: array
+          minItems: 4
+          items:
+            type: number
+        type:
+          type: string
+          description: Type of geometry filter, must be "Envelope"
+          enum:
+          - Envelope
+        coordinates:
+          description: Coordinates in either 2d bbox [xmin,ymin,xmax,ymax] or envelope [[xmin,ymax],[xmax,ymin]] formats
+          anyOf:
+          - type: array
+            minItems: 4
+            maxItems: 4
+            items:
+              type: number
+          - type: array
+            minItems: 2
+            maxItems: 2
+            items:
+              type: array
+              minItems: 2
+              maxItems: 2
+              items:
+                type: number
+      required:
+      - type
+      - coordinates
+    CollectionDtoLink:
+      type: object
+      properties:
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+      required:
+      - rel
+      - type
+      - title
+      - href
+      - hreflang
+    RangeParamsEpoch:
+      type: object
+      properties:
+        from:
+          type: number
+          description: epoch time in milliseconds
+          example: 160000000
+        to:
+          type: number
+          description: epoch time in milliseconds
+          example: 170000000
+      required:
+      - from
+      - to
+    CollectionsResponseLinksDto:
+      type: object
+      properties:
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - type
+      - title
+      - href
+    ItemSearchFiltersDto:
+      type: object
+      properties:
+        id:
+          oneOf:
+          - type: string
+            description: an id
+            pattern: ^[a-f0-9]{32}$
+          - type: array
+            description: an array of ids, any of which should match
+            items:
+              type: string
+              description: an id
+              pattern: ^[a-f0-9]{32}$
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: an id
+                  pattern: ^[a-f0-9]{32}$
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: an id
+                  pattern: ^[a-f0-9]{32}$
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: an id
+                  pattern: ^[a-f0-9]{32}$
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: an id
+                  pattern: ^[a-f0-9]{32}$
+        owner:
+          example: dev_bas_hub_admin
+          oneOf:
+          - type: string
+            description: an owner
+          - type: array
+            description: an array of owners, any of which should match
+            items:
+              type: string
+              description: an owner
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: an owner
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: an owner
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: an owner
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: an owner
+        created:
+          description: a date range
+          example:
+            from: 160000000
+            to: 170000000
+          allOf:
+          - $ref: '#/components/schemas/RangeParamsEpoch'
+        modified:
+          description: a date range
+          example:
+            from: 160000000
+            to: 170000000
+          allOf:
+          - $ref: '#/components/schemas/RangeParamsEpoch'
+        title:
+          example:
+            all:
+            - all
+            - here
+            - must match
+            any:
+            - any
+            - here
+            - must match
+            not:
+            - none
+            - here
+            - must match
+            exact:
+            - all
+            - here
+            - must match exactly
+          oneOf:
+          - type: string
+            description: a title string
+          - type: array
+            description: an array of title strings, any of which should match
+            items:
+              type: string
+              description: a title string
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: a title string
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: a title string
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: a title string
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: a title string
+        type:
+          example:
+          - Feature Service
+          - Microsoft Excel
+          oneOf:
+          - type: string
+            description: a type
+          - type: array
+            description: an array of types, any of which should match
+            items:
+              type: string
+              description: a type
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: a type
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: a type
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: a type
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: a type
+        typekeywords:
+          example: HubProject
+          oneOf:
+          - type: string
+            description: a typekeyword
+          - type: array
+            description: an array of typekeywords, any of which should match
+            items:
+              type: string
+              description: a typekeyword
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: a typekeyword
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: a typekeyword
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: a typekeyword
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: a typekeyword
+        description:
+          example:
+            all:
+            - all
+            - here
+            - must match
+            any:
+            - any
+            - here
+            - must match
+            not:
+            - none
+            - here
+            - must match
+            exact:
+            - all
+            - here
+            - must match exactly
+          oneOf:
+          - type: string
+            description: a decription string
+          - type: array
+            description: an array of description strings, any of which should match
+            items:
+              type: string
+              description: a description string
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: a description string
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: a description string
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: a description string
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: a description string
+        tags:
+          example:
+          - tag 1
+          - tag 2
+          oneOf:
+          - type: string
+            description: a tag
+          - type: array
+            description: an array of tags, any of which should match
+            items:
+              type: string
+              description: a tag
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: a tag
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: a tag
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: a tag
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: a tag
+        snippet:
+          example: a test snippet
+          oneOf:
+          - type: string
+            description: a snippet string
+          - type: array
+            description: an array of snippet strings, any of which should match
+            items:
+              type: string
+              description: a snippet string
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: a snippet string
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: a snippet string
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: a snippet string
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: a snippet string
+        accessinformation:
+          example:
+            all:
+            - all
+            - here
+            - must match
+            any:
+            - any
+            - here
+            - must match
+            not:
+            - none
+            - here
+            - must match
+            exact:
+            - all
+            - here
+            - must match exactly
+          oneOf:
+          - type: string
+            description: an accessinformation string
+          - type: array
+            description: an array of accessinformation strings, any of which should match
+            items:
+              type: string
+              description: an accessinformation string
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: an accessinformation string
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: an accessinformation string
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: an accessinformation string
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: an accessinformation string
+        access:
+          example:
+          - public
+          - private
+          anyOf:
+          - type: string
+            enum:
+            - public
+            - private
+            - org
+            - shared
+            description: an access string
+          - type: array
+            description: an array of access strings, any of which should match
+            items:
+              type: string
+              enum:
+              - public
+              - private
+              - org
+              - shared
+              description: an accessinformation string
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  enum:
+                  - public
+                  - private
+                  - org
+                  - shared
+                  description: an access string
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  enum:
+                  - public
+                  - private
+                  - org
+                  - shared
+                  description: an access string
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  enum:
+                  - public
+                  - private
+                  - org
+                  - shared
+                  description: an access string
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  enum:
+                  - public
+                  - private
+                  - org
+                  - shared
+                  description: an access string
+        group:
+          oneOf:
+          - type: string
+            description: a group id
+            pattern: ^[a-f0-9]{32}$
+          - type: array
+            description: an array of group ids, any of which should match
+            items:
+              type: string
+              description: a group id
+              pattern: ^[a-f0-9]{32}$
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: a group id
+                  pattern: ^[a-f0-9]{32}$
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: a group id
+                  pattern: ^[a-f0-9]{32}$
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: a group id
+                  pattern: ^[a-f0-9]{32}$
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: a group id
+                  pattern: ^[a-f0-9]{32}$
+        culture:
+          example:
+            all:
+            - all
+            - here
+            - must match
+            any:
+            - any
+            - here
+            - must match
+            not:
+            - none
+            - here
+            - must match
+            exact:
+            - all
+            - here
+            - must match exactly
+          oneOf:
+          - type: string
+            description: a culture string
+          - type: array
+            description: an array of culture strings, any of which should match
+            items:
+              type: string
+              description: a culture string
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: a culture string
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: a culture string
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: a culture string
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: a culture string
+        orgid:
+          oneOf:
+          - type: string
+            description: an org id
+            pattern: ^[a-zA-Z0-9]{16}$
+          - type: array
+            description: an array of org ids, any of which should match
+            items:
+              type: string
+              description: an org id
+              pattern: ^[a-zA-Z0-9]{16}$
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: an org id
+                  pattern: ^[a-zA-Z0-9]{16}$
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: an org id
+                  pattern: ^[a-zA-Z0-9]{16}$
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: an org id
+                  pattern: ^[a-zA-Z0-9]{16}$
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: an org id
+                  pattern: ^[a-zA-Z0-9]{16}$
+        categories:
+          example: category test
+          oneOf:
+          - type: string
+            description: a category
+          - type: array
+            description: an array of categories, any of which should match
+            items:
+              type: string
+              description: a category
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+                  description: a category
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+                  description: a category
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+                  description: a category
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+                  description: a category
+        term:
+          example:
+            all:
+            - all
+            - here
+            - must match
+            any:
+            - any
+            - here
+            - must match
+            not:
+            - none
+            - here
+            - must match
+            exact:
+            - all
+            - here
+            - must match exactly
+          oneOf:
+          - type: string
+            description: a string of terms for searching
+          - type: object
+            properties:
+              all:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms that all must match
+                items:
+                  type: string
+              any:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, only at least one must match
+                items:
+                  type: string
+              not:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, none of which can must match
+                items:
+                  type: string
+              exact:
+                type:
+                - array
+                - 'null'
+                description: optional array of terms, all of which must match exactly
+                items:
+                  type: string
+        boundary:
+          $ref: '#/components/schemas/GeometryFilterDto'
+    CollectionsResponseDto:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionDto'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionsResponseLinksDto'
+      required:
+      - collections
+      - links
+    CollectionWithLinksDto:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '12345'
+        type:
+          type: string
+          enum:
+          - Collection
+        title:
+          type: string
+          example: Collection Title
+        description:
+          type: string
+          example: Collection description
+        itemType:
+          type: string
+        crs:
+          type: array
+          items:
+            type: string
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemSearchFiltersBlockDto'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionDtoLink'
+      required:
+      - id
+      - type
+      - title
+      - description
+      - itemType
+      - crs
+      - links
+    ItemSearchFiltersBlockDto:
+      type: object
+      properties:
+        operation:
+          type: string
+          enum:
+          - AND
+          - OR
+          default: AND
+        predicates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemSearchFiltersDto'
+      required:
+      - predicates

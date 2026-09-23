@@ -1,0 +1,728 @@
+openapi: 3.2.0
+info:
+  title: Bonneville Power Administration Data Search Ogc Item API
+  description: Welcome to the Search API.
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: OgcItem
+paths:
+  /api/search/v1/collections/{collectionId}/items:
+    get:
+      description: Returns items from the specified site catalog collection that match specified filters
+      operationId: OgcItemController_getSiteCollectionItems_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        description: Key/id of the collection for which item should be filtered and returned.
+        schema:
+          example: dataset
+          type: string
+      - name: q
+        required: false
+        in: query
+        description: A general text search filter.
+        schema:
+          title: q
+          type: string
+      - name: bbox
+        required: false
+        in: query
+        description: A bbox filter, must be 4 comma-separated coordinates
+        schema:
+          title: bbox
+          type: string
+      - name: filter
+        required: false
+        in: query
+        description: query parameter that represents a parse-able string of filter expressions, structured according to the <a href="https://portal.ogc.org/files/96288">Common Query Language Specification of the OGC Features API</a>. If filter values must include whitespace, try wrapping the value in single quotes.
+        schema:
+          title: filter
+          type: string
+        examples:
+          equals:
+            summary: Equals
+            value: type='Feature Service'
+          greaterThan:
+            summary: Greater Than
+            value: created > 1670531235
+          greaterThanOrEquals:
+            summary: Greater Than Or Equals
+            value: created >= 1670531235
+          LessThan:
+            summary: Less Than
+            value: created < 1670531235
+          lessThanOrEquals:
+            summary: Less Than Or Equals
+            value: created <= 1670531235
+          in:
+            summary: IN
+            value: tags IN (tag1, 'tag2', tag3)
+          notIn:
+            summary: NOT IN
+            value: tags NOT IN (tag1, 'tag2', tag3)
+          betweenAnd:
+            summary: BETWEEN AND
+            value: created BETWEEN 1670531235 AND 1770531235
+          notBetweenAnd:
+            summary: NOT BETWEEN AND
+            value: created NOT BETWEEN 1670531235 AND 1770531235
+          like:
+            summary: LIKE
+            value: description LIKE 'moby*'
+          'null':
+            summary: IS NULL
+            value: source IS NULL
+          notNull:
+            summary: IS NOT NULL
+            value: owner IS NOT NULL
+          and:
+            summary: AND
+            value: tags NOT IN (tag1, 'tag2', tag3) AND owner IS NOT NULL
+          or:
+            summary: OR
+            value: tags NOT IN (tag1, 'tag2', tag3) OR owner IS NOT NULL
+          not:
+            summary: NOT
+            value: tags NOT IN (tag1, 'tag2', tag3) NOT owner IS NULL
+          subExpressions:
+            summary: Subexpressions
+            value: ((type='Feature Service' AND access=public) OR (type='Web Mapping Application' AND access=shared))
+      - name: limit
+        required: false
+        in: query
+        description: The number of results to return.
+        schema:
+          title: limit
+          type: integer
+          minimum: 0
+          maximum: 100
+      - name: startindex
+        required: false
+        in: query
+        description: The initial index of the results to return, starting at 1.
+        schema:
+          title: startindex
+          type: integer
+          minimum: 1
+      - name: type
+        required: false
+        in: query
+        description: The type of resource.
+        schema:
+          title: type
+          type: string
+          description: the type of the underlying resource
+      - name: title
+        required: false
+        in: query
+        description: The title of resource to return.
+        schema:
+          title: title
+          type: string
+          description: the title of the underlying resource
+      - name: recordId
+        required: false
+        in: query
+        description: The recordId of resource to return. recordId could be itemId or itemId_layerId
+        schema:
+          title: recordId
+          type: string
+          description: id of the record
+      - name: sortBy
+        required: false
+        in: query
+        description: Sort results by specific fields. Prefixed by either "+" for ascending or "-" for descending. If no prefix is provided, "+" is assumed.
+        schema:
+          title: sortBy
+          type: string
+      - name: tags
+        required: false
+        in: query
+        description: Tags for items search
+        schema:
+          example: 'true'
+          type: string
+      - name: token
+        required: false
+        in: query
+        description: Token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          title: token
+          type: string
+      - name: openData
+        required: false
+        in: query
+        description: Boolean flag to get items that are shared to Opendata group
+        schema:
+          example: 'true'
+          type: string
+      responses:
+        '200':
+          description: A FeatureCollection object describing items (in GeoJSON) returned when searching the provided collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OgcItemResponseDto'
+      summary: Ogc item controller get site collection items api/search/v1
+      tags:
+      - OgcItem
+      x-summary-source: derived
+  /api/search/v1/collections/{collectionId}/items/{itemId}:
+    get:
+      operationId: OgcItemController_getSiteCollectionItemById_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        schema:
+          example: dataset
+          type: string
+      - name: itemId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: token
+        required: false
+        in: query
+        description: token for use in authentication/authorization
+        schema:
+          title: token
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OgcItemDto'
+      tags:
+      - OgcItem
+      summary: Ogc item controller get site collection item by id api/search/v1
+      x-summary-source: derived
+  /api/search/v1/collections/{collectionId}/items/{recordId}/related:
+    get:
+      description: Returns related items to recordId from the specified site catalog collection that match specified filters
+      operationId: OgcItemController_getRelatedOgcItemsById_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        description: Key/id of the collection for which item should be filtered and returned.
+        schema:
+          example: dataset
+          type: string
+      - name: q
+        required: false
+        in: query
+        description: A general text search filter.
+        schema:
+          title: q
+          type: string
+      - name: bbox
+        required: false
+        in: query
+        description: A bbox filter, must be 4 comma-separated coordinates
+        schema:
+          title: bbox
+          type: string
+      - name: filter
+        required: false
+        in: query
+        description: query parameter that represents a parse-able string of filter expressions, structured according to the <a href="https://portal.ogc.org/files/96288">Common Query Language Specification of the OGC Features API</a>. If filter values must include whitespace, try wrapping the value in single quotes.
+        schema:
+          title: filter
+          type: string
+        examples:
+          equals:
+            summary: Equals
+            value: type='Feature Service'
+          greaterThan:
+            summary: Greater Than
+            value: created > 1670531235
+          greaterThanOrEquals:
+            summary: Greater Than Or Equals
+            value: created >= 1670531235
+          LessThan:
+            summary: Less Than
+            value: created < 1670531235
+          lessThanOrEquals:
+            summary: Less Than Or Equals
+            value: created <= 1670531235
+          in:
+            summary: IN
+            value: tags IN (tag1, 'tag2', tag3)
+          notIn:
+            summary: NOT IN
+            value: tags NOT IN (tag1, 'tag2', tag3)
+          betweenAnd:
+            summary: BETWEEN AND
+            value: created BETWEEN 1670531235 AND 1770531235
+          notBetweenAnd:
+            summary: NOT BETWEEN AND
+            value: created NOT BETWEEN 1670531235 AND 1770531235
+          like:
+            summary: LIKE
+            value: description LIKE 'moby*'
+          'null':
+            summary: IS NULL
+            value: source IS NULL
+          notNull:
+            summary: IS NOT NULL
+            value: owner IS NOT NULL
+          and:
+            summary: AND
+            value: tags NOT IN (tag1, 'tag2', tag3) AND owner IS NOT NULL
+          or:
+            summary: OR
+            value: tags NOT IN (tag1, 'tag2', tag3) OR owner IS NOT NULL
+          not:
+            summary: NOT
+            value: tags NOT IN (tag1, 'tag2', tag3) NOT owner IS NULL
+          subExpressions:
+            summary: Subexpressions
+            value: ((type='Feature Service' AND access=public) OR (type='Web Mapping Application' AND access=shared))
+      - name: limit
+        required: false
+        in: query
+        description: The number of results to return.
+        schema:
+          title: limit
+          type: integer
+          minimum: 0
+          maximum: 100
+      - name: startindex
+        required: false
+        in: query
+        description: The initial index of the results to return, starting at 1.
+        schema:
+          title: startindex
+          type: integer
+          minimum: 1
+      - name: type
+        required: false
+        in: query
+        description: The type of resource.
+        schema:
+          title: type
+          type: string
+          description: the type of the underlying resource
+      - name: title
+        required: false
+        in: query
+        description: The title of resource to return.
+        schema:
+          title: title
+          type: string
+          description: the title of the underlying resource
+      - name: recordId
+        required: false
+        in: query
+        description: The recordId of resource to return. recordId could be itemId or itemId_layerId
+        schema:
+          title: recordId
+          type: string
+          description: id of the record
+      - name: sortBy
+        required: false
+        in: query
+        description: Sort results by specific fields. Prefixed by either "+" for ascending or "-" for descending. If no prefix is provided, "+" is assumed.
+        schema:
+          title: sortBy
+          type: string
+      - name: tags
+        required: false
+        in: query
+        description: Tags for items search
+        schema:
+          example: 'true'
+          type: string
+      - name: token
+        required: false
+        in: query
+        description: Token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          title: token
+          type: string
+      - name: openData
+        required: false
+        in: query
+        description: Boolean flag to get items that are shared to Opendata group
+        schema:
+          example: 'true'
+          type: string
+      responses:
+        '200':
+          description: A FeatureCollection object describing related items to recordId (in GeoJSON) returned when searching the provided collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OgcItemResponseDto'
+      summary: Ogc item controller get related ogc items by id api/search/v1
+      tags:
+      - OgcItem
+      x-summary-source: derived
+  /api/search/v1/collections/{collectionId}/items/{recordId}/connected:
+    get:
+      description: Returns connected items to recordId from the specified site catalog collection that match specified filters
+      operationId: OgcItemController_getConnectedOgcItemsById_api/search/v1
+      parameters:
+      - name: collectionId
+        required: true
+        in: path
+        description: Key/id of the collection for which item should be filtered and returned.
+        schema:
+          example: dataset
+          type: string
+      - name: q
+        required: false
+        in: query
+        description: A general text search filter.
+        schema:
+          title: q
+          type: string
+      - name: bbox
+        required: false
+        in: query
+        description: A bbox filter, must be 4 comma-separated coordinates
+        schema:
+          title: bbox
+          type: string
+      - name: filter
+        required: false
+        in: query
+        description: query parameter that represents a parse-able string of filter expressions, structured according to the <a href="https://portal.ogc.org/files/96288">Common Query Language Specification of the OGC Features API</a>. If filter values must include whitespace, try wrapping the value in single quotes.
+        schema:
+          title: filter
+          type: string
+        examples:
+          equals:
+            summary: Equals
+            value: type='Feature Service'
+          greaterThan:
+            summary: Greater Than
+            value: created > 1670531235
+          greaterThanOrEquals:
+            summary: Greater Than Or Equals
+            value: created >= 1670531235
+          LessThan:
+            summary: Less Than
+            value: created < 1670531235
+          lessThanOrEquals:
+            summary: Less Than Or Equals
+            value: created <= 1670531235
+          in:
+            summary: IN
+            value: tags IN (tag1, 'tag2', tag3)
+          notIn:
+            summary: NOT IN
+            value: tags NOT IN (tag1, 'tag2', tag3)
+          betweenAnd:
+            summary: BETWEEN AND
+            value: created BETWEEN 1670531235 AND 1770531235
+          notBetweenAnd:
+            summary: NOT BETWEEN AND
+            value: created NOT BETWEEN 1670531235 AND 1770531235
+          like:
+            summary: LIKE
+            value: description LIKE 'moby*'
+          'null':
+            summary: IS NULL
+            value: source IS NULL
+          notNull:
+            summary: IS NOT NULL
+            value: owner IS NOT NULL
+          and:
+            summary: AND
+            value: tags NOT IN (tag1, 'tag2', tag3) AND owner IS NOT NULL
+          or:
+            summary: OR
+            value: tags NOT IN (tag1, 'tag2', tag3) OR owner IS NOT NULL
+          not:
+            summary: NOT
+            value: tags NOT IN (tag1, 'tag2', tag3) NOT owner IS NULL
+          subExpressions:
+            summary: Subexpressions
+            value: ((type='Feature Service' AND access=public) OR (type='Web Mapping Application' AND access=shared))
+      - name: limit
+        required: false
+        in: query
+        description: The number of results to return.
+        schema:
+          title: limit
+          type: integer
+          minimum: 0
+          maximum: 100
+      - name: startindex
+        required: false
+        in: query
+        description: The initial index of the results to return, starting at 1.
+        schema:
+          title: startindex
+          type: integer
+          minimum: 1
+      - name: type
+        required: false
+        in: query
+        description: The type of resource.
+        schema:
+          title: type
+          type: string
+          description: the type of the underlying resource
+      - name: title
+        required: false
+        in: query
+        description: The title of resource to return.
+        schema:
+          title: title
+          type: string
+          description: the title of the underlying resource
+      - name: recordId
+        required: false
+        in: query
+        description: The recordId of resource to return. recordId could be itemId or itemId_layerId
+        schema:
+          title: recordId
+          type: string
+          description: id of the record
+      - name: sortBy
+        required: false
+        in: query
+        description: Sort results by specific fields. Prefixed by either "+" for ascending or "-" for descending. If no prefix is provided, "+" is assumed.
+        schema:
+          title: sortBy
+          type: string
+      - name: tags
+        required: false
+        in: query
+        description: Tags for items search
+        schema:
+          example: 'true'
+          type: string
+      - name: token
+        required: false
+        in: query
+        description: Token to use when accessing the underlying ArcGIS Item that represents the site.
+        schema:
+          title: token
+          type: string
+      - name: openData
+        required: false
+        in: query
+        description: Boolean flag to get items that are shared to Opendata group
+        schema:
+          example: 'true'
+          type: string
+      responses:
+        '200':
+          description: A FeatureCollection object describing connected items to recordId (in GeoJSON) returned when searching the provided collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OgcItemResponseDto'
+      summary: Ogc item controller get connected ogc items by id api/search/v1
+      tags:
+      - OgcItem
+      x-summary-source: derived
+components:
+  schemas:
+    OgcItemDto:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        type:
+          type: string
+          title: type
+          enum:
+          - Feature
+        geometry:
+          title: geometry
+          oneOf:
+          - title: GeoJSON Point
+            type: object
+            required:
+            - type
+            - coordinates
+            properties:
+              type:
+                type: string
+                enum:
+                - Point
+              coordinates:
+                type: array
+                minItems: 2
+                items:
+                  type: number
+              bbox:
+                type: array
+                minItems: 4
+                items:
+                  type: number
+          - title: GeoJSON LineString
+            type: object
+            required:
+            - type
+            - coordinates
+            properties:
+              type:
+                type: string
+                enum:
+                - LineString
+              coordinates:
+                type: array
+                minItems: 2
+                items:
+                  type: array
+                  minItems: 2
+                  items:
+                    type: number
+              bbox:
+                type: array
+                minItems: 4
+                items:
+                  type: number
+          - title: GeoJSON Polygon
+            type: object
+            required:
+            - type
+            - coordinates
+            properties:
+              type:
+                type: string
+                enum:
+                - Polygon
+              coordinates:
+                type: array
+                items:
+                  type: array
+                  minItems: 4
+                  items:
+                    type: array
+                    minItems: 2
+                    items:
+                      type: number
+              bbox:
+                type: array
+                minItems: 4
+                items:
+                  type: number
+          - title: GeoJSON MultiPoint
+            type: object
+            required:
+            - type
+            - coordinates
+            properties:
+              type:
+                type: string
+                enum:
+                - MultiPoint
+              coordinates:
+                type: array
+                items:
+                  type: array
+                  minItems: 2
+                  items:
+                    type: number
+              bbox:
+                type: array
+                minItems: 4
+                items:
+                  type: number
+          - title: GeoJSON MultiLineString
+            type: object
+            required:
+            - type
+            - coordinates
+            properties:
+              type:
+                type: string
+                enum:
+                - MultiLineString
+              coordinates:
+                type: array
+                items:
+                  type: array
+                  minItems: 2
+                  items:
+                    type: array
+                    minItems: 2
+                    items:
+                      type: number
+              bbox:
+                type: array
+                minItems: 4
+                items:
+                  type: number
+          - title: GeoJSON MultiPolygon
+            type: object
+            required:
+            - type
+            - coordinates
+            properties:
+              type:
+                type: string
+                enum:
+                - MultiPolygon
+              coordinates:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: array
+                    minItems: 4
+                    items:
+                      type: array
+                      minItems: 2
+                      items:
+                        type: number
+              bbox:
+                type: array
+                minItems: 4
+                items:
+                  type: number
+        properties:
+          type: object
+          title: properties
+        time:
+          type: object
+          title: time
+      required:
+      - id
+      - type
+      - geometry
+      - properties
+      - time
+    OgcItemResponseDto:
+      type: object
+      properties:
+        type:
+          type: string
+          title: type
+          enum:
+          - FeatureCollection
+        timestamp:
+          type: string
+          title: timestamp
+          format: date-time
+        numberReturned:
+          type: number
+          title: numberReturned
+        numberMatched:
+          type: number
+          title: numberMatched
+        features:
+          title: features
+          type: array
+          items:
+            $ref: '#/components/schemas/OgcItemDto'
+      required:
+      - type
+      - timestamp
+      - numberReturned
+      - numberMatched
+      - features

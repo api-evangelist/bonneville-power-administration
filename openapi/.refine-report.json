@@ -1,13 +1,18 @@
 {
   "provider": "bonneville-power-administration",
   "sources": [
-    "bonneville-power-administration-customers-api-openapi.yml",
-    "bonneville-power-administration-hydrology-api-openapi.yml",
-    "bonneville-power-administration-right-of-way-api-openapi.yml",
-    "bonneville-power-administration-service-area-api-openapi.yml",
-    "bonneville-power-administration-transmission-api-openapi.yml"
+    "_original/bonneville-power-administration-data-search-api-openapi.json",
+    "_original/bonneville-power-administration-openapi.yml"
   ],
   "outputs": [
+    "bonneville-power-administration-catalog-api-openapi.yml",
+    "bonneville-power-administration-collection-api-openapi.yml",
+    "bonneville-power-administration-geoservice-beta-api-openapi.yml",
+    "bonneville-power-administration-ogcitem-api-openapi.yml",
+    "bonneville-power-administration-ogcitemaggregation-api-openapi.yml",
+    "bonneville-power-administration-ogcroot-api-openapi.yml",
+    "bonneville-power-administration-ogcrootconformance-api-openapi.yml",
+    "bonneville-power-administration-queryable-api-openapi.yml",
     "bonneville-power-administration-customers-api-openapi.yml",
     "bonneville-power-administration-hydrology-api-openapi.yml",
     "bonneville-power-administration-right-of-way-api-openapi.yml",
@@ -18,12 +23,32 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "bonneville-power-administration-customers-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "bonneville-power-administration-hydrology-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "bonneville-power-administration-right-of-way-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "bonneville-power-administration-service-area-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "bonneville-power-administration-transmission-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bonneville-power-administration-data-search-api-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "bonneville-power-administration-data-search-api-openapi.json: declared missing tag: Catalog",
+    "bonneville-power-administration-data-search-api-openapi.json: declared missing tag: Collection",
+    "bonneville-power-administration-data-search-api-openapi.json: declared missing tag: Geoservice-Beta",
+    "bonneville-power-administration-data-search-api-openapi.json: declared missing tag: OgcItem",
+    "bonneville-power-administration-data-search-api-openapi.json: declared missing tag: OgcItemAggregation",
+    "bonneville-power-administration-data-search-api-openapi.json: declared missing tag: OgcRoot",
+    "bonneville-power-administration-data-search-api-openapi.json: declared missing tag: OgcRootConformance",
+    "bonneville-power-administration-data-search-api-openapi.json: declared missing tag: Queryable",
+    "bonneville-power-administration-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "bonneville-power-administration-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-collection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-customers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-geoservice-beta-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-hydrology-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-ogcitem-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-ogcitemaggregation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-ogcroot-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-ogcrootconformance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-queryable-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-right-of-way-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-service-area-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bonneville-power-administration-transmission-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

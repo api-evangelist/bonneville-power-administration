@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bonneville Power Administration GIS Hub Customers Hydrology API
+  title: Bonneville Power Administration GIS Hub Hydrology API
   description: 'BPA GIS Data Hub serves public geospatial data via ArcGIS Online Feature
 
     Services. Each layer is exposed as a standard ArcGIS REST FeatureServer
@@ -11,9 +11,7 @@ info:
 
     classes, transmission lines, transmission structures, right-of-way, and
 
-    Columbia River Basin).
-
-    '
+    Columbia River Basin).'
   version: 1.0.0
   contact:
     name: BPA GIS Data Hub
@@ -40,6 +38,13 @@ paths:
           description: ArcGIS query result
 components:
   parameters:
+    OutFields:
+      name: outFields
+      in: query
+      description: Comma separated list of fields to return. Use "*" to return all fields.
+      schema:
+        type: string
+        default: '*'
     F:
       name: f
       in: query
@@ -52,13 +57,6 @@ components:
         - html
         - pjson
         default: json
-    OutFields:
-      name: outFields
-      in: query
-      description: Comma separated list of fields to return. Use "*" to return all fields.
-      schema:
-        type: string
-        default: '*'
     Where:
       name: where
       in: query
