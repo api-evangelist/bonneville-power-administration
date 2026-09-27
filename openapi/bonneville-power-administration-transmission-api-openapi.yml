@@ -51,13 +51,6 @@ paths:
           description: ArcGIS query result
 components:
   parameters:
-    OutFields:
-      name: outFields
-      in: query
-      description: Comma separated list of fields to return. Use "*" to return all fields.
-      schema:
-        type: string
-        default: '*'
     F:
       name: f
       in: query
@@ -70,6 +63,13 @@ components:
         - html
         - pjson
         default: json
+    OutFields:
+      name: outFields
+      in: query
+      description: Comma separated list of fields to return. Use "*" to return all fields.
+      schema:
+        type: string
+        default: '*'
     Where:
       name: where
       in: query

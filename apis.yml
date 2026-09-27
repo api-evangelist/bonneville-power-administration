@@ -38,7 +38,7 @@ modified: '2026-09-06'
 specificationVersion: '0.23'
 tags:
   - Energy
-  - Federal-Government
+  - Federal Government
   - GIS
   - Hydroelectric
   - Pacific Northwest
@@ -54,6 +54,7 @@ tags_raw:
   - Power
   - Transmission
   - Wind
+  - Federal-Government
 apis:
 - aid: bonneville-power-administration:gis-data-api
   name: BPA GIS Data Hub API

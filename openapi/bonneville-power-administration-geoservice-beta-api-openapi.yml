@@ -1015,109 +1015,180 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    FeatureLayerFieldDto:
+    OutputStatistics:
       type: object
       properties:
-        name:
+        outStatisticFieldName:
           type: string
-        type:
+          description: The name of the statistic
+          example: RegistrationAverage
+        onStatisticField:
           type: string
-        alias:
-          type: string
-        sqlType:
-          type: string
-        domain:
-          type:
-          - object
-          - 'null'
-        defaultValue:
-          type:
-          - object
-          - 'null'
-        length:
-          type: number
-        editable:
-          type: boolean
-        nullable:
-          type: boolean
+          description: The layer attribute to calculate statistic on
+          example: registrationCount
+        statisticType:
+          description: The type of statistic to calculate
+          example:
+          - count
+          - sum
+          - avg
+          - var
+          - max
+          - min
+          allOf:
+          - $ref: '#/components/schemas/StatisticType'
       required:
-      - name
-      - type
-      - alias
-      - sqlType
-      - editable
-      - nullable
-    FeatureLayerSymbolOutlineDto:
+      - outStatisticFieldName
+      - onStatisticField
+      - statisticType
+    FeatureLayerSymbolDto:
       type: object
       properties:
         color:
           type: array
           items:
             type: number
-        width:
-          type: number
+        outline:
+          $ref: '#/components/schemas/FeatureLayerSymbolOutlineDto'
         type:
           type: string
         style:
           type: string
       required:
       - color
-      - width
+      - outline
       - type
       - style
-    FeatureLayerRendererDto:
+    AuthInfoDto:
       type: object
       properties:
-        type:
-          type: string
-        symbol:
-          $ref: '#/components/schemas/FeatureLayerSymbolDto'
-      required:
-      - type
-      - symbol
-    FeatureInfoDto:
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
-        type:
-          type: string
-        parentLayerId:
-          type: number
-        defaultVisibility:
+        isTokenBasedSecurity:
           type: boolean
-        subLayerIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: number
-        minScale:
-          type: number
-        maxScale:
-          type: number
-        geometryType:
+          description: Indicates whether token-based security is enabled
+          example: true
+        tokenServicesUrl:
           type: string
+          description: Token generation endpoint URL
+          example: https://totoro-purple-qa-pre-hub.hubqa.arcgis.com/events/rest/generateToken
       required:
-      - id
-      - name
-      - type
-      - parentLayerId
-      - defaultVisibility
-      - minScale
-      - maxScale
-      - geometryType
-    StatisticType:
-      type: string
-      enum:
-      - count
-      - sum
-      - avg
-      - var
-      - max
-      - min
+      - isTokenBasedSecurity
+      - tokenServicesUrl
+    FeatureServerDto:
+      type: object
+      properties:
+        currentVersion:
+          type: number
+        serviceDescription:
+          type: string
+        hasVersionedData:
+          type: boolean
+        supportsDisconnectedEditing:
+          type: boolean
+        hasStaticData:
+          type: boolean
+        hasSharedDomains:
+          type: boolean
+        maxRecordCount:
+          type: number
+        supportedQueryFormats:
+          type: string
+        supportsVCSProjection:
+          type: boolean
+        supportedExportFormats:
+          type: string
+        capabilities:
+          type: string
+        description:
+          type: string
+        copyrightText:
+          type: string
+        spatialReference:
+          $ref: '#/components/schemas/SpatialReferenceDto'
+        fullExtent:
+          $ref: '#/components/schemas/FeatureServerExtentDto'
+        initialExtent:
+          $ref: '#/components/schemas/FeatureServerExtentDto'
+        allowGeometryUpdates:
+          type: boolean
+        units:
+          type: string
+        supportsAppend:
+          type: boolean
+        supportsSharedDomains:
+          type: boolean
+        supportsWebHooks:
+          type: boolean
+        supportsTemporalLayers:
+          type: boolean
+        layerOverridesEnabled:
+          type: boolean
+        syncEnabled:
+          type: boolean
+        supportsApplyEditsWithGlobalIds:
+          type: boolean
+        supportsReturnDeleteResults:
+          type: boolean
+        supportsLayerOverrides:
+          type: boolean
+        supportsTilesAndBasicQueriesMode:
+          type: boolean
+        supportsQueryContingentValues:
+          type: boolean
+        supportedContingentValuesFormats:
+          type: string
+        supportsContingentValuesJson:
+          type:
+          - object
+          - 'null'
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureInfoDto'
+        layers:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureInfoDto'
+        relationships:
+          type: array
+          items:
+            type: object
+        supportsRelationshipsResource:
+          type: boolean
+      required:
+      - currentVersion
+      - serviceDescription
+      - hasVersionedData
+      - supportsDisconnectedEditing
+      - hasStaticData
+      - hasSharedDomains
+      - maxRecordCount
+      - supportedQueryFormats
+      - supportsVCSProjection
+      - supportedExportFormats
+      - capabilities
+      - description
+      - copyrightText
+      - spatialReference
+      - fullExtent
+      - initialExtent
+      - allowGeometryUpdates
+      - units
+      - supportsAppend
+      - supportsSharedDomains
+      - supportsWebHooks
+      - supportsTemporalLayers
+      - layerOverridesEnabled
+      - syncEnabled
+      - supportsApplyEditsWithGlobalIds
+      - supportsReturnDeleteResults
+      - supportsLayerOverrides
+      - supportsTilesAndBasicQueriesMode
+      - supportsQueryContingentValues
+      - supportedContingentValuesFormats
+      - tables
+      - layers
+      - relationships
+      - supportsRelationshipsResource
     FeatureLayerIndexDto:
       type: object
       properties:
@@ -1140,20 +1211,38 @@ components:
       - isUnique
       - description
       - indexType
-    AuthInfoDto:
+    FeatureLayersDto:
       type: object
       properties:
-        isTokenBasedSecurity:
-          type: boolean
-          description: Indicates whether token-based security is enabled
-          example: true
-        tokenServicesUrl:
-          type: string
-          description: Token generation endpoint URL
-          example: https://totoro-purple-qa-pre-hub.hubqa.arcgis.com/events/rest/generateToken
+        layers:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerDto'
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerDto'
       required:
-      - isTokenBasedSecurity
-      - tokenServicesUrl
+      - layers
+      - tables
+    FeatureLayerSymbolOutlineDto:
+      type: object
+      properties:
+        color:
+          type: array
+          items:
+            type: number
+        width:
+          type: number
+        type:
+          type: string
+        style:
+          type: string
+      required:
+      - color
+      - width
+      - type
+      - style
     FeatureLayerDto:
       type: object
       properties:
@@ -1372,6 +1461,10 @@ components:
       - supportsCoordinatesQuantization
       - hasLabels
       - geometryType
+    FeatureServerFormats:
+      type: string
+      enum:
+      - json
     FeatureServerExtentDto:
       type: object
       properties:
@@ -1393,208 +1486,40 @@ components:
       - xmax
       - ymin
       - ymax
-    RestInfoDto:
+    FeatureInfoDto:
       type: object
       properties:
-        currentVersion:
+        id:
           type: number
-          description: Current numeric version of the service
-          example: 11.2
-        fullVersion:
-          type: string
-          description: Full service version string
-          example: 11.2.0
-        authInfo:
-          description: Authentication metadata for the service
-          allOf:
-          - $ref: '#/components/schemas/AuthInfoDto'
-      required:
-      - currentVersion
-      - fullVersion
-      - authInfo
-    FeatureLayersDto:
-      type: object
-      properties:
-        layers:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureLayerDto'
-        tables:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureLayerDto'
-      required:
-      - layers
-      - tables
-    FeatureLayerDateFieldsTimeReferenceDto:
-      type: object
-      properties:
-        timeZone:
-          type: string
-        respectsDaylightSaving:
-          type: boolean
-      required:
-      - timeZone
-      - respectsDaylightSaving
-    FeatureServerFormats:
-      type: string
-      enum:
-      - json
-    FeatureLayerSymbolDto:
-      type: object
-      properties:
-        color:
-          type: array
-          items:
-            type: number
-        outline:
-          $ref: '#/components/schemas/FeatureLayerSymbolOutlineDto'
-        type:
-          type: string
-        style:
-          type: string
-      required:
-      - color
-      - outline
-      - type
-      - style
-    FeatureLayerUniqueIdFieldDto:
-      type: object
-      properties:
         name:
           type: string
-        isSystemMaintained:
+        type:
+          type: string
+        parentLayerId:
+          type: number
+        defaultVisibility:
           type: boolean
+        subLayerIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: number
+        minScale:
+          type: number
+        maxScale:
+          type: number
+        geometryType:
+          type: string
       required:
+      - id
       - name
-      - isSystemMaintained
-    FeatureLayerQueryFeatureDto:
-      type: object
-      properties:
-        attributes:
-          type: object
-        geometry:
-          type:
-          - object
-          - 'null'
-      required:
-      - attributes
-    FeatureServerDto:
-      type: object
-      properties:
-        currentVersion:
-          type: number
-        serviceDescription:
-          type: string
-        hasVersionedData:
-          type: boolean
-        supportsDisconnectedEditing:
-          type: boolean
-        hasStaticData:
-          type: boolean
-        hasSharedDomains:
-          type: boolean
-        maxRecordCount:
-          type: number
-        supportedQueryFormats:
-          type: string
-        supportsVCSProjection:
-          type: boolean
-        supportedExportFormats:
-          type: string
-        capabilities:
-          type: string
-        description:
-          type: string
-        copyrightText:
-          type: string
-        spatialReference:
-          $ref: '#/components/schemas/SpatialReferenceDto'
-        fullExtent:
-          $ref: '#/components/schemas/FeatureServerExtentDto'
-        initialExtent:
-          $ref: '#/components/schemas/FeatureServerExtentDto'
-        allowGeometryUpdates:
-          type: boolean
-        units:
-          type: string
-        supportsAppend:
-          type: boolean
-        supportsSharedDomains:
-          type: boolean
-        supportsWebHooks:
-          type: boolean
-        supportsTemporalLayers:
-          type: boolean
-        layerOverridesEnabled:
-          type: boolean
-        syncEnabled:
-          type: boolean
-        supportsApplyEditsWithGlobalIds:
-          type: boolean
-        supportsReturnDeleteResults:
-          type: boolean
-        supportsLayerOverrides:
-          type: boolean
-        supportsTilesAndBasicQueriesMode:
-          type: boolean
-        supportsQueryContingentValues:
-          type: boolean
-        supportedContingentValuesFormats:
-          type: string
-        supportsContingentValuesJson:
-          type:
-          - object
-          - 'null'
-        tables:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureInfoDto'
-        layers:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureInfoDto'
-        relationships:
-          type: array
-          items:
-            type: object
-        supportsRelationshipsResource:
-          type: boolean
-      required:
-      - currentVersion
-      - serviceDescription
-      - hasVersionedData
-      - supportsDisconnectedEditing
-      - hasStaticData
-      - hasSharedDomains
-      - maxRecordCount
-      - supportedQueryFormats
-      - supportsVCSProjection
-      - supportedExportFormats
-      - capabilities
-      - description
-      - copyrightText
-      - spatialReference
-      - fullExtent
-      - initialExtent
-      - allowGeometryUpdates
-      - units
-      - supportsAppend
-      - supportsSharedDomains
-      - supportsWebHooks
-      - supportsTemporalLayers
-      - layerOverridesEnabled
-      - syncEnabled
-      - supportsApplyEditsWithGlobalIds
-      - supportsReturnDeleteResults
-      - supportsLayerOverrides
-      - supportsTilesAndBasicQueriesMode
-      - supportsQueryContingentValues
-      - supportedContingentValuesFormats
-      - tables
-      - layers
-      - relationships
-      - supportsRelationshipsResource
+      - type
+      - parentLayerId
+      - defaultVisibility
+      - minScale
+      - maxScale
+      - geometryType
     FeatureLayerAdvancedQueryCapabilitiesDto:
       type: object
       properties:
@@ -1707,28 +1632,35 @@ components:
       - supportsFullTextSearch
       - advancedQueryAnalyticCapabilities
       - advancedEditingCapabilities
-    SpatialReferenceDto:
+    FeatureLayerRendererDto:
       type: object
       properties:
-        latestVcsWkid:
-          type: number
-        latestWkid:
-          type: number
-        latestWkt:
+        type:
           type: string
-        vcsWkid:
-          type: number
-        wkid:
-          type: number
-        wkt:
-          type: string
-    FeatureLayerOwnershipBasedAccessControlForFeaturesDto:
-      type: object
-      properties:
-        allowOthersToQuery:
-          type: boolean
+        symbol:
+          $ref: '#/components/schemas/FeatureLayerSymbolDto'
       required:
-      - allowOthersToQuery
+      - type
+      - symbol
+    RestInfoDto:
+      type: object
+      properties:
+        currentVersion:
+          type: number
+          description: Current numeric version of the service
+          example: 11.2
+        fullVersion:
+          type: string
+          description: Full service version string
+          example: 11.2.0
+        authInfo:
+          description: Authentication metadata for the service
+          allOf:
+          - $ref: '#/components/schemas/AuthInfoDto'
+      required:
+      - currentVersion
+      - fullVersion
+      - authInfo
     FeatureLayerDrawingInfoDto:
       type: object
       properties:
@@ -1740,32 +1672,16 @@ components:
           - 'null'
       required:
       - renderer
-    OutputStatistics:
+    FeatureLayerDateFieldsTimeReferenceDto:
       type: object
       properties:
-        outStatisticFieldName:
+        timeZone:
           type: string
-          description: The name of the statistic
-          example: RegistrationAverage
-        onStatisticField:
-          type: string
-          description: The layer attribute to calculate statistic on
-          example: registrationCount
-        statisticType:
-          description: The type of statistic to calculate
-          example:
-          - count
-          - sum
-          - avg
-          - var
-          - max
-          - min
-          allOf:
-          - $ref: '#/components/schemas/StatisticType'
+        respectsDaylightSaving:
+          type: boolean
       required:
-      - outStatisticFieldName
-      - onStatisticField
-      - statisticType
+      - timeZone
+      - respectsDaylightSaving
     FeatureLayerQueryDto:
       type: object
       properties:
@@ -1804,3 +1720,87 @@ components:
       - features
       - exceededTransferLimit
       - geometryType
+    StatisticType:
+      type: string
+      enum:
+      - count
+      - sum
+      - avg
+      - var
+      - max
+      - min
+    FeatureLayerQueryFeatureDto:
+      type: object
+      properties:
+        attributes:
+          type: object
+        geometry:
+          type:
+          - object
+          - 'null'
+      required:
+      - attributes
+    FeatureLayerOwnershipBasedAccessControlForFeaturesDto:
+      type: object
+      properties:
+        allowOthersToQuery:
+          type: boolean
+      required:
+      - allowOthersToQuery
+    FeatureLayerUniqueIdFieldDto:
+      type: object
+      properties:
+        name:
+          type: string
+        isSystemMaintained:
+          type: boolean
+      required:
+      - name
+      - isSystemMaintained
+    FeatureLayerFieldDto:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        alias:
+          type: string
+        sqlType:
+          type: string
+        domain:
+          type:
+          - object
+          - 'null'
+        defaultValue:
+          type:
+          - object
+          - 'null'
+        length:
+          type: number
+        editable:
+          type: boolean
+        nullable:
+          type: boolean
+      required:
+      - name
+      - type
+      - alias
+      - sqlType
+      - editable
+      - nullable
+    SpatialReferenceDto:
+      type: object
+      properties:
+        latestVcsWkid:
+          type: number
+        latestWkid:
+          type: number
+        latestWkt:
+          type: string
+        vcsWkid:
+          type: number
+        wkid:
+          type: number
+        wkt:
+          type: string

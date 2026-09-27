@@ -61,32 +61,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    GeometryFilterDto:
+    CollectionsResponseLinksDto:
       type: object
       properties:
-        relation:
+        rel:
           type: string
-          description: Type of relation, defaults to "intersects"
-          enum:
-          - intersects
-          - disjoint
-          - within
-          - contains
-        geometry:
-          anyOf:
-          - $ref: '#/components/schemas/EnvelopeDto'
-          allOf:
-          - $ref: '#/components/schemas/GeometryDto'
+        type:
+          type: string
+        title:
+          type: string
+        href:
+          type: string
       required:
-      - geometry
-    GeometryDto:
-      type: object
-      properties:
-        bbox:
-          type: array
-          minItems: 4
-          items:
-            type: number
+      - rel
+      - type
+      - title
+      - href
     CollectionDto:
       type: object
       properties:
@@ -120,6 +110,46 @@ components:
       - description
       - itemType
       - crs
+    GeometryDto:
+      type: object
+      properties:
+        bbox:
+          type: array
+          minItems: 4
+          items:
+            type: number
+    GeometryFilterDto:
+      type: object
+      properties:
+        relation:
+          type: string
+          description: Type of relation, defaults to "intersects"
+          enum:
+          - intersects
+          - disjoint
+          - within
+          - contains
+        geometry:
+          anyOf:
+          - $ref: '#/components/schemas/EnvelopeDto'
+          allOf:
+          - $ref: '#/components/schemas/GeometryDto'
+      required:
+      - geometry
+    CollectionsResponseDto:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionDto'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionsResponseLinksDto'
+      required:
+      - collections
+      - links
     EnvelopeDto:
       type: object
       properties:
@@ -153,6 +183,21 @@ components:
       required:
       - type
       - coordinates
+    ItemSearchFiltersBlockDto:
+      type: object
+      properties:
+        operation:
+          type: string
+          enum:
+          - AND
+          - OR
+          default: AND
+        predicates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemSearchFiltersDto'
+      required:
+      - predicates
     CollectionDtoLink:
       type: object
       properties:
@@ -172,36 +217,6 @@ components:
       - title
       - href
       - hreflang
-    RangeParamsEpoch:
-      type: object
-      properties:
-        from:
-          type: number
-          description: epoch time in milliseconds
-          example: 160000000
-        to:
-          type: number
-          description: epoch time in milliseconds
-          example: 170000000
-      required:
-      - from
-      - to
-    CollectionsResponseLinksDto:
-      type: object
-      properties:
-        rel:
-          type: string
-        type:
-          type: string
-        title:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - type
-      - title
-      - href
     ItemSearchFiltersDto:
       type: object
       properties:
@@ -1003,20 +1018,6 @@ components:
                   type: string
         boundary:
           $ref: '#/components/schemas/GeometryFilterDto'
-    CollectionsResponseDto:
-      type: object
-      properties:
-        collections:
-          type: array
-          items:
-            $ref: '#/components/schemas/CollectionDto'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/CollectionsResponseLinksDto'
-      required:
-      - collections
-      - links
     CollectionWithLinksDto:
       type: object
       properties:
@@ -1055,18 +1056,17 @@ components:
       - itemType
       - crs
       - links
-    ItemSearchFiltersBlockDto:
+    RangeParamsEpoch:
       type: object
       properties:
-        operation:
-          type: string
-          enum:
-          - AND
-          - OR
-          default: AND
-        predicates:
-          type: array
-          items:
-            $ref: '#/components/schemas/ItemSearchFiltersDto'
+        from:
+          type: number
+          description: epoch time in milliseconds
+          example: 160000000
+        to:
+          type: number
+          description: epoch time in milliseconds
+          example: 170000000
       required:
-      - predicates
+      - from
+      - to
