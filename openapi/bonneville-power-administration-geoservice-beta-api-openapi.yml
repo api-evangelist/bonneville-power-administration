@@ -1015,6 +1015,21 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    SpatialReferenceDto:
+      type: object
+      properties:
+        latestVcsWkid:
+          type: number
+        latestWkid:
+          type: number
+        latestWkt:
+          type: string
+        vcsWkid:
+          type: number
+        wkid:
+          type: number
+        wkt:
+          type: string
     OutputStatistics:
       type: object
       properties:
@@ -1041,6 +1056,78 @@ components:
       - outStatisticFieldName
       - onStatisticField
       - statisticType
+    AuthInfoDto:
+      type: object
+      properties:
+        isTokenBasedSecurity:
+          type: boolean
+          description: Indicates whether token-based security is enabled
+          example: true
+        tokenServicesUrl:
+          type: string
+          description: Token generation endpoint URL
+          example: https://totoro-purple-qa-pre-hub.hubqa.arcgis.com/events/rest/generateToken
+      required:
+      - isTokenBasedSecurity
+      - tokenServicesUrl
+    FeatureLayersDto:
+      type: object
+      properties:
+        layers:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerDto'
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerDto'
+      required:
+      - layers
+      - tables
+    FeatureServerFormats:
+      type: string
+      enum:
+      - json
+    FeatureLayerIndexDto:
+      type: object
+      properties:
+        name:
+          type: string
+        fields:
+          type: string
+        isAscending:
+          type: boolean
+        isUnique:
+          type: boolean
+        description:
+          type: string
+        indexType:
+          type: string
+      required:
+      - name
+      - fields
+      - isAscending
+      - isUnique
+      - description
+      - indexType
+    FeatureLayerOwnershipBasedAccessControlForFeaturesDto:
+      type: object
+      properties:
+        allowOthersToQuery:
+          type: boolean
+      required:
+      - allowOthersToQuery
+    FeatureLayerQueryFeatureDto:
+      type: object
+      properties:
+        attributes:
+          type: object
+        geometry:
+          type:
+          - object
+          - 'null'
+      required:
+      - attributes
     FeatureLayerSymbolDto:
       type: object
       properties:
@@ -1059,20 +1146,209 @@ components:
       - outline
       - type
       - style
-    AuthInfoDto:
+    FeatureLayerFieldDto:
       type: object
       properties:
-        isTokenBasedSecurity:
-          type: boolean
-          description: Indicates whether token-based security is enabled
-          example: true
-        tokenServicesUrl:
+        name:
           type: string
-          description: Token generation endpoint URL
-          example: https://totoro-purple-qa-pre-hub.hubqa.arcgis.com/events/rest/generateToken
+        type:
+          type: string
+        alias:
+          type: string
+        sqlType:
+          type: string
+        domain:
+          type:
+          - object
+          - 'null'
+        defaultValue:
+          type:
+          - object
+          - 'null'
+        length:
+          type: number
+        editable:
+          type: boolean
+        nullable:
+          type: boolean
       required:
-      - isTokenBasedSecurity
-      - tokenServicesUrl
+      - name
+      - type
+      - alias
+      - sqlType
+      - editable
+      - nullable
+    FeatureServerExtentDto:
+      type: object
+      properties:
+        spatialReference:
+          description: Spatial reference for the extent
+          allOf:
+          - $ref: '#/components/schemas/SpatialReferenceDto'
+        xmin:
+          type: number
+        xmax:
+          type: number
+        ymin:
+          type: number
+        ymax:
+          type: number
+      required:
+      - spatialReference
+      - xmin
+      - xmax
+      - ymin
+      - ymax
+    FeatureLayerQueryDto:
+      type: object
+      properties:
+        objectIdFieldName:
+          type: string
+        uniqueIdField:
+          $ref: '#/components/schemas/FeatureLayerUniqueIdFieldDto'
+        globalIdFieldName:
+          type: string
+        hasZ:
+          type: boolean
+        hasM:
+          type: boolean
+        spatialReference:
+          $ref: '#/components/schemas/SpatialReferenceDto'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerFieldDto'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureLayerQueryFeatureDto'
+        exceededTransferLimit:
+          type: boolean
+        geometryType:
+          type: string
+      required:
+      - objectIdFieldName
+      - uniqueIdField
+      - globalIdFieldName
+      - hasZ
+      - hasM
+      - spatialReference
+      - fields
+      - features
+      - exceededTransferLimit
+      - geometryType
+    FeatureLayerAdvancedQueryCapabilitiesDto:
+      type: object
+      properties:
+        supportsPagination:
+          type: boolean
+        supportsQueryAttachmentsCountOnly:
+          type: boolean
+        supportsPaginationOnAggregatedQueries:
+          type: boolean
+        supportsQueryRelatedPagination:
+          type: boolean
+        supportsQueryWithDistance:
+          type: boolean
+        supportsReturningQueryExtent:
+          type: boolean
+        supportsStatistics:
+          type: boolean
+        supportsOrderBy:
+          type: boolean
+        supportsDistinct:
+          type: boolean
+        supportsQueryWithResultType:
+          type: boolean
+        supportsSqlExpression:
+          type: boolean
+        supportsAdvancedQueryRelated:
+          type: boolean
+        supportsCountDistinct:
+          type: boolean
+        supportsPercentileStatistics:
+          type: boolean
+        supportedSpatialAggregationStatistics:
+          type: array
+          items:
+            type: string
+        supportsLod:
+          type: boolean
+        supportsQueryWithLodSR:
+          type: boolean
+        supportedLodTypes:
+          type: array
+          items:
+            type: string
+        supportsReturningGeometryCentroid:
+          type: boolean
+        supportsReturningGeometryEnvelope:
+          type: boolean
+        supportsQueryWithDatumTransformation:
+          type: boolean
+        supportsCurrentUserQueries:
+          type: boolean
+        supportsHavingClause:
+          type: boolean
+        supportsOutFieldSQLExpression:
+          type: boolean
+        supportsMaxRecordCountFactor:
+          type: boolean
+        supportsTopFeaturesQuery:
+          type: boolean
+        supportsDisjointSpatialRel:
+          type: boolean
+        supportsQueryWithCacheHint:
+          type: boolean
+        supportedOperationsWithCacheHint:
+          type: array
+          items:
+            type: string
+        supportsQueryAnalytic:
+          type: boolean
+        supportsDefaultSR:
+          type: boolean
+        supportsFullTextSearch:
+          type: boolean
+        advancedQueryAnalyticCapabilities:
+          type: object
+        advancedEditingCapabilities:
+          type: object
+      required:
+      - supportsPagination
+      - supportsQueryAttachmentsCountOnly
+      - supportsPaginationOnAggregatedQueries
+      - supportsQueryRelatedPagination
+      - supportsQueryWithDistance
+      - supportsReturningQueryExtent
+      - supportsStatistics
+      - supportsOrderBy
+      - supportsDistinct
+      - supportsQueryWithResultType
+      - supportsSqlExpression
+      - supportsAdvancedQueryRelated
+      - supportsCountDistinct
+      - supportsPercentileStatistics
+      - supportedSpatialAggregationStatistics
+      - supportsLod
+      - supportsQueryWithLodSR
+      - supportedLodTypes
+      - supportsReturningGeometryCentroid
+      - supportsReturningGeometryEnvelope
+      - supportsQueryWithDatumTransformation
+      - supportsCurrentUserQueries
+      - supportsHavingClause
+      - supportsOutFieldSQLExpression
+      - supportsMaxRecordCountFactor
+      - supportsTopFeaturesQuery
+      - supportsDisjointSpatialRel
+      - supportsQueryWithCacheHint
+      - supportedOperationsWithCacheHint
+      - supportsQueryAnalytic
+      - supportsDefaultSR
+      - supportsFullTextSearch
+      - advancedQueryAnalyticCapabilities
+      - advancedEditingCapabilities
     FeatureServerDto:
       type: object
       properties:
@@ -1189,60 +1465,61 @@ components:
       - layers
       - relationships
       - supportsRelationshipsResource
-    FeatureLayerIndexDto:
+    FeatureInfoDto:
       type: object
       properties:
+        id:
+          type: number
         name:
           type: string
-        fields:
-          type: string
-        isAscending:
-          type: boolean
-        isUnique:
-          type: boolean
-        description:
-          type: string
-        indexType:
-          type: string
-      required:
-      - name
-      - fields
-      - isAscending
-      - isUnique
-      - description
-      - indexType
-    FeatureLayersDto:
-      type: object
-      properties:
-        layers:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureLayerDto'
-        tables:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureLayerDto'
-      required:
-      - layers
-      - tables
-    FeatureLayerSymbolOutlineDto:
-      type: object
-      properties:
-        color:
-          type: array
-          items:
-            type: number
-        width:
-          type: number
         type:
           type: string
-        style:
+        parentLayerId:
+          type: number
+        defaultVisibility:
+          type: boolean
+        subLayerIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: number
+        minScale:
+          type: number
+        maxScale:
+          type: number
+        geometryType:
           type: string
       required:
-      - color
-      - width
+      - id
+      - name
       - type
-      - style
+      - parentLayerId
+      - defaultVisibility
+      - minScale
+      - maxScale
+      - geometryType
+    FeatureLayerDrawingInfoDto:
+      type: object
+      properties:
+        renderer:
+          $ref: '#/components/schemas/FeatureLayerRendererDto'
+        labelingInfo:
+          type:
+          - object
+          - 'null'
+      required:
+      - renderer
+    FeatureLayerRendererDto:
+      type: object
+      properties:
+        type:
+          type: string
+        symbol:
+          $ref: '#/components/schemas/FeatureLayerSymbolDto'
+      required:
+      - type
+      - symbol
     FeatureLayerDto:
       type: object
       properties:
@@ -1461,187 +1738,53 @@ components:
       - supportsCoordinatesQuantization
       - hasLabels
       - geometryType
-    FeatureServerFormats:
-      type: string
-      enum:
-      - json
-    FeatureServerExtentDto:
+    FeatureLayerSymbolOutlineDto:
       type: object
       properties:
-        spatialReference:
-          description: Spatial reference for the extent
-          allOf:
-          - $ref: '#/components/schemas/SpatialReferenceDto'
-        xmin:
-          type: number
-        xmax:
-          type: number
-        ymin:
-          type: number
-        ymax:
-          type: number
-      required:
-      - spatialReference
-      - xmin
-      - xmax
-      - ymin
-      - ymax
-    FeatureInfoDto:
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
-        type:
-          type: string
-        parentLayerId:
-          type: number
-        defaultVisibility:
-          type: boolean
-        subLayerIds:
-          type:
-          - array
-          - 'null'
+        color:
+          type: array
           items:
             type: number
-        minScale:
+        width:
           type: number
-        maxScale:
-          type: number
-        geometryType:
-          type: string
-      required:
-      - id
-      - name
-      - type
-      - parentLayerId
-      - defaultVisibility
-      - minScale
-      - maxScale
-      - geometryType
-    FeatureLayerAdvancedQueryCapabilitiesDto:
-      type: object
-      properties:
-        supportsPagination:
-          type: boolean
-        supportsQueryAttachmentsCountOnly:
-          type: boolean
-        supportsPaginationOnAggregatedQueries:
-          type: boolean
-        supportsQueryRelatedPagination:
-          type: boolean
-        supportsQueryWithDistance:
-          type: boolean
-        supportsReturningQueryExtent:
-          type: boolean
-        supportsStatistics:
-          type: boolean
-        supportsOrderBy:
-          type: boolean
-        supportsDistinct:
-          type: boolean
-        supportsQueryWithResultType:
-          type: boolean
-        supportsSqlExpression:
-          type: boolean
-        supportsAdvancedQueryRelated:
-          type: boolean
-        supportsCountDistinct:
-          type: boolean
-        supportsPercentileStatistics:
-          type: boolean
-        supportedSpatialAggregationStatistics:
-          type: array
-          items:
-            type: string
-        supportsLod:
-          type: boolean
-        supportsQueryWithLodSR:
-          type: boolean
-        supportedLodTypes:
-          type: array
-          items:
-            type: string
-        supportsReturningGeometryCentroid:
-          type: boolean
-        supportsReturningGeometryEnvelope:
-          type: boolean
-        supportsQueryWithDatumTransformation:
-          type: boolean
-        supportsCurrentUserQueries:
-          type: boolean
-        supportsHavingClause:
-          type: boolean
-        supportsOutFieldSQLExpression:
-          type: boolean
-        supportsMaxRecordCountFactor:
-          type: boolean
-        supportsTopFeaturesQuery:
-          type: boolean
-        supportsDisjointSpatialRel:
-          type: boolean
-        supportsQueryWithCacheHint:
-          type: boolean
-        supportedOperationsWithCacheHint:
-          type: array
-          items:
-            type: string
-        supportsQueryAnalytic:
-          type: boolean
-        supportsDefaultSR:
-          type: boolean
-        supportsFullTextSearch:
-          type: boolean
-        advancedQueryAnalyticCapabilities:
-          type: object
-        advancedEditingCapabilities:
-          type: object
-      required:
-      - supportsPagination
-      - supportsQueryAttachmentsCountOnly
-      - supportsPaginationOnAggregatedQueries
-      - supportsQueryRelatedPagination
-      - supportsQueryWithDistance
-      - supportsReturningQueryExtent
-      - supportsStatistics
-      - supportsOrderBy
-      - supportsDistinct
-      - supportsQueryWithResultType
-      - supportsSqlExpression
-      - supportsAdvancedQueryRelated
-      - supportsCountDistinct
-      - supportsPercentileStatistics
-      - supportedSpatialAggregationStatistics
-      - supportsLod
-      - supportsQueryWithLodSR
-      - supportedLodTypes
-      - supportsReturningGeometryCentroid
-      - supportsReturningGeometryEnvelope
-      - supportsQueryWithDatumTransformation
-      - supportsCurrentUserQueries
-      - supportsHavingClause
-      - supportsOutFieldSQLExpression
-      - supportsMaxRecordCountFactor
-      - supportsTopFeaturesQuery
-      - supportsDisjointSpatialRel
-      - supportsQueryWithCacheHint
-      - supportedOperationsWithCacheHint
-      - supportsQueryAnalytic
-      - supportsDefaultSR
-      - supportsFullTextSearch
-      - advancedQueryAnalyticCapabilities
-      - advancedEditingCapabilities
-    FeatureLayerRendererDto:
-      type: object
-      properties:
         type:
           type: string
-        symbol:
-          $ref: '#/components/schemas/FeatureLayerSymbolDto'
+        style:
+          type: string
       required:
+      - color
+      - width
       - type
-      - symbol
+      - style
+    FeatureLayerUniqueIdFieldDto:
+      type: object
+      properties:
+        name:
+          type: string
+        isSystemMaintained:
+          type: boolean
+      required:
+      - name
+      - isSystemMaintained
+    FeatureLayerDateFieldsTimeReferenceDto:
+      type: object
+      properties:
+        timeZone:
+          type: string
+        respectsDaylightSaving:
+          type: boolean
+      required:
+      - timeZone
+      - respectsDaylightSaving
+    StatisticType:
+      type: string
+      enum:
+      - count
+      - sum
+      - avg
+      - var
+      - max
+      - min
     RestInfoDto:
       type: object
       properties:
@@ -1661,146 +1804,3 @@ components:
       - currentVersion
       - fullVersion
       - authInfo
-    FeatureLayerDrawingInfoDto:
-      type: object
-      properties:
-        renderer:
-          $ref: '#/components/schemas/FeatureLayerRendererDto'
-        labelingInfo:
-          type:
-          - object
-          - 'null'
-      required:
-      - renderer
-    FeatureLayerDateFieldsTimeReferenceDto:
-      type: object
-      properties:
-        timeZone:
-          type: string
-        respectsDaylightSaving:
-          type: boolean
-      required:
-      - timeZone
-      - respectsDaylightSaving
-    FeatureLayerQueryDto:
-      type: object
-      properties:
-        objectIdFieldName:
-          type: string
-        uniqueIdField:
-          $ref: '#/components/schemas/FeatureLayerUniqueIdFieldDto'
-        globalIdFieldName:
-          type: string
-        hasZ:
-          type: boolean
-        hasM:
-          type: boolean
-        spatialReference:
-          $ref: '#/components/schemas/SpatialReferenceDto'
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureLayerFieldDto'
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureLayerQueryFeatureDto'
-        exceededTransferLimit:
-          type: boolean
-        geometryType:
-          type: string
-      required:
-      - objectIdFieldName
-      - uniqueIdField
-      - globalIdFieldName
-      - hasZ
-      - hasM
-      - spatialReference
-      - fields
-      - features
-      - exceededTransferLimit
-      - geometryType
-    StatisticType:
-      type: string
-      enum:
-      - count
-      - sum
-      - avg
-      - var
-      - max
-      - min
-    FeatureLayerQueryFeatureDto:
-      type: object
-      properties:
-        attributes:
-          type: object
-        geometry:
-          type:
-          - object
-          - 'null'
-      required:
-      - attributes
-    FeatureLayerOwnershipBasedAccessControlForFeaturesDto:
-      type: object
-      properties:
-        allowOthersToQuery:
-          type: boolean
-      required:
-      - allowOthersToQuery
-    FeatureLayerUniqueIdFieldDto:
-      type: object
-      properties:
-        name:
-          type: string
-        isSystemMaintained:
-          type: boolean
-      required:
-      - name
-      - isSystemMaintained
-    FeatureLayerFieldDto:
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        alias:
-          type: string
-        sqlType:
-          type: string
-        domain:
-          type:
-          - object
-          - 'null'
-        defaultValue:
-          type:
-          - object
-          - 'null'
-        length:
-          type: number
-        editable:
-          type: boolean
-        nullable:
-          type: boolean
-      required:
-      - name
-      - type
-      - alias
-      - sqlType
-      - editable
-      - nullable
-    SpatialReferenceDto:
-      type: object
-      properties:
-        latestVcsWkid:
-          type: number
-        latestWkid:
-          type: number
-        latestWkt:
-          type: string
-        vcsWkid:
-          type: number
-        wkid:
-          type: number
-        wkt:
-          type: string

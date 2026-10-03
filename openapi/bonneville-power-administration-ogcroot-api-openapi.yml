@@ -32,26 +32,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    OgcApiLandingPageLinkDto:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: relationship
-        type:
-          type: string
-          description: link MIME type
-        title:
-          type: string
-          description: link title
-        href:
-          type: string
-          description: link uri
-      required:
-      - rel
-      - type
-      - title
-      - href
     OgcApiLandingPageDto:
       type: object
       properties:
@@ -74,6 +54,26 @@ components:
       - title
       - description
       - links
+    OgcApiLandingPageLinkDto:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: relationship
+        type:
+          type: string
+          description: link MIME type
+        title:
+          type: string
+          description: link title
+        href:
+          type: string
+          description: link uri
+      required:
+      - rel
+      - type
+      - title
+      - href
     OgcItemDto:
       type: object
       properties:
