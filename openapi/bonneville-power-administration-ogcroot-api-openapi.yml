@@ -32,48 +32,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    OgcApiLandingPageDto:
-      type: object
-      properties:
-        title:
-          type: string
-          description: API title
-        description:
-          type: string
-          description: API description
-        item:
-          description: OGC Record of underlying API Resource
-          allOf:
-          - $ref: '#/components/schemas/OgcItemDto'
-        links:
-          description: API links
-          type: array
-          items:
-            $ref: '#/components/schemas/OgcApiLandingPageLinkDto'
-      required:
-      - title
-      - description
-      - links
-    OgcApiLandingPageLinkDto:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: relationship
-        type:
-          type: string
-          description: link MIME type
-        title:
-          type: string
-          description: link title
-        href:
-          type: string
-          description: link uri
-      required:
-      - rel
-      - type
-      - title
-      - href
     OgcItemDto:
       type: object
       properties:
@@ -242,3 +200,45 @@ components:
       - geometry
       - properties
       - time
+    OgcApiLandingPageLinkDto:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: relationship
+        type:
+          type: string
+          description: link MIME type
+        title:
+          type: string
+          description: link title
+        href:
+          type: string
+          description: link uri
+      required:
+      - rel
+      - type
+      - title
+      - href
+    OgcApiLandingPageDto:
+      type: object
+      properties:
+        title:
+          type: string
+          description: API title
+        description:
+          type: string
+          description: API description
+        item:
+          description: OGC Record of underlying API Resource
+          allOf:
+          - $ref: '#/components/schemas/OgcItemDto'
+        links:
+          description: API links
+          type: array
+          items:
+            $ref: '#/components/schemas/OgcApiLandingPageLinkDto'
+      required:
+      - title
+      - description
+      - links

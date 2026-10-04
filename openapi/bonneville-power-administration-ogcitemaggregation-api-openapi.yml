@@ -140,25 +140,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    OgcItemAggregationResponseDto:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          title: timestamp
-          format: date-time
-        aggregations:
-          type: object
-          title: aggregations
-        links:
-          title: links
-          type: array
-          items:
-            $ref: '#/components/schemas/OgcItemAggregationLinkDto'
-      required:
-      - timestamp
-      - aggregations
-      - links
     OgcItemAggregationLinkDto:
       type: object
       properties:
@@ -179,3 +160,22 @@ components:
       - rel
       - title
       - href
+    OgcItemAggregationResponseDto:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          title: timestamp
+          format: date-time
+        aggregations:
+          type: object
+          title: aggregations
+        links:
+          title: links
+          type: array
+          items:
+            $ref: '#/components/schemas/OgcItemAggregationLinkDto'
+      required:
+      - timestamp
+      - aggregations
+      - links

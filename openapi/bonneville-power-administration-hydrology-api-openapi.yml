@@ -38,18 +38,6 @@ paths:
           description: ArcGIS query result
 components:
   parameters:
-    F:
-      name: f
-      in: query
-      description: Response format.
-      schema:
-        type: string
-        enum:
-        - json
-        - geojson
-        - html
-        - pjson
-        default: json
     OutFields:
       name: outFields
       in: query
@@ -64,3 +52,15 @@ components:
       schema:
         type: string
         default: 1=1
+    F:
+      name: f
+      in: query
+      description: Response format.
+      schema:
+        type: string
+        enum:
+        - json
+        - geojson
+        - html
+        - pjson
+        default: json
