@@ -1,4 +1,4 @@
-# Bonneville Power Administration (bonneville-power-administration)
+# Bonneville Power Administration
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,88 +66,154 @@
 
 The Bonneville Power Administration (BPA) is a federal agency within the U.S. Department of Energy that markets wholesale electrical power from federal hydroelectric projects in the Pacific Northwest. BPA also operates and maintains about three-quarters of the high-voltage transmission in the Pacific Northwest. The agency provides publicly available GIS data, energy statistics, and operational data through its data hub and web services.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bonneville-power-administration/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bonneville-power-administration/refs/heads/main/apis.yml)
+**Areas:** Energy · Federal Government · GIS · Hydroelectric · Pacific Northwest · Power · Transmission · Wind
 
-## Scope
+## Bonneville Power Administration on APIs.io
 
-- **Type:** Index
+Everything profiled for Bonneville Power Administration is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bonneville-power-administration/](https://apis.io/providers/bonneville-power-administration/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (15)
 
-- Energy
-- Federal Government
-- GIS
-- Hydroelectric
-- Pacific Northwest
-- Power
-- Transmission
-- Wind
+- [BPA GIS Data Hub API](https://apis.io/apis/bonneville-power-administration/gis-data-api/) — The BPA GIS Data Hub provides publicly available geospatial data from Bonneville Power Administration. The hub is built on ArcGIS and supports data…
+- [BPA Wind and Solar Generation Data](https://apis.io/apis/bonneville-power-administration/wind-solar-data/) — BPA publishes real-time and historical wind and solar generation data for the Balancing Authority area. Data includes total wind generation, total solar…
+- [Bonneville Power Administration Customers API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-customers-api/) — The Customers API from Bonneville Power Administration — 3 operation(s) for customers.
+- [Bonneville Power Administration Hydrology API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-hydrology-api/) — The Hydrology API from Bonneville Power Administration — 1 operation(s) for hydrology.
+- [Bonneville Power Administration Right of Way API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-right-of-way-api/) — The Right of Way API from Bonneville Power Administration — 1 operation(s) for right of way.
+- [Bonneville Power Administration Service Area API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-service-area-api/) — The Service Area API from Bonneville Power Administration — 1 operation(s) for service area.
+- [Bonneville Power Administration Transmission API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-transmission-api/) — The Transmission API from Bonneville Power Administration — 2 operation(s) for transmission.
+- [Bonneville Power Administration Catalog API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-catalog-api/) — The Catalog API from Bonneville Power Administration — 1 operation(s) for catalog.
+- [Bonneville Power Administration Collection API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-collection-api/) — The Collection API from Bonneville Power Administration — 2 operation(s) for collection.
+- [Bonneville Power Administration Geoservice Beta API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-geoservice-beta-api/) — The Geoservice-Beta API from Bonneville Power Administration — 6 operation(s) for geoservice-beta.
+- [Bonneville Power Administration Ogc Item API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-ogcitem-api/) — The OgcItem API from Bonneville Power Administration — 4 operation(s) for ogcitem.
+- [Bonneville Power Administration Ogc Item Aggregation API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-ogcitemaggregation-api/) — The OgcItemAggregation API from Bonneville Power Administration — 1 operation(s) for ogcitemaggregation.
+- [Bonneville Power Administration Ogc Root API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-ogcroot-api/) — The OgcRoot API from Bonneville Power Administration — 1 operation(s) for ogcroot.
+- [Bonneville Power Administration Ogc Root Conformance API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-ogcrootconformance-api/) — The OgcRootConformance API from Bonneville Power Administration — 1 operation(s) for ogcrootconformance.
+- [Bonneville Power Administration Queryable API](https://apis.io/apis/bonneville-power-administration/bonneville-power-administration-queryable-api/) — The Queryable API from Bonneville Power Administration — 1 operation(s) for queryable.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-11-25
-- **Modified:** 2026-04-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### BPA GIS Data Hub API
+Model Context Protocol servers that expose the API to agents.
 
-The BPA GIS Data Hub provides publicly available geospatial data from Bonneville Power Administration. The hub is built on ArcGIS and supports data downloads in multiple formats including CSV, KML, GeoJSON, GeoTIFF, and PNG. Developer API access is available through GeoServices (ArcGIS REST API), WMS (Web Map Service), and WFS (Web Feature Service) endpoints. Datasets include BPA service area boundaries, transmission infrastructure, and energy facility data.
+- [bonneville-power-administration-mcp.yml](https://apis.io/servers/bonneville-power-administration/bonneville-power-administration-mcp-yml/)
 
-- **Human URL:** [https://data-bpagis.hub.arcgis.com](https://data-bpagis.hub.arcgis.com)
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- ArcGIS
-- GeoServices
-- GIS
-- Government
-- Geospatial
-- WFS
-- WMS
+- [Bonneville Power Administration Agentic Access](https://apis.io/agentic-access/bonneville-power-administration/bonneville-power-administration-agentic-access/)
 
-#### Properties
+#### Collections (6)
 
-- [Documentation](https://data-bpagis.hub.arcgis.com)
-- [Geo Service](https://data-bpagis.hub.arcgis.com/datasets/998ba568128d46c0a38e285235b55d0c_0/geoservice)
-- [Postman Collection](collections/bonneville-power-administration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bonneville-power-administration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### BPA Wind and Solar Generation Data
+- [Bonneville Power Administration GIS Hub API](https://apis.io/collections/bonneville-power-administration/open-bonneville-power-administration/)
+- [Bonneville Power Administration GIS Hub Customers API](https://apis.io/collections/bonneville-power-administration/open-bonneville-power-administration-customers-api/)
+- [Bonneville Power Administration GIS Hub Customers Hydrology API](https://apis.io/collections/bonneville-power-administration/open-bonneville-power-administration-hydrology-api/)
+- [Bonneville Power Administration GIS Hub Customers Right of Way API](https://apis.io/collections/bonneville-power-administration/open-bonneville-power-administration-right-of-way-api/)
+- [Bonneville Power Administration GIS Hub Customers Service Area API](https://apis.io/collections/bonneville-power-administration/open-bonneville-power-administration-service-area-api/)
+- [Bonneville Power Administration GIS Hub Customers Transmission API](https://apis.io/collections/bonneville-power-administration/open-bonneville-power-administration-transmission-api/)
 
-BPA publishes real-time and historical wind and solar generation data for the Balancing Authority area. Data includes total wind generation, total solar generation, net generation, and load data available for download. The data is used for grid operations planning and renewable energy tracking.
+#### Overlays (6)
 
-- **Human URL:** [https://transmission.bpa.gov/business/operations/Wind/](https://transmission.bpa.gov/business/operations/Wind/)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-#### Tags
+- [Bonneville Power Administration Customers Api Overlay](https://apis.io/overlays/bonneville-power-administration/bonneville-power-administration-customers-api-overlay/)
+- [Bonneville Power Administration Data Search Api Overlay](https://apis.io/overlays/bonneville-power-administration/bonneville-power-administration-data-search-api-overlay/)
+- [Bonneville Power Administration Hydrology Api Overlay](https://apis.io/overlays/bonneville-power-administration/bonneville-power-administration-hydrology-api-overlay/)
+- [Bonneville Power Administration Right Of Way Api Overlay](https://apis.io/overlays/bonneville-power-administration/bonneville-power-administration-right-of-way-api-overlay/)
+- [Bonneville Power Administration Service Area Api Overlay](https://apis.io/overlays/bonneville-power-administration/bonneville-power-administration-service-area-api-overlay/)
+- [Bonneville Power Administration Transmission Api Overlay](https://apis.io/overlays/bonneville-power-administration/bonneville-power-administration-transmission-api-overlay/)
 
-- Energy
-- Government
-- Renewable Energy
-- Solar
-- Statistics
-- Wind
+#### Security (3)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://transmission.bpa.gov/business/operations/Wind/)
-- [Data A P I](https://transmission.bpa.gov/business/operations/Wind/twndbspt.aspx)
-- [Postman Collection](collections/bonneville-power-administration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bonneville-power-administration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Bonneville Power Administration Authentication](https://apis.io/security/bonneville-power-administration/bonneville-power-administration-authentication/)
+- [Bonneville Power Administration Domain Security](https://apis.io/security/bonneville-power-administration/bonneville-power-administration-domain-security/)
+- [Bonneville Power Administration Vulnerability Disclosure](https://apis.io/security/bonneville-power-administration/bonneville-power-administration-vulnerability-disclosure/)
 
-## Common Properties
+#### Plans and pricing (1)
 
-- [LinkedIn](https://www.linkedin.com/company/bonnevillepower)
+Published plans, tiers and prices.
+
+- [Bonneville Power Administration Plans Pricing](https://apis.io/plans/bonneville-power-administration/bonneville-power-administration-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Bonneville Power Administration Rate Limits](https://apis.io/rate-limits/bonneville-power-administration/bonneville-power-administration-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Bonneville Power Administration Finops](https://apis.io/finops/bonneville-power-administration/bonneville-power-administration-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.bpa.gov)
-- [About](https://www.bpa.gov/about/)
-- [Open Data](https://data-bpagis.hub.arcgis.com)
-- [Data Download](https://transmission.bpa.gov/business/operations/Wind/)
-- [Customer Portal](https://www.bpa.gov/energy-and-services/)
-- [Contact](https://www.bpa.gov/about/contact/)
-- [Use Cases](undefined)
-- [Features](undefined)
+- [Documentation](https://data-bpagis.hub.arcgis.com)
+- [API reference](https://data-bpagis.hub.arcgis.com/api/search/definition/)
+- [Support](https://www.bpa.gov/about/who-we-are/contact-form)
+- [Blog](https://www.bpa.gov/rss-feeds/news-feed-no-cp)
+- [Privacy policy](https://www.bpa.gov/about/who-we-are/privacy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kinlane@gmail.com
+**Kin Score 35.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 40.8 |
+| Contract governance | 18.2 |
+| Operational transparency | 31.6 |
+| Developer ergonomics | 37.5 |
+| Access clarity | 10.5 |
+
+**Agent readiness 30.2** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 32.8** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bonneville-power-administration/](https://apis.io/providers/bonneville-power-administration/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bonneville Power Administration: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bonneville-power-administration/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
