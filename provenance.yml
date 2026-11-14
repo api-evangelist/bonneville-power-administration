@@ -8,6 +8,12 @@ artifacts:
   authentication/bonneville-power-administration-authentication.yml:
     method: unknown
     evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   collections/bonneville-power-administration-customers-api.opencollection.json:
     method: derived
     evidence: openapi/bonneville-power-administration-customers-api
@@ -71,13 +77,16 @@ artifacts:
   heartbeat/2026-11-06.yml:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-13.yml:
+    method: unknown
+    evidence: no authorship recorded
   json-ld/bonneville-power-administration-dcat-us-catalog.json:
     method: unknown
     evidence: no authorship recorded
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -141,6 +150,9 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-11-02T082323.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/bonneville-power-administration-lifecycle.yml:
@@ -222,6 +234,9 @@ artifacts:
     evidence: declared in the artifact
   plans/bonneville-power-administration-plans-pricing.yml:
     method: searched
+    evidence: declared in the artifact
+  privacy/bonneville-power-administration-privacy-policy.yml:
+    method: harvested
     evidence: declared in the artifact
   rate-limits/bonneville-power-administration-rate-limits.yml:
     method: unknown
